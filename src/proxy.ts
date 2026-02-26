@@ -5,6 +5,10 @@ export const proxy = auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
+  console.log(
+    `Proxy middleware: path=${nextUrl.pathname} loggedIn=${isLoggedIn}`,
+  );
+
   const isAuthPage = nextUrl.pathname.startsWith("/login");
   const isDashboard =
     nextUrl.pathname === "/" ||
