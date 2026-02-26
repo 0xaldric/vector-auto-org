@@ -9,7 +9,13 @@ import { Separator } from "@/components/ui/separator";
 import { LoginForm } from "@/components/auth/login-form";
 import { GoogleButton } from "@/components/auth/google-button";
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const { error } = await searchParams;
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
@@ -20,6 +26,11 @@ export default function LoginPage() {
         <CardDescription>Sign in to the admin dashboard</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        {error === "AdminOnly" && (
+          <p className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive text-center">
+            Access denied. Only admin accounts can sign in.
+          </p>
+        )}
         <LoginForm />
         <div className="relative">
           <div className="absolute inset-0 flex items-center">

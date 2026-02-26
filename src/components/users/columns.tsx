@@ -11,6 +11,7 @@ export type User = {
   role: "admin" | "user" | "organizer";
   tags: string[];
   avatarUrl?: string;
+  credit?: number;
 };
 
 const roleBadgeVariant: Record<string, "default" | "secondary" | "outline"> = {
@@ -65,6 +66,15 @@ export const columns: ColumnDef<User>[] = [
         </Badge>
       );
     },
+  },
+  {
+    accessorKey: "credit",
+    header: "Credits",
+    cell: ({ row }) => (
+      <span className="font-mono">
+        {row.original.credit != null ? row.original.credit.toLocaleString() : "—"}
+      </span>
+    ),
   },
   {
     accessorKey: "tags",

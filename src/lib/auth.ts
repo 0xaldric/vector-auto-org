@@ -74,10 +74,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.image = backendUser.avatarUrl;
           user.accessToken = token;
 
+          if (backendUser.role !== "admin") {
+            return "/login?error=AdminOnly";
+          }
+
           return true;
         } catch {
           return false;
         }
+      }
+      // Credentials provider: user object comes from authorize()
+      if (user.role !== "admin") {
+        return "/login?error=AdminOnly";
       }
       return true;
     },

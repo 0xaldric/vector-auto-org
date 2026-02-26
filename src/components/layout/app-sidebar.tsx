@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Users } from "lucide-react";
+import { LayoutDashboard, Users, CreditCard, FileText } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +18,8 @@ import {
 const navItems = [
   { title: "Dashboard", href: "/", icon: LayoutDashboard },
   { title: "Users", href: "/users", icon: Users },
+  { title: "Payments", href: "/payments", icon: CreditCard },
+  { title: "Forms", href: "/forms", icon: FileText },
 ];
 
 export function AppSidebar() {
