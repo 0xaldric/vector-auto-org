@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 
 export default auth((req) => {
@@ -12,12 +13,14 @@ export default auth((req) => {
     nextUrl.pathname.startsWith("/forms");
 
   if (isAuthPage && isLoggedIn) {
-    return Response.redirect(new URL("/", nextUrl));
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
   if (isDashboard && !isLoggedIn) {
-    return Response.redirect(new URL("/login", nextUrl));
+    return NextResponse.redirect(new URL("/login", nextUrl));
   }
+
+  return NextResponse.next();
 });
 
 export const config = {
