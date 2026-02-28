@@ -25,6 +25,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  AddCreditsDto,
   AuthControllerAdminOnly200,
   AuthControllerGetProfile200,
   AuthControllerGoogleAuthenticate200,
@@ -32,10 +33,42 @@ import type {
   AuthControllerLogout200,
   AuthControllerOrganizerDashboard200,
   AuthControllerRegister201,
+  CreateOrderDto,
   ErrorResponseDto,
+  GenerateQrDto,
+  GoogleFormControllerAdminListForms200,
+  GoogleFormControllerAdminListFormsParams,
+  GoogleFormControllerAdminListOrders200,
+  GoogleFormControllerAdminListOrdersParams,
+  GoogleFormControllerCancelOrder200,
+  GoogleFormControllerCreateOrder201,
+  GoogleFormControllerGenerateRandom200,
+  GoogleFormControllerGenerateRates201,
+  GoogleFormControllerGetForm200,
+  GoogleFormControllerGetGenerateRates200,
+  GoogleFormControllerGetOrder200,
+  GoogleFormControllerListForms200,
+  GoogleFormControllerListFormsParams,
+  GoogleFormControllerListOrders200,
+  GoogleFormControllerListOrdersParams,
+  GoogleFormControllerManualRun200,
+  GoogleFormControllerParseForm201,
+  GoogleFormControllerPauseOrder200,
+  GoogleFormControllerResumeOrder200,
+  GoogleFormControllerSubmitFromSheet201,
+  GoogleFormControllerSubmitRandom201,
+  GoogleFormControllerSubmitWithRates201,
+  GoogleFormControllerUpdateCronConfig200,
+  GoogleFormControllerUpdateOrderSubmissions200,
   GoogleTokenDto,
   LoginDto,
+  ParseFormDto,
   RegisterDto,
+  SubmitFromSheetDto,
+  SubmitRandomDto,
+  SubmitWithRatesDto,
+  UpdateCronConfigDto,
+  UpdateOrderSubmissionsDto,
   UsersControllerGetUsersParams
 } from './models';
 
@@ -223,6 +256,71 @@ export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<type
 
 
 
+/**
+ * @summary Add credits to a user (Admin only)
+ */
+export const usersControllerAddCredits = (
+    id: string,
+    addCreditsDto: AddCreditsDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/users/${id}/credits`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: addCreditsDto, signal
+    },
+      );
+    }
+  
+
+
+export const getUsersControllerAddCreditsMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext> => {
+
+const mutationKey = ['usersControllerAddCredits'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usersControllerAddCredits>>, {id: string;data: AddCreditsDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  usersControllerAddCredits(id,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UsersControllerAddCreditsMutationResult = NonNullable<Awaited<ReturnType<typeof usersControllerAddCredits>>>
+    export type UsersControllerAddCreditsMutationBody = AddCreditsDto
+    export type UsersControllerAddCreditsMutationError = unknown
+
+    /**
+ * @summary Add credits to a user (Admin only)
+ */
+export const useUsersControllerAddCredits = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof usersControllerAddCredits>>,
+        TError,
+        {id: string;data: AddCreditsDto},
+        TContext
+      > => {
+      return useMutation(getUsersControllerAddCreditsMutationOptions(options), queryClient);
+    }
+    
 /**
  * Create a new user account with email and password
  * @summary Register a new user
@@ -936,3 +1034,1917 @@ export function useAuthControllerOrganizerDashboard<TData = Awaited<ReturnType<t
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+
+
+
+
+/**
+ * Fetches the Google Form, extracts all fields/options, and stores in DB. If the form was already parsed, returns the cached version. Supports both `/edit` and `/viewform` URL formats.
+ * @summary Parse a Google Form URL and save its structure
+ */
+export const googleFormControllerParseForm = (
+    parseFormDto: ParseFormDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerParseForm201>(
+      {url: `/google-form/parse`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: parseFormDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerParseFormMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerParseForm>>, TError,{data: ParseFormDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerParseForm>>, TError,{data: ParseFormDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerParseForm'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerParseForm>>, {data: ParseFormDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerParseForm(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerParseFormMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerParseForm>>>
+    export type GoogleFormControllerParseFormMutationBody = ParseFormDto
+    export type GoogleFormControllerParseFormMutationError = void
+
+    /**
+ * @summary Parse a Google Form URL and save its structure
+ */
+export const useGoogleFormControllerParseForm = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerParseForm>>, TError,{data: ParseFormDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerParseForm>>,
+        TError,
+        {data: ParseFormDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerParseFormMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns a paginated list of Google Forms the authenticated user has parsed.
+ * @summary List all parsed forms for the current user (paginated)
+ */
+export const googleFormControllerListForms = (
+    params?: GoogleFormControllerListFormsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerListForms200>(
+      {url: `/google-form/forms`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerListFormsQueryKey = (params?: GoogleFormControllerListFormsParams,) => {
+    return [
+    `/google-form/forms`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerListFormsQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerListForms>>, TError = void>(params?: GoogleFormControllerListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerListFormsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerListForms>>> = ({ signal }) => googleFormControllerListForms(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerListFormsQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerListForms>>>
+export type GoogleFormControllerListFormsQueryError = void
+
+
+export function useGoogleFormControllerListForms<TData = Awaited<ReturnType<typeof googleFormControllerListForms>>, TError = void>(
+ params: undefined |  GoogleFormControllerListFormsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListForms>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListForms>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListForms<TData = Awaited<ReturnType<typeof googleFormControllerListForms>>, TError = void>(
+ params?: GoogleFormControllerListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListForms>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListForms>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListForms<TData = Awaited<ReturnType<typeof googleFormControllerListForms>>, TError = void>(
+ params?: GoogleFormControllerListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List all parsed forms for the current user (paginated)
+ */
+
+export function useGoogleFormControllerListForms<TData = Awaited<ReturnType<typeof googleFormControllerListForms>>, TError = void>(
+ params?: GoogleFormControllerListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListForms>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerListFormsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Get parsed form details by ID
+ */
+export const googleFormControllerGetForm = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGetForm200>(
+      {url: `/google-form/forms/${id}`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGetFormQueryKey = (id: string,) => {
+    return [
+    `/google-form/forms/${id}`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGetFormQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError = void>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGetFormQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGetForm>>> = ({ signal }) => googleFormControllerGetForm(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGetFormQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGetForm>>>
+export type GoogleFormControllerGetFormQueryError = void
+
+
+export function useGoogleFormControllerGetForm<TData = Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError = void>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetForm>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetForm>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetForm<TData = Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetForm>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetForm>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetForm<TData = Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get parsed form details by ID
+ */
+
+export function useGoogleFormControllerGetForm<TData = Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetForm>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGetFormQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * For every field that has options, assigns a weight of `1` to each option (equal probability). The result is upserted — only one document is kept per form. Adjust the returned `answerConfig` rates and pass it directly to `POST submit-with-rates`.
+ * @summary Generate and save default equal-weight rates for a form
+ */
+export const googleFormControllerGenerateRates = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGenerateRates201>(
+      {url: `/google-form/forms/${id}/generate-rates`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerGenerateRatesMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRates>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRates>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerGenerateRates'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerGenerateRates>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerGenerateRates(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerGenerateRatesMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGenerateRates>>>
+    
+    export type GoogleFormControllerGenerateRatesMutationError = void
+
+    /**
+ * @summary Generate and save default equal-weight rates for a form
+ */
+export const useGoogleFormControllerGenerateRates = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRates>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerGenerateRates>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerGenerateRatesMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns the previously generated rates document. Returns 404 if `POST forms/:id/generate-rates` has not been called yet.
+ * @summary Get the saved generate-rates for a form
+ */
+export const googleFormControllerGetGenerateRates = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGetGenerateRates200>(
+      {url: `/google-form/forms/${id}/generate-rates`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGetGenerateRatesQueryKey = (id: string,) => {
+    return [
+    `/google-form/forms/${id}/generate-rates`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGetGenerateRatesQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError = void>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGetGenerateRatesQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>> = ({ signal }) => googleFormControllerGetGenerateRates(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGetGenerateRatesQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>>
+export type GoogleFormControllerGetGenerateRatesQueryError = void
+
+
+export function useGoogleFormControllerGetGenerateRates<TData = Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError = void>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetGenerateRates<TData = Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetGenerateRates<TData = Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get the saved generate-rates for a form
+ */
+
+export function useGoogleFormControllerGetGenerateRates<TData = Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetGenerateRates>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGetGenerateRatesQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Returns a preview of randomly generated answers using equal probability for all options. Nothing is submitted — this is a dry-run only.
+ * @summary Preview a single set of randomly generated answers (read-only)
+ */
+export const googleFormControllerGenerateRandom = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGenerateRandom200>(
+      {url: `/google-form/forms/${id}/random`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGenerateRandomQueryKey = (id: string,) => {
+    return [
+    `/google-form/forms/${id}/random`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGenerateRandomQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError = void>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGenerateRandomQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>> = ({ signal }) => googleFormControllerGenerateRandom(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGenerateRandomQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>>
+export type GoogleFormControllerGenerateRandomQueryError = void
+
+
+export function useGoogleFormControllerGenerateRandom<TData = Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError = void>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGenerateRandom<TData = Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGenerateRandom<TData = Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Preview a single set of randomly generated answers (read-only)
+ */
+
+export function useGoogleFormControllerGenerateRandom<TData = Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGenerateRandom>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGenerateRandomQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Generates random answers with equal probability for all options — no `answerConfig` needed. **Credit tiers:** ≤250 submissions = 100,000 cr · ≤400 = 130,000 cr · ≤500 = 150,000 cr. First 2 orders of ≤2 submissions are free per account.
+ * @summary Create an order with fully random answers
+ */
+export const googleFormControllerSubmitRandom = (
+    submitRandomDto: SubmitRandomDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerSubmitRandom201>(
+      {url: `/google-form/submit-random`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: submitRandomDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerSubmitRandomMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>, TError,{data: SubmitRandomDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>, TError,{data: SubmitRandomDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerSubmitRandom'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>, {data: SubmitRandomDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerSubmitRandom(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerSubmitRandomMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>>
+    export type GoogleFormControllerSubmitRandomMutationBody = SubmitRandomDto
+    export type GoogleFormControllerSubmitRandomMutationError = void
+
+    /**
+ * @summary Create an order with fully random answers
+ */
+export const useGoogleFormControllerSubmitRandom = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>, TError,{data: SubmitRandomDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerSubmitRandom>>,
+        TError,
+        {data: SubmitRandomDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerSubmitRandomMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Each field in `answerConfig` specifies weighted rates for its options (values are normalised internally). Fields not listed fall back to equal-probability random. Tip: call `GET forms/:id/generate-rates` first to get a pre-populated starting template. **Credit tiers:** ≤250 = 100,000 cr · ≤400 = 130,000 cr · ≤500 = 150,000 cr.
+ * @summary Create an order with custom per-field weighted rates
+ */
+export const googleFormControllerSubmitWithRates = (
+    submitWithRatesDto: SubmitWithRatesDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerSubmitWithRates201>(
+      {url: `/google-form/submit-with-rates`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: submitWithRatesDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerSubmitWithRatesMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>, TError,{data: SubmitWithRatesDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>, TError,{data: SubmitWithRatesDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerSubmitWithRates'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>, {data: SubmitWithRatesDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerSubmitWithRates(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerSubmitWithRatesMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>>
+    export type GoogleFormControllerSubmitWithRatesMutationBody = SubmitWithRatesDto
+    export type GoogleFormControllerSubmitWithRatesMutationError = void
+
+    /**
+ * @summary Create an order with custom per-field weighted rates
+ */
+export const useGoogleFormControllerSubmitWithRates = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>, TError,{data: SubmitWithRatesDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerSubmitWithRates>>,
+        TError,
+        {data: SubmitWithRatesDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerSubmitWithRatesMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Reads rows from a **publicly accessible** Google Sheet. Column headers are matched to form field labels (exact → bracket notation `Section [Row]` → fuzzy). Each data row becomes one form submission. **Credit tiers:** ≤250 rows = 100,000 cr · ≤400 = 130,000 cr · ≤500 = 150,000 cr. Max 500 rows.
+ * @summary Create an order from a Google Sheet
+ */
+export const googleFormControllerSubmitFromSheet = (
+    submitFromSheetDto: SubmitFromSheetDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerSubmitFromSheet201>(
+      {url: `/google-form/submit-from-sheet`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: submitFromSheetDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerSubmitFromSheetMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>, TError,{data: SubmitFromSheetDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>, TError,{data: SubmitFromSheetDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerSubmitFromSheet'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>, {data: SubmitFromSheetDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerSubmitFromSheet(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerSubmitFromSheetMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>>
+    export type GoogleFormControllerSubmitFromSheetMutationBody = SubmitFromSheetDto
+    export type GoogleFormControllerSubmitFromSheetMutationError = void
+
+    /**
+ * @summary Create an order from a Google Sheet
+ */
+export const useGoogleFormControllerSubmitFromSheet = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>, TError,{data: SubmitFromSheetDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerSubmitFromSheet>>,
+        TError,
+        {data: SubmitFromSheetDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerSubmitFromSheetMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Low-level order creation with explicit `answerStrategy` and `answerConfig`. Prefer `submit-random` or `submit-with-rates` for simpler usage. **Credit tiers:** ≤250 = 100,000 cr · ≤400 = 130,000 cr · ≤500 = 150,000 cr.
+ * @summary Create a form submission order (full control)
+ */
+export const googleFormControllerCreateOrder = (
+    createOrderDto: CreateOrderDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerCreateOrder201>(
+      {url: `/google-form/order`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createOrderDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerCreateOrderMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCreateOrder>>, TError,{data: CreateOrderDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCreateOrder>>, TError,{data: CreateOrderDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerCreateOrder'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerCreateOrder>>, {data: CreateOrderDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerCreateOrder(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerCreateOrderMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerCreateOrder>>>
+    export type GoogleFormControllerCreateOrderMutationBody = CreateOrderDto
+    export type GoogleFormControllerCreateOrderMutationError = void
+
+    /**
+ * @summary Create a form submission order (full control)
+ */
+export const useGoogleFormControllerCreateOrder = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCreateOrder>>, TError,{data: CreateOrderDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerCreateOrder>>,
+        TError,
+        {data: CreateOrderDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerCreateOrderMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns orders owned by the authenticated user, sorted newest first.
+ * @summary List the current user's orders (paginated)
+ */
+export const googleFormControllerListOrders = (
+    params?: GoogleFormControllerListOrdersParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerListOrders200>(
+      {url: `/google-form/orders`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerListOrdersQueryKey = (params?: GoogleFormControllerListOrdersParams,) => {
+    return [
+    `/google-form/orders`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerListOrdersQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError = void>(params?: GoogleFormControllerListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerListOrdersQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerListOrders>>> = ({ signal }) => googleFormControllerListOrders(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerListOrdersQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerListOrders>>>
+export type GoogleFormControllerListOrdersQueryError = void
+
+
+export function useGoogleFormControllerListOrders<TData = Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError = void>(
+ params: undefined |  GoogleFormControllerListOrdersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListOrders>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListOrders>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListOrders<TData = Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError = void>(
+ params?: GoogleFormControllerListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListOrders>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListOrders>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListOrders<TData = Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError = void>(
+ params?: GoogleFormControllerListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List the current user's orders (paginated)
+ */
+
+export function useGoogleFormControllerListOrders<TData = Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError = void>(
+ params?: GoogleFormControllerListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListOrders>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerListOrdersQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Returns the order populated with the form reference and the last 100 submissions.
+ * @summary Get order details with submission history
+ */
+export const googleFormControllerGetOrder = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGetOrder200>(
+      {url: `/google-form/order/${id}`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGetOrderQueryKey = (id: string,) => {
+    return [
+    `/google-form/order/${id}`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGetOrderQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError = void>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGetOrderQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGetOrder>>> = ({ signal }) => googleFormControllerGetOrder(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGetOrderQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGetOrder>>>
+export type GoogleFormControllerGetOrderQueryError = void
+
+
+export function useGoogleFormControllerGetOrder<TData = Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError = void>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetOrder>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetOrder>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetOrder<TData = Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetOrder>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetOrder>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetOrder<TData = Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get order details with submission history
+ */
+
+export function useGoogleFormControllerGetOrder<TData = Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetOrder>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGetOrderQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Stops background processing and calculates a proportional refund: `refundedCredits = (unsubmitted / total) × creditCost`. Cannot cancel an already completed or cancelled order.
+ * @summary Cancel an order and refund unused credits
+ */
+export const googleFormControllerCancelOrder = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerCancelOrder200>(
+      {url: `/google-form/order/${id}/cancel`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerCancelOrderMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCancelOrder>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCancelOrder>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerCancelOrder'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerCancelOrder>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerCancelOrder(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerCancelOrderMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerCancelOrder>>>
+    
+    export type GoogleFormControllerCancelOrderMutationError = void
+
+    /**
+ * @summary Cancel an order and refund unused credits
+ */
+export const useGoogleFormControllerCancelOrder = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerCancelOrder>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerCancelOrder>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerCancelOrderMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Starts (or resumes) background processing of remaining submissions. Useful when processing stalled or was paused.
+ * @summary Manually trigger or resume order processing
+ */
+export const googleFormControllerManualRun = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerManualRun200>(
+      {url: `/google-form/order/${id}/run`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerManualRunMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerManualRun>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerManualRun>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerManualRun'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerManualRun>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerManualRun(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerManualRunMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerManualRun>>>
+    
+    export type GoogleFormControllerManualRunMutationError = void
+
+    /**
+ * @summary Manually trigger or resume order processing
+ */
+export const useGoogleFormControllerManualRun = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerManualRun>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerManualRun>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerManualRunMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Change the number of submissions remaining (can set to 0 to effectively pause). If reducing, you receive a proportional refund. If new total ≤ completed, order is marked completed.
+ * @summary Update total submissions for an order
+ */
+export const googleFormControllerUpdateOrderSubmissions = (
+    id: string,
+    updateOrderSubmissionsDto: UpdateOrderSubmissionsDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerUpdateOrderSubmissions200>(
+      {url: `/google-form/order/${id}/submissions`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: updateOrderSubmissionsDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerUpdateOrderSubmissionsMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>, TError,{id: string;data: UpdateOrderSubmissionsDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>, TError,{id: string;data: UpdateOrderSubmissionsDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerUpdateOrderSubmissions'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>, {id: string;data: UpdateOrderSubmissionsDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  googleFormControllerUpdateOrderSubmissions(id,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerUpdateOrderSubmissionsMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>>
+    export type GoogleFormControllerUpdateOrderSubmissionsMutationBody = UpdateOrderSubmissionsDto
+    export type GoogleFormControllerUpdateOrderSubmissionsMutationError = void
+
+    /**
+ * @summary Update total submissions for an order
+ */
+export const useGoogleFormControllerUpdateOrderSubmissions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>, TError,{id: string;data: UpdateOrderSubmissionsDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerUpdateOrderSubmissions>>,
+        TError,
+        {id: string;data: UpdateOrderSubmissionsDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerUpdateOrderSubmissionsMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Change the cron expression and/or submissions per run. Order must have cron enabled.
+ * @summary Update cron configuration for an order
+ */
+export const googleFormControllerUpdateCronConfig = (
+    id: string,
+    updateCronConfigDto: UpdateCronConfigDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerUpdateCronConfig200>(
+      {url: `/google-form/order/${id}/cron`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: updateCronConfigDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerUpdateCronConfigMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>, TError,{id: string;data: UpdateCronConfigDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>, TError,{id: string;data: UpdateCronConfigDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerUpdateCronConfig'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>, {id: string;data: UpdateCronConfigDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  googleFormControllerUpdateCronConfig(id,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerUpdateCronConfigMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>>
+    export type GoogleFormControllerUpdateCronConfigMutationBody = UpdateCronConfigDto
+    export type GoogleFormControllerUpdateCronConfigMutationError = void
+
+    /**
+ * @summary Update cron configuration for an order
+ */
+export const useGoogleFormControllerUpdateCronConfig = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>, TError,{id: string;data: UpdateCronConfigDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerUpdateCronConfig>>,
+        TError,
+        {id: string;data: UpdateCronConfigDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerUpdateCronConfigMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Pauses the order processing without cancelling it. Disables cron job if active. Use `POST /order/:id/resume` to continue.
+ * @summary Pause an order
+ */
+export const googleFormControllerPauseOrder = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerPauseOrder200>(
+      {url: `/google-form/order/${id}/pause`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerPauseOrderMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerPauseOrder>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerPauseOrder>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerPauseOrder'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerPauseOrder>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerPauseOrder(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerPauseOrderMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerPauseOrder>>>
+    
+    export type GoogleFormControllerPauseOrderMutationError = void
+
+    /**
+ * @summary Pause an order
+ */
+export const useGoogleFormControllerPauseOrder = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerPauseOrder>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerPauseOrder>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerPauseOrderMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Resumes processing of a paused order. Re-enables cron job if it exists. Cannot resume completed or cancelled orders.
+ * @summary Resume a paused order
+ */
+export const googleFormControllerResumeOrder = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerResumeOrder200>(
+      {url: `/google-form/order/${id}/resume`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerResumeOrderMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerResumeOrder>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerResumeOrder>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerResumeOrder'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerResumeOrder>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerResumeOrder(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerResumeOrderMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerResumeOrder>>>
+    
+    export type GoogleFormControllerResumeOrderMutationError = void
+
+    /**
+ * @summary Resume a paused order
+ */
+export const useGoogleFormControllerResumeOrder = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerResumeOrder>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerResumeOrder>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerResumeOrderMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns every order in the system, sorted newest first.
+ * @summary Admin: List all orders across all users (paginated)
+ */
+export const googleFormControllerAdminListOrders = (
+    params?: GoogleFormControllerAdminListOrdersParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerAdminListOrders200>(
+      {url: `/google-form/admin/orders`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerAdminListOrdersQueryKey = (params?: GoogleFormControllerAdminListOrdersParams,) => {
+    return [
+    `/google-form/admin/orders`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerAdminListOrdersQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError = void>(params?: GoogleFormControllerAdminListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerAdminListOrdersQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>> = ({ signal }) => googleFormControllerAdminListOrders(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerAdminListOrdersQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>>
+export type GoogleFormControllerAdminListOrdersQueryError = void
+
+
+export function useGoogleFormControllerAdminListOrders<TData = Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError = void>(
+ params: undefined |  GoogleFormControllerAdminListOrdersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerAdminListOrders<TData = Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError = void>(
+ params?: GoogleFormControllerAdminListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerAdminListOrders<TData = Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError = void>(
+ params?: GoogleFormControllerAdminListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Admin: List all orders across all users (paginated)
+ */
+
+export function useGoogleFormControllerAdminListOrders<TData = Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError = void>(
+ params?: GoogleFormControllerAdminListOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListOrders>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerAdminListOrdersQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Returns every parsed Google Form in the system, sorted newest first.
+ * @summary Admin: List all parsed forms across all users (paginated)
+ */
+export const googleFormControllerAdminListForms = (
+    params?: GoogleFormControllerAdminListFormsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerAdminListForms200>(
+      {url: `/google-form/admin/forms`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerAdminListFormsQueryKey = (params?: GoogleFormControllerAdminListFormsParams,) => {
+    return [
+    `/google-form/admin/forms`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerAdminListFormsQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError = void>(params?: GoogleFormControllerAdminListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerAdminListFormsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>> = ({ signal }) => googleFormControllerAdminListForms(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerAdminListFormsQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>>
+export type GoogleFormControllerAdminListFormsQueryError = void
+
+
+export function useGoogleFormControllerAdminListForms<TData = Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError = void>(
+ params: undefined |  GoogleFormControllerAdminListFormsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerAdminListForms>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerAdminListForms>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerAdminListForms<TData = Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError = void>(
+ params?: GoogleFormControllerAdminListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerAdminListForms>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerAdminListForms>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerAdminListForms<TData = Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError = void>(
+ params?: GoogleFormControllerAdminListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Admin: List all parsed forms across all users (paginated)
+ */
+
+export function useGoogleFormControllerAdminListForms<TData = Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError = void>(
+ params?: GoogleFormControllerAdminListFormsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerAdminListForms>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerAdminListFormsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Get payment info for current user
+ */
+export const paymentControllerGetPaymentInfo = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/payment/info`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getPaymentControllerGetPaymentInfoQueryKey = () => {
+    return [
+    `/payment/info`
+    ] as const;
+    }
+
+    
+export const getPaymentControllerGetPaymentInfoQueryOptions = <TData = Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPaymentControllerGetPaymentInfoQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>> = ({ signal }) => paymentControllerGetPaymentInfo(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PaymentControllerGetPaymentInfoQueryResult = NonNullable<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>>
+export type PaymentControllerGetPaymentInfoQueryError = unknown
+
+
+export function usePaymentControllerGetPaymentInfo<TData = Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetPaymentInfo<TData = Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetPaymentInfo<TData = Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get payment info for current user
+ */
+
+export function usePaymentControllerGetPaymentInfo<TData = Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetPaymentInfo>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPaymentControllerGetPaymentInfoQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Generate VietQR code for a specific amount
+ */
+export const paymentControllerGenerateQr = (
+    generateQrDto: GenerateQrDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/payment/generate-qr`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: generateQrDto, signal
+    },
+      );
+    }
+  
+
+
+export const getPaymentControllerGenerateQrMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentControllerGenerateQr>>, TError,{data: GenerateQrDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof paymentControllerGenerateQr>>, TError,{data: GenerateQrDto}, TContext> => {
+
+const mutationKey = ['paymentControllerGenerateQr'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof paymentControllerGenerateQr>>, {data: GenerateQrDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  paymentControllerGenerateQr(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PaymentControllerGenerateQrMutationResult = NonNullable<Awaited<ReturnType<typeof paymentControllerGenerateQr>>>
+    export type PaymentControllerGenerateQrMutationBody = GenerateQrDto
+    export type PaymentControllerGenerateQrMutationError = unknown
+
+    /**
+ * @summary Generate VietQR code for a specific amount
+ */
+export const usePaymentControllerGenerateQr = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentControllerGenerateQr>>, TError,{data: GenerateQrDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof paymentControllerGenerateQr>>,
+        TError,
+        {data: GenerateQrDto},
+        TContext
+      > => {
+      return useMutation(getPaymentControllerGenerateQrMutationOptions(options), queryClient);
+    }
+    
+/**
+ * @summary Get payment transaction history
+ */
+export const paymentControllerGetTransactions = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/payment/transactions`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getPaymentControllerGetTransactionsQueryKey = () => {
+    return [
+    `/payment/transactions`
+    ] as const;
+    }
+
+    
+export const getPaymentControllerGetTransactionsQueryOptions = <TData = Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPaymentControllerGetTransactionsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof paymentControllerGetTransactions>>> = ({ signal }) => paymentControllerGetTransactions(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PaymentControllerGetTransactionsQueryResult = NonNullable<Awaited<ReturnType<typeof paymentControllerGetTransactions>>>
+export type PaymentControllerGetTransactionsQueryError = unknown
+
+
+export function usePaymentControllerGetTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetTransactions>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetTransactions>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetTransactions>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetTransactions>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get payment transaction history
+ */
+
+export function usePaymentControllerGetTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetTransactions>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPaymentControllerGetTransactionsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Admin: Get all payment transactions
+ */
+export const paymentControllerGetAllTransactions = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/payment/admin/transactions`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getPaymentControllerGetAllTransactionsQueryKey = () => {
+    return [
+    `/payment/admin/transactions`
+    ] as const;
+    }
+
+    
+export const getPaymentControllerGetAllTransactionsQueryOptions = <TData = Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPaymentControllerGetAllTransactionsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>> = ({ signal }) => paymentControllerGetAllTransactions(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PaymentControllerGetAllTransactionsQueryResult = NonNullable<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>>
+export type PaymentControllerGetAllTransactionsQueryError = unknown
+
+
+export function usePaymentControllerGetAllTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetAllTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>,
+          TError,
+          Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePaymentControllerGetAllTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Admin: Get all payment transactions
+ */
+
+export function usePaymentControllerGetAllTransactions<TData = Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof paymentControllerGetAllTransactions>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPaymentControllerGetAllTransactionsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary SePay payment webhook (public)
+ */
+export const paymentControllerSepayWebhook = (
+    
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<void>(
+      {url: `/hooks/sepay-payment`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getPaymentControllerSepayWebhookMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentControllerSepayWebhook>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof paymentControllerSepayWebhook>>, TError,void, TContext> => {
+
+const mutationKey = ['paymentControllerSepayWebhook'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof paymentControllerSepayWebhook>>, void> = () => {
+          
+
+          return  paymentControllerSepayWebhook()
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PaymentControllerSepayWebhookMutationResult = NonNullable<Awaited<ReturnType<typeof paymentControllerSepayWebhook>>>
+    
+    export type PaymentControllerSepayWebhookMutationError = unknown
+
+    /**
+ * @summary SePay payment webhook (public)
+ */
+export const usePaymentControllerSepayWebhook = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentControllerSepayWebhook>>, TError,void, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof paymentControllerSepayWebhook>>,
+        TError,
+        void,
+        TContext
+      > => {
+      return useMutation(getPaymentControllerSepayWebhookMutationOptions(options), queryClient);
+    }

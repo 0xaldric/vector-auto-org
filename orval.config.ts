@@ -2,7 +2,7 @@ import { defineConfig } from "orval";
 
 export default defineConfig({
   api: {
-    input: "./swagger.json",
+    input: "http://localhost:8000/swagger/json",
     output: {
       target: "./src/generated/api.ts",
       schemas: "./src/generated/models",
