@@ -1,5 +1,5 @@
 import Axios, { AxiosRequestConfig } from "axios";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 
 const axios = Axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -15,6 +15,16 @@ axios.interceptors.request.use(async (config) => {
   }
   return config;
 });
+
+axios.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401) {
+      await signOut({ callbackUrl: "/login" });
+    }
+    return Promise.reject(error);
+  },
+);
 
 export const apiClient = <T>(config: AxiosRequestConfig): Promise<T> => {
   const source = Axios.CancelToken.source();
