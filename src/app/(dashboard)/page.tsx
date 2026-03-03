@@ -5,14 +5,13 @@ import { Users, Shield, UserCheck, Activity, CreditCard, FileText, Coins, PlayCi
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { useUsersControllerGetUsers } from "@/generated/api";
-import { usePaymentTransactions } from "@/hooks/use-payments";
-import { useOrders } from "@/hooks/use-forms";
+import { usePaymentControllerGetAllTransactions, useGoogleFormControllerAdminListOrders } from "@/generated/api";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
   const { data: usersData } = useUsersControllerGetUsers({ page: 1, limit: 100 });
-  const { data: txData } = usePaymentTransactions();
-  const { data: ordersData } = useOrders({ page: 1, limit: 100 });
+  const { data: txData } = usePaymentControllerGetAllTransactions();
+  const { data: ordersData } = useGoogleFormControllerAdminListOrders({ page: 1, limit: 100 });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = usersData as any;

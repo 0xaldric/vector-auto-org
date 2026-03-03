@@ -3,13 +3,13 @@
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
 import { paymentColumns } from "@/components/payments/columns";
-import { usePaymentTransactions } from "@/hooks/use-payments";
+import { usePaymentControllerGetAllTransactions } from "@/generated/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { CreditCard, TrendingUp, Coins } from "lucide-react";
 
 export default function PaymentsPage() {
-  const { data, isLoading, isError } = usePaymentTransactions();
+  const { data, isLoading, isError } = usePaymentControllerGetAllTransactions();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = data as any;

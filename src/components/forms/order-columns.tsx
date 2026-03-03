@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
-import { FormOrder } from "@/lib/google-form-api";
+import { FormOrderResponseDto } from "@/generated/models";
 
 const statusVariant: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
   completed: "default",
@@ -20,7 +20,7 @@ const statusLabel: Record<string, string> = {
   failed: "Failed",
 };
 
-export const orderColumns: ColumnDef<FormOrder>[] = [
+export const orderColumns: ColumnDef<FormOrderResponseDto>[] = [
   {
     id: "form",
     header: "Form",
@@ -28,19 +28,18 @@ export const orderColumns: ColumnDef<FormOrder>[] = [
       // After populate, formId is the populated object {_id, formId, url, title}
       const populated = row.original.formId as unknown as { title?: string; formId?: string } | string;
       const title =
-        row.original.form?.title ??
-        (typeof populated === "object" && populated !== null
+        typeof populated === "object" && populated !== null
           ? populated.title
-          : populated);
+          : populated;
       return <span className="font-medium">{title ?? "—"}</span>;
     },
   },
   {
-    accessorKey: "mode",
+    accessorKey: "answerStrategy",
     header: "Mode",
     cell: ({ row }) => (
       <Badge variant="outline" className="capitalize">
-        {row.original.mode}
+        {row.original.answerStrategy}
       </Badge>
     ),
   },

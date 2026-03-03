@@ -1,7 +1,14 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { PaymentTx } from "@/lib/payment-api";
+type PaymentTx = {
+  _id: string;
+  transferAmount: number;
+  creditsAdded: number;
+  content: string;
+  transactionDate: string;
+  created_at: string;
+};
 
 export const paymentColumns: ColumnDef<PaymentTx>[] = [
   {
