@@ -8,8 +8,9 @@
 import type { UserResponseDto } from './userResponseDto';
 
 export interface AuthResponseDto {
-  /** User information */
   user: UserResponseDto;
-  /** JWT access token */
+  /** Short-lived JWT access token */
   token: string;
+  /** Long-lived refresh token — use POST /auth/refresh to get a new access token */
+  refreshToken: string;
 }

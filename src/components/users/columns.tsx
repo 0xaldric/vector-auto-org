@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { AddCreditsCell } from "./add-credits-cell";
 
 export type User = {
   id: string;
@@ -92,5 +93,12 @@ export const columns: ColumnDef<User>[] = [
         </div>
       );
     },
+  },
+  {
+    id: "actions",
+    header: "",
+    cell: ({ row }) => (
+      <AddCreditsCell userId={row.original.id} userName={row.original.displayName} />
+    ),
   },
 ];

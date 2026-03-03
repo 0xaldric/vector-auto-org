@@ -5,6 +5,7 @@
  * API documentation for Vector auto authentication and services
  * OpenAPI spec version: 1.0
  */
+import type { AddCreditsDtoType } from './addCreditsDtoType';
 
 export interface AddCreditsDto {
   /**
@@ -12,4 +13,8 @@ export interface AddCreditsDto {
    * @minimum 1
    */
   amount: number;
+  /** Transaction type */
+  type?: AddCreditsDtoType;
+  /** Optional note for this transaction */
+  note?: string;
 }

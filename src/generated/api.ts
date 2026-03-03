@@ -32,9 +32,12 @@ import type {
   AuthControllerLogin200,
   AuthControllerLogout200,
   AuthControllerOrganizerDashboard200,
+  AuthControllerRefresh200,
   AuthControllerRegister201,
+  CreateModelConfigDto,
   CreateOrderDto,
   ErrorResponseDto,
+  GenerateModelDataDto,
   GenerateQrDto,
   GoogleFormControllerAdminListForms200,
   GoogleFormControllerAdminListFormsParams,
@@ -42,33 +45,49 @@ import type {
   GoogleFormControllerAdminListOrdersParams,
   GoogleFormControllerCancelOrder200,
   GoogleFormControllerCreateOrder201,
+  GoogleFormControllerGenerateModelData201,
   GoogleFormControllerGenerateRandom200,
   GoogleFormControllerGenerateRates201,
   GoogleFormControllerGetForm200,
   GoogleFormControllerGetGenerateRates200,
+  GoogleFormControllerGetModelConfig200,
+  GoogleFormControllerGetModelGeneration200,
   GoogleFormControllerGetOrder200,
   GoogleFormControllerListForms200,
   GoogleFormControllerListFormsParams,
+  GoogleFormControllerListModelGenerations200,
+  GoogleFormControllerListModelGenerationsParams,
   GoogleFormControllerListOrders200,
   GoogleFormControllerListOrdersParams,
   GoogleFormControllerManualRun200,
   GoogleFormControllerParseForm201,
   GoogleFormControllerPauseOrder200,
+  GoogleFormControllerRefreshForm200,
   GoogleFormControllerResumeOrder200,
   GoogleFormControllerSubmitFromSheet201,
   GoogleFormControllerSubmitRandom201,
+  GoogleFormControllerSubmitWithModel201,
   GoogleFormControllerSubmitWithRates201,
   GoogleFormControllerUpdateCronConfig200,
+  GoogleFormControllerUpdateField200,
   GoogleFormControllerUpdateOrderSubmissions200,
+  GoogleFormControllerUpsertModelConfig201,
   GoogleTokenDto,
   LoginDto,
   ParseFormDto,
+  RefreshTokenDto,
   RegisterDto,
   SubmitFromSheetDto,
   SubmitRandomDto,
+  SubmitWithModelDto,
   SubmitWithRatesDto,
   UpdateCronConfigDto,
+  UpdateFieldDto,
   UpdateOrderSubmissionsDto,
+  UsersControllerGetMyCreditHistory200,
+  UsersControllerGetMyCreditHistoryParams,
+  UsersControllerGetUserCreditHistory200,
+  UsersControllerGetUserCreditHistoryParams,
   UsersControllerGetUsersParams
 } from './models';
 
@@ -82,7 +101,7 @@ export const usersControllerGetUsers = (
 ) => {
       
       
-      return apiClient<void>(
+      return apiClient<unknown>(
       {url: `/users`, method: 'GET',
         params, signal
     },
@@ -99,7 +118,7 @@ export const getUsersControllerGetUsersQueryKey = (params?: UsersControllerGetUs
     }
 
     
-export const getUsersControllerGetUsersQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = unknown>(params?: UsersControllerGetUsersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>>, }
+export const getUsersControllerGetUsersQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = void>(params?: UsersControllerGetUsersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -118,10 +137,10 @@ const {query: queryOptions} = options ?? {};
 }
 
 export type UsersControllerGetUsersQueryResult = NonNullable<Awaited<ReturnType<typeof usersControllerGetUsers>>>
-export type UsersControllerGetUsersQueryError = unknown
+export type UsersControllerGetUsersQueryError = void
 
 
-export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = unknown>(
+export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = void>(
  params: undefined |  UsersControllerGetUsersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof usersControllerGetUsers>>,
@@ -131,7 +150,7 @@ export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof use
       >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = unknown>(
+export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = void>(
  params?: UsersControllerGetUsersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof usersControllerGetUsers>>,
@@ -141,7 +160,7 @@ export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof use
       >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = unknown>(
+export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = void>(
  params?: UsersControllerGetUsersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -149,7 +168,7 @@ export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof use
  * @summary Get paginated list of users
  */
 
-export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = unknown>(
+export function useUsersControllerGetUsers<TData = Awaited<ReturnType<typeof usersControllerGetUsers>>, TError = void>(
  params?: UsersControllerGetUsersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUsers>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -190,7 +209,7 @@ export const getUsersControllerGetCurrentUserQueryKey = () => {
     }
 
     
-export const getUsersControllerGetCurrentUserQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>>, }
+export const getUsersControllerGetCurrentUserQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = void>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -209,10 +228,10 @@ const {query: queryOptions} = options ?? {};
 }
 
 export type UsersControllerGetCurrentUserQueryResult = NonNullable<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>>
-export type UsersControllerGetCurrentUserQueryError = unknown
+export type UsersControllerGetCurrentUserQueryError = void
 
 
-export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = unknown>(
+export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = void>(
   options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof usersControllerGetCurrentUser>>,
@@ -222,7 +241,7 @@ export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<type
       >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = unknown>(
+export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof usersControllerGetCurrentUser>>,
@@ -232,7 +251,7 @@ export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<type
       >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = unknown>(
+export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
@@ -240,12 +259,203 @@ export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<type
  * @summary Get current user info from JWT
  */
 
-export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = unknown>(
+export function useUsersControllerGetCurrentUser<TData = Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError = void>(
   options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetCurrentUser>>, TError, TData>>, }
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getUsersControllerGetCurrentUserQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Get current user's credit transaction history
+ */
+export const usersControllerGetMyCreditHistory = (
+    params?: UsersControllerGetMyCreditHistoryParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<UsersControllerGetMyCreditHistory200>(
+      {url: `/users/me/credit-history`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getUsersControllerGetMyCreditHistoryQueryKey = (params?: UsersControllerGetMyCreditHistoryParams,) => {
+    return [
+    `/users/me/credit-history`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getUsersControllerGetMyCreditHistoryQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError = void>(params?: UsersControllerGetMyCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getUsersControllerGetMyCreditHistoryQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>> = ({ signal }) => usersControllerGetMyCreditHistory(params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type UsersControllerGetMyCreditHistoryQueryResult = NonNullable<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>>
+export type UsersControllerGetMyCreditHistoryQueryError = void
+
+
+export function useUsersControllerGetMyCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError = void>(
+ params: undefined |  UsersControllerGetMyCreditHistoryParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>,
+          TError,
+          Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUsersControllerGetMyCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError = void>(
+ params?: UsersControllerGetMyCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>,
+          TError,
+          Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUsersControllerGetMyCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError = void>(
+ params?: UsersControllerGetMyCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get current user's credit transaction history
+ */
+
+export function useUsersControllerGetMyCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError = void>(
+ params?: UsersControllerGetMyCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetMyCreditHistory>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getUsersControllerGetMyCreditHistoryQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * @summary Get credit transaction history for a user (Admin only)
+ */
+export const usersControllerGetUserCreditHistory = (
+    id: string,
+    params?: UsersControllerGetUserCreditHistoryParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<UsersControllerGetUserCreditHistory200>(
+      {url: `/users/${id}/credit-history`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getUsersControllerGetUserCreditHistoryQueryKey = (id: string,
+    params?: UsersControllerGetUserCreditHistoryParams,) => {
+    return [
+    `/users/${id}/credit-history`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getUsersControllerGetUserCreditHistoryQueryOptions = <TData = Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError = void>(id: string,
+    params?: UsersControllerGetUserCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getUsersControllerGetUserCreditHistoryQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>> = ({ signal }) => usersControllerGetUserCreditHistory(id,params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type UsersControllerGetUserCreditHistoryQueryResult = NonNullable<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>>
+export type UsersControllerGetUserCreditHistoryQueryError = void
+
+
+export function useUsersControllerGetUserCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError = void>(
+ id: string,
+    params: undefined |  UsersControllerGetUserCreditHistoryParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>,
+          TError,
+          Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUsersControllerGetUserCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError = void>(
+ id: string,
+    params?: UsersControllerGetUserCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>,
+          TError,
+          Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUsersControllerGetUserCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError = void>(
+ id: string,
+    params?: UsersControllerGetUserCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get credit transaction history for a user (Admin only)
+ */
+
+export function useUsersControllerGetUserCreditHistory<TData = Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError = void>(
+ id: string,
+    params?: UsersControllerGetUserCreditHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof usersControllerGetUserCreditHistory>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getUsersControllerGetUserCreditHistoryQueryOptions(id,params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -266,7 +476,7 @@ export const usersControllerAddCredits = (
 ) => {
       
       
-      return apiClient<void>(
+      return apiClient<unknown>(
       {url: `/users/${id}/credits`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: addCreditsDto, signal
@@ -276,7 +486,7 @@ export const usersControllerAddCredits = (
   
 
 
-export const getUsersControllerAddCreditsMutationOptions = <TError = unknown,
+export const getUsersControllerAddCreditsMutationOptions = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext> => {
 
@@ -305,12 +515,12 @@ const {mutation: mutationOptions} = options ?
 
     export type UsersControllerAddCreditsMutationResult = NonNullable<Awaited<ReturnType<typeof usersControllerAddCredits>>>
     export type UsersControllerAddCreditsMutationBody = AddCreditsDto
-    export type UsersControllerAddCreditsMutationError = unknown
+    export type UsersControllerAddCreditsMutationError = void
 
     /**
  * @summary Add credits to a user (Admin only)
  */
-export const useUsersControllerAddCredits = <TError = unknown,
+export const useUsersControllerAddCredits = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usersControllerAddCredits>>, TError,{id: string;data: AddCreditsDto}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof usersControllerAddCredits>>,
@@ -449,6 +659,71 @@ export const useAuthControllerLogin = <TError = ErrorResponseDto,
         TContext
       > => {
       return useMutation(getAuthControllerLoginMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Exchange a valid refresh token for a new access token + refresh token pair (rotation). Refresh tokens are signed with a separate secret (`JWT_REFRESH_SECRET`) and expire in `JWT_REFRESH_EXPIRES_IN` (default 30d).
+ * @summary Refresh access token
+ */
+export const authControllerRefresh = (
+    refreshTokenDto: RefreshTokenDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<AuthControllerRefresh200>(
+      {url: `/auth/refresh`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: refreshTokenDto, signal
+    },
+      );
+    }
+  
+
+
+export const getAuthControllerRefreshMutationOptions = <TError = ErrorResponseDto,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,{data: RefreshTokenDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,{data: RefreshTokenDto}, TContext> => {
+
+const mutationKey = ['authControllerRefresh'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerRefresh>>, {data: RefreshTokenDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  authControllerRefresh(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerRefreshMutationResult = NonNullable<Awaited<ReturnType<typeof authControllerRefresh>>>
+    export type AuthControllerRefreshMutationBody = RefreshTokenDto
+    export type AuthControllerRefreshMutationError = ErrorResponseDto
+
+    /**
+ * @summary Refresh access token
+ */
+export const useAuthControllerRefresh = <TError = ErrorResponseDto,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,{data: RefreshTokenDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerRefresh>>,
+        TError,
+        {data: RefreshTokenDto},
+        TContext
+      > => {
+      return useMutation(getAuthControllerRefreshMutationOptions(options), queryClient);
     }
     
 /**
@@ -1289,6 +1564,136 @@ export function useGoogleFormControllerGetForm<TData = Awaited<ReturnType<typeof
 
 
 /**
+ * Set `fieldCategory` to `demographic` or `likert`. Likert fields should also have a `symbol` (e.g. "TT", "HT") used in model config.
+ * @summary Update a field's category and/or symbol
+ */
+export const googleFormControllerUpdateField = (
+    id: string,
+    entryId: string,
+    updateFieldDto: UpdateFieldDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerUpdateField200>(
+      {url: `/google-form/forms/${id}/fields/${entryId}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: updateFieldDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerUpdateFieldMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateField>>, TError,{id: string;entryId: string;data: UpdateFieldDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateField>>, TError,{id: string;entryId: string;data: UpdateFieldDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerUpdateField'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerUpdateField>>, {id: string;entryId: string;data: UpdateFieldDto}> = (props) => {
+          const {id,entryId,data} = props ?? {};
+
+          return  googleFormControllerUpdateField(id,entryId,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerUpdateFieldMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerUpdateField>>>
+    export type GoogleFormControllerUpdateFieldMutationBody = UpdateFieldDto
+    export type GoogleFormControllerUpdateFieldMutationError = void
+
+    /**
+ * @summary Update a field's category and/or symbol
+ */
+export const useGoogleFormControllerUpdateField = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpdateField>>, TError,{id: string;entryId: string;data: UpdateFieldDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerUpdateField>>,
+        TError,
+        {id: string;entryId: string;data: UpdateFieldDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerUpdateFieldMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Re-fetches the form from its stored URL, re-parses all fields, and updates the DB. Existing `fieldCategory` and `symbol` annotations are preserved on fields that still exist. Useful when the form owner adds, removes, or renames questions after the initial parse.
+ * @summary Re-sync a form from Google (refresh fields)
+ */
+export const googleFormControllerRefreshForm = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerRefreshForm200>(
+      {url: `/google-form/forms/${id}/refresh`, method: 'POST', signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerRefreshFormMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerRefreshForm>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerRefreshForm>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['googleFormControllerRefreshForm'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerRefreshForm>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  googleFormControllerRefreshForm(id,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerRefreshFormMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerRefreshForm>>>
+    
+    export type GoogleFormControllerRefreshFormMutationError = void
+
+    /**
+ * @summary Re-sync a form from Google (refresh fields)
+ */
+export const useGoogleFormControllerRefreshForm = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerRefreshForm>>, TError,{id: string}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerRefreshForm>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerRefreshFormMutationOptions(options), queryClient);
+    }
+    
+/**
  * For every field that has options, assigns a weight of `1` to each option (equal probability). The result is upserted — only one document is kept per form. Adjust the returned `answerConfig` rates and pass it directly to `POST submit-with-rates`.
  * @summary Generate and save default equal-weight rates for a form
  */
@@ -1443,6 +1848,494 @@ export function useGoogleFormControllerGetGenerateRates<TData = Awaited<ReturnTy
 
 
 
+/**
+ * Upserts a model config (1 per form). Each variable links to a likert field via `symbol`. Used to configure how AI-generated statistical data should behave.
+ * @summary Create or update the model config for a form
+ */
+export const googleFormControllerUpsertModelConfig = (
+    id: string,
+    createModelConfigDto: CreateModelConfigDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerUpsertModelConfig201>(
+      {url: `/google-form/forms/${id}/model-config`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: createModelConfigDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerUpsertModelConfigMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>, TError,{id: string;data: CreateModelConfigDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>, TError,{id: string;data: CreateModelConfigDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerUpsertModelConfig'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>, {id: string;data: CreateModelConfigDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  googleFormControllerUpsertModelConfig(id,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerUpsertModelConfigMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>>
+    export type GoogleFormControllerUpsertModelConfigMutationBody = CreateModelConfigDto
+    export type GoogleFormControllerUpsertModelConfigMutationError = void
+
+    /**
+ * @summary Create or update the model config for a form
+ */
+export const useGoogleFormControllerUpsertModelConfig = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>, TError,{id: string;data: CreateModelConfigDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerUpsertModelConfig>>,
+        TError,
+        {id: string;data: CreateModelConfigDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerUpsertModelConfigMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns the saved model config. 404 if not yet created.
+ * @summary Get the model config for a form
+ */
+export const googleFormControllerGetModelConfig = (
+    id: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGetModelConfig200>(
+      {url: `/google-form/forms/${id}/model-config`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGetModelConfigQueryKey = (id: string,) => {
+    return [
+    `/google-form/forms/${id}/model-config`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGetModelConfigQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError = void>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGetModelConfigQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>> = ({ signal }) => googleFormControllerGetModelConfig(id, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGetModelConfigQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>>
+export type GoogleFormControllerGetModelConfigQueryError = void
+
+
+export function useGoogleFormControllerGetModelConfig<TData = Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError = void>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetModelConfig<TData = Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetModelConfig<TData = Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get the model config for a form
+ */
+
+export function useGoogleFormControllerGetModelConfig<TData = Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError = void>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelConfig>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGetModelConfigQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Calls Claude API with the model config to generate CSV data satisfying Cronbach Alpha, EFA, regression, and VIF constraints. Generation runs in the background — poll the generation status via GET.
+ * @summary Generate statistical data using AI (Claude)
+ */
+export const googleFormControllerGenerateModelData = (
+    id: string,
+    generateModelDataDto: GenerateModelDataDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGenerateModelData201>(
+      {url: `/google-form/forms/${id}/generate-model-data`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: generateModelDataDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerGenerateModelDataMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>, TError,{id: string;data: GenerateModelDataDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>, TError,{id: string;data: GenerateModelDataDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerGenerateModelData'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>, {id: string;data: GenerateModelDataDto}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  googleFormControllerGenerateModelData(id,data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerGenerateModelDataMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>>
+    export type GoogleFormControllerGenerateModelDataMutationBody = GenerateModelDataDto
+    export type GoogleFormControllerGenerateModelDataMutationError = void
+
+    /**
+ * @summary Generate statistical data using AI (Claude)
+ */
+export const useGoogleFormControllerGenerateModelData = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>, TError,{id: string;data: GenerateModelDataDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerGenerateModelData>>,
+        TError,
+        {id: string;data: GenerateModelDataDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerGenerateModelDataMutationOptions(options), queryClient);
+    }
+    
+/**
+ * Returns generation records without the full CSV data. Use GET /:genId for full data.
+ * @summary List model generation history for a form (paginated)
+ */
+export const googleFormControllerListModelGenerations = (
+    id: string,
+    params?: GoogleFormControllerListModelGenerationsParams,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerListModelGenerations200>(
+      {url: `/google-form/forms/${id}/model-generations`, method: 'GET',
+        params, signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerListModelGenerationsQueryKey = (id: string,
+    params?: GoogleFormControllerListModelGenerationsParams,) => {
+    return [
+    `/google-form/forms/${id}/model-generations`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerListModelGenerationsQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError = void>(id: string,
+    params?: GoogleFormControllerListModelGenerationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerListModelGenerationsQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>> = ({ signal }) => googleFormControllerListModelGenerations(id,params, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerListModelGenerationsQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>>
+export type GoogleFormControllerListModelGenerationsQueryError = void
+
+
+export function useGoogleFormControllerListModelGenerations<TData = Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError = void>(
+ id: string,
+    params: undefined |  GoogleFormControllerListModelGenerationsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListModelGenerations<TData = Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError = void>(
+ id: string,
+    params?: GoogleFormControllerListModelGenerationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerListModelGenerations<TData = Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError = void>(
+ id: string,
+    params?: GoogleFormControllerListModelGenerationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List model generation history for a form (paginated)
+ */
+
+export function useGoogleFormControllerListModelGenerations<TData = Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError = void>(
+ id: string,
+    params?: GoogleFormControllerListModelGenerationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerListModelGenerations>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerListModelGenerationsQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Returns the full generation including CSV data, parsed rows, and statistical results.
+ * @summary Get a specific model generation with full CSV data and statistics
+ */
+export const googleFormControllerGetModelGeneration = (
+    id: unknown,
+    genId: string,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerGetModelGeneration200>(
+      {url: `/google-form/forms/${id}/model-generations/${genId}`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+
+
+export const getGoogleFormControllerGetModelGenerationQueryKey = (id: unknown,
+    genId: string,) => {
+    return [
+    `/google-form/forms/${id}/model-generations/${genId}`
+    ] as const;
+    }
+
+    
+export const getGoogleFormControllerGetModelGenerationQueryOptions = <TData = Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError = void>(id: unknown,
+    genId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGoogleFormControllerGetModelGenerationQueryKey(id,genId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>> = ({ signal }) => googleFormControllerGetModelGeneration(id,genId, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id && genId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GoogleFormControllerGetModelGenerationQueryResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>>
+export type GoogleFormControllerGetModelGenerationQueryError = void
+
+
+export function useGoogleFormControllerGetModelGeneration<TData = Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError = void>(
+ id: unknown,
+    genId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetModelGeneration<TData = Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError = void>(
+ id: unknown,
+    genId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>,
+          TError,
+          Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGoogleFormControllerGetModelGeneration<TData = Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError = void>(
+ id: unknown,
+    genId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData>>, }
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a specific model generation with full CSV data and statistics
+ */
+
+export function useGoogleFormControllerGetModelGeneration<TData = Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError = void>(
+ id: unknown,
+    genId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof googleFormControllerGetModelGeneration>>, TError, TData>>, }
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGoogleFormControllerGetModelGenerationQueryOptions(id,genId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
+
+/**
+ * Uses a completed model generation's parsed data as the submission source. Rows cycle like submit-from-sheet. **Credit tiers:** ≤250 = 100,000 cr · ≤400 = 130,000 cr · ≤500 = 150,000 cr.
+ * @summary Submit form answers from AI-generated model data
+ */
+export const googleFormControllerSubmitWithModel = (
+    submitWithModelDto: SubmitWithModelDto,
+ signal?: AbortSignal
+) => {
+      
+      
+      return apiClient<GoogleFormControllerSubmitWithModel201>(
+      {url: `/google-form/submit-with-model`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: submitWithModelDto, signal
+    },
+      );
+    }
+  
+
+
+export const getGoogleFormControllerSubmitWithModelMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>, TError,{data: SubmitWithModelDto}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>, TError,{data: SubmitWithModelDto}, TContext> => {
+
+const mutationKey = ['googleFormControllerSubmitWithModel'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>, {data: SubmitWithModelDto}> = (props) => {
+          const {data} = props ?? {};
+
+          return  googleFormControllerSubmitWithModel(data,)
+        }
+
+
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GoogleFormControllerSubmitWithModelMutationResult = NonNullable<Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>>
+    export type GoogleFormControllerSubmitWithModelMutationBody = SubmitWithModelDto
+    export type GoogleFormControllerSubmitWithModelMutationError = void
+
+    /**
+ * @summary Submit form answers from AI-generated model data
+ */
+export const useGoogleFormControllerSubmitWithModel = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>, TError,{data: SubmitWithModelDto}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof googleFormControllerSubmitWithModel>>,
+        TError,
+        {data: SubmitWithModelDto},
+        TContext
+      > => {
+      return useMutation(getGoogleFormControllerSubmitWithModelMutationOptions(options), queryClient);
+    }
+    
 /**
  * Returns a preview of randomly generated answers using equal probability for all options. Nothing is submitted — this is a dry-run only.
  * @summary Preview a single set of randomly generated answers (read-only)

@@ -12,6 +12,7 @@ export type FormOrderResponseDtoStatus = typeof FormOrderResponseDtoStatus[keyof
 export const FormOrderResponseDtoStatus = {
   pending: 'pending',
   running: 'running',
+  idle: 'idle',
   paused: 'paused',
   completed: 'completed',
   cancelled: 'cancelled',

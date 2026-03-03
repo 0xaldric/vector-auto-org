@@ -12,6 +12,7 @@ export type OrderWithSubmissionsResponseDtoStatus = typeof OrderWithSubmissionsR
 export const OrderWithSubmissionsResponseDtoStatus = {
   pending: 'pending',
   running: 'running',
+  idle: 'idle',
   paused: 'paused',
   completed: 'completed',
   cancelled: 'cancelled',
