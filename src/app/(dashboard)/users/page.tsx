@@ -4,17 +4,17 @@ import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
 import { columns, User } from "@/components/users/columns";
-import { useUsersControllerGetUsers } from "@/generated/api";
+import { useQuery } from "@tanstack/react-query";
+import { usersControllerGetUsersOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UsersPage() {
   const [page, setPage] = useState(1);
   const limit = 10;
 
-  const { data: usersData, isLoading } = useUsersControllerGetUsers({
-    page,
-    limit,
-  });
+  const { data: usersData, isLoading } = useQuery(usersControllerGetUsersOptions({
+    query: { page, limit },
+  }));
 
   // API response shape: { status, code, data: { data: User[], meta: {...} } }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

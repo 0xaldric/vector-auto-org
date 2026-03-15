@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
 import { orderColumns } from "@/components/forms/order-columns";
-import { useGoogleFormControllerAdminListOrders } from "@/generated/api";
+import { useQuery } from "@tanstack/react-query";
+import { googleFormControllerAdminListOrdersOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, CheckCircle, PlayCircle } from "lucide-react";
@@ -12,7 +13,7 @@ import { FileText, CheckCircle, PlayCircle } from "lucide-react";
 export default function FormsPage() {
   const [page, setPage] = useState(1);
   const limit = 10;
-  const { data, isLoading } = useGoogleFormControllerAdminListOrders({ page, limit });
+  const { data, isLoading } = useQuery(googleFormControllerAdminListOrdersOptions({ query: { page, limit } }));
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = data as any;

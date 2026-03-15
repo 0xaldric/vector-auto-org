@@ -1,14 +1,11 @@
-import Axios, { AxiosRequestConfig } from "axios";
+import { client } from "@/generated/client.gen";
 import { getSession, signOut } from "next-auth/react";
 
-const axios = Axios.create({
+client.setConfig({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
-axios.interceptors.request.use(async (config) => {
+client.instance.interceptors.request.use(async (config) => {
   const session = await getSession();
   if (session?.accessToken) {
     config.headers.Authorization = `Bearer ${session.accessToken}`;
@@ -16,7 +13,7 @@ axios.interceptors.request.use(async (config) => {
   return config;
 });
 
-axios.interceptors.response.use(
+client.instance.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
@@ -26,19 +23,4 @@ axios.interceptors.response.use(
   },
 );
 
-export const apiClient = <T>(config: AxiosRequestConfig): Promise<T> => {
-  const source = Axios.CancelToken.source();
-  const promise = axios({
-    ...config,
-    cancelToken: source.token,
-  }).then(({ data }) => data);
-
-  // @ts-expect-error - adding cancel method to promise
-  promise.cancel = () => {
-    source.cancel("Query was cancelled");
-  };
-
-  return promise;
-};
-
-export default axios;
+export default client;

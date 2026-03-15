@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
-import { FormOrderResponseDto } from "@/generated/models";
+import type { FormOrderResponseDto } from "@/generated/types.gen";
 
 const statusVariant: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
   completed: "default",

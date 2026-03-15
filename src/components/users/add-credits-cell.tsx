@@ -14,8 +14,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { useUsersControllerAddCredits } from "@/generated/api";
-import { AddCreditsDtoType } from "@/generated/models";
+import { useMutation } from "@tanstack/react-query";
+import { usersControllerAddCreditsMutation } from "@/generated/@tanstack/react-query.gen";
 
 interface AddCreditsCellProps {
   userId: string;
@@ -28,14 +28,13 @@ export function AddCreditsCell({ userId, userName }: AddCreditsCellProps) {
   const [note, setNote] = useState("");
   const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useUsersControllerAddCredits({
-    mutation: {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["/users"] });
-        setOpen(false);
-        setAmount("");
-        setNote("");
-      },
+  const { mutate, isPending } = useMutation({
+    ...usersControllerAddCreditsMutation(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/users"] });
+      setOpen(false);
+      setAmount("");
+      setNote("");
     },
   });
 
@@ -43,7 +42,7 @@ export function AddCreditsCell({ userId, userName }: AddCreditsCellProps) {
     e.preventDefault();
     const parsed = parseInt(amount, 10);
     if (!parsed || parsed < 1) return;
-    mutate({ id: userId, data: { amount: parsed, type: AddCreditsDtoType.refund, note: note || undefined } });
+    mutate({ path: { id: userId }, body: { amount: parsed, type: "refund", note: note || undefined } });
   };
 
   return (

@@ -4,14 +4,18 @@ import { useSession } from "next-auth/react";
 import { Users, Shield, UserCheck, Activity, CreditCard, FileText, Coins, PlayCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
-import { useUsersControllerGetUsers } from "@/generated/api";
-import { usePaymentControllerGetAllTransactions, useGoogleFormControllerAdminListOrders } from "@/generated/api";
+import { useQuery } from "@tanstack/react-query";
+import {
+  usersControllerGetUsersOptions,
+  paymentControllerGetAllTransactionsOptions,
+  googleFormControllerAdminListOrdersOptions,
+} from "@/generated/@tanstack/react-query.gen";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const { data: usersData } = useUsersControllerGetUsers({ page: 1, limit: 100 });
-  const { data: txData } = usePaymentControllerGetAllTransactions();
-  const { data: ordersData } = useGoogleFormControllerAdminListOrders({ page: 1, limit: 100 });
+  const { data: usersData } = useQuery(usersControllerGetUsersOptions({ query: { page: 1, limit: 100 } }));
+  const { data: txData } = useQuery(paymentControllerGetAllTransactionsOptions());
+  const { data: ordersData } = useQuery(googleFormControllerAdminListOrdersOptions({ query: { page: 1, limit: 100 } }));
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = usersData as any;

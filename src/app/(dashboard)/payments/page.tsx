@@ -3,13 +3,14 @@
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
 import { paymentColumns } from "@/components/payments/columns";
-import { usePaymentControllerGetAllTransactions } from "@/generated/api";
+import { useQuery } from "@tanstack/react-query";
+import { paymentControllerGetAllTransactionsOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { CreditCard, TrendingUp, Coins } from "lucide-react";
 
 export default function PaymentsPage() {
-  const { data, isLoading, isError } = usePaymentControllerGetAllTransactions();
+  const { data, isLoading, isError } = useQuery(paymentControllerGetAllTransactionsOptions());
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = data as any;
