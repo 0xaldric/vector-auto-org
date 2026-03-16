@@ -1162,7 +1162,7 @@ export const googleFormControllerAdminListFormsInfiniteOptions = (options?: Opti
 export const merchantControllerGetProfileQueryKey = (options?: Options<MerchantControllerGetProfileData>) => createQueryKey('merchantControllerGetProfile', options);
 
 /**
- * Get own merchant profile
+ * Get own affiliate profile (auto-created)
  */
 export const merchantControllerGetProfileOptions = (options?: Options<MerchantControllerGetProfileData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerGetProfileQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -1197,7 +1197,7 @@ export const merchantControllerUpdateBankInfoMutation = (options?: Partial<Optio
 export const merchantControllerGetDashboardQueryKey = (options?: Options<MerchantControllerGetDashboardData>) => createQueryKey('merchantControllerGetDashboard', options);
 
 /**
- * Get merchant dashboard with stats
+ * Get affiliate dashboard with stats
  */
 export const merchantControllerGetDashboardOptions = (options?: Options<MerchantControllerGetDashboardData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerGetDashboardQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -1367,7 +1367,7 @@ export const merchantControllerCreateWithdrawalMutation = (options?: Partial<Opt
 };
 
 /**
- * Admin: Promote a user to merchant
+ * Admin: Ensure affiliate profile exists for a user
  */
 export const merchantControllerCreateMerchantMutation = (options?: Partial<Options<MerchantControllerCreateMerchantData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> => {
     const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> = {
@@ -1386,7 +1386,7 @@ export const merchantControllerCreateMerchantMutation = (options?: Partial<Optio
 export const merchantControllerListMerchantsQueryKey = (options?: Options<MerchantControllerListMerchantsData>) => createQueryKey('merchantControllerListMerchants', options);
 
 /**
- * Admin: List all merchants (paginated)
+ * Admin: List all affiliate profiles (paginated)
  */
 export const merchantControllerListMerchantsOptions = (options?: Options<MerchantControllerListMerchantsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListMerchantsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -1404,7 +1404,7 @@ export const merchantControllerListMerchantsOptions = (options?: Options<Merchan
 export const merchantControllerListMerchantsInfiniteQueryKey = (options?: Options<MerchantControllerListMerchantsData>): QueryKey<Options<MerchantControllerListMerchantsData>> => createQueryKey('merchantControllerListMerchants', options, true);
 
 /**
- * Admin: List all merchants (paginated)
+ * Admin: List all affiliate profiles (paginated)
  */
 export const merchantControllerListMerchantsInfiniteOptions = (options?: Options<MerchantControllerListMerchantsData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListMerchantsData>>, number | Pick<QueryKey<Options<MerchantControllerListMerchantsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
@@ -1429,7 +1429,7 @@ export const merchantControllerListMerchantsInfiniteOptions = (options?: Options
 });
 
 /**
- * Admin: Activate/deactivate a merchant
+ * Admin: Activate/deactivate an affiliate
  */
 export const merchantControllerUpdateMerchantStatusMutation = (options?: Partial<Options<MerchantControllerUpdateMerchantStatusData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> => {
     const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> = {

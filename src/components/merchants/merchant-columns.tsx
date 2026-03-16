@@ -13,8 +13,7 @@ type Merchant = {
   _id: string;
   userId:
     | string
-    | { _id: string; email: string; displayName?: string };
-  referralCode: string;
+    | { _id: string; email: string; displayName?: string; myReferralCode?: string };
   isActive: boolean;
   totalEarnings: number;
   currentBalance: number;
@@ -69,11 +68,17 @@ export const merchantColumns: ColumnDef<Merchant>[] = [
     },
   },
   {
-    accessorKey: "referralCode",
+    id: "referralCode",
     header: "Referral Code",
-    cell: ({ row }) => (
-      <span className="font-mono text-sm">{row.original.referralCode}</span>
-    ),
+    cell: ({ row }) => {
+      const u = row.original.userId;
+      const code = typeof u === "object" ? u.myReferralCode : undefined;
+      return code ? (
+        <span className="font-mono text-sm">{code}</span>
+      ) : (
+        <span className="text-muted-foreground">—</span>
+      );
+    },
   },
   {
     accessorKey: "isActive",

@@ -21,7 +21,7 @@ const navItems = [
   { title: "Payments", href: "/payments", icon: CreditCard },
   { title: "Forms", href: "/forms", icon: FileText },
   { title: "Credits", href: "/credits", icon: Coins },
-  { title: "Merchants", href: "/merchants", icon: Store },
+  { title: "Affiliates", href: "/merchants", icon: Store },
 ];
 
 export function AppSidebar() {

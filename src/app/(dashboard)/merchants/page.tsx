@@ -119,9 +119,9 @@ export default function MerchantsPage() {
       <Header title="Merchants" />
       <div className="flex-1 space-y-6 p-6">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Merchant Management</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Affiliate Management</h2>
           <p className="text-muted-foreground">
-            Manage merchants, withdrawals, and commission tiers.
+            Manage affiliate profiles, withdrawals, and commission tiers.
           </p>
         </div>
 

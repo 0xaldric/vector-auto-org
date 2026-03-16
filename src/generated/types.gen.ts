@@ -20,7 +20,7 @@ export type User = {
     /**
      * User role for access control
      */
-    role: 'admin' | 'user' | 'organizer' | 'merchant';
+    role: 'admin' | 'user' | 'organizer';
     /**
      * Tags for user categorization
      */
@@ -46,11 +46,15 @@ export type User = {
      */
     freeOrdersUsed: number;
     /**
+     * Personal referral code for inviting others (e.g. VECTOR-ABC123)
+     */
+    myReferralCode: string;
+    /**
      * Referral code used during registration
      */
     referralCode?: string;
     /**
-     * Merchant user ID who referred this user
+     * User ID who referred this user
      */
     referredBy?: string;
     /**
@@ -132,7 +136,7 @@ export type UserResponseDto = {
     /**
      * User role
      */
-    role: 'admin' | 'user' | 'organizer' | 'merchant';
+    role: 'admin' | 'user' | 'organizer';
     /**
      * User tags
      */
@@ -769,7 +773,7 @@ export type CreateWithdrawalDto = {
 
 export type CreateMerchantDto = {
     /**
-     * User ID to promote to merchant
+     * User ID to ensure merchant profile exists
      */
     userId: string;
 };
@@ -2356,10 +2360,10 @@ export type MerchantControllerGetProfileErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerGetProfileResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerUpdateBankInfoData = {
@@ -2374,10 +2378,10 @@ export type MerchantControllerUpdateBankInfoErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerUpdateBankInfoResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerGetDashboardData = {
@@ -2392,10 +2396,10 @@ export type MerchantControllerGetDashboardErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerGetDashboardResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerListCommissionsData = {
@@ -2413,10 +2417,10 @@ export type MerchantControllerListCommissionsErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerListCommissionsResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerListReferredUsersData = {
@@ -2434,10 +2438,10 @@ export type MerchantControllerListReferredUsersErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerListReferredUsersResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerListOwnWithdrawalsData = {
@@ -2455,10 +2459,10 @@ export type MerchantControllerListOwnWithdrawalsErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
+};
+
+export type MerchantControllerListOwnWithdrawalsResponses = {
+    200: unknown;
 };
 
 export type MerchantControllerCreateWithdrawalData = {
@@ -2477,10 +2481,6 @@ export type MerchantControllerCreateWithdrawalErrors = {
      * Missing or invalid JWT token
      */
     401: unknown;
-    /**
-     * Merchant role required
-     */
-    403: unknown;
 };
 
 export type MerchantControllerCreateMerchantData = {
@@ -2491,10 +2491,6 @@ export type MerchantControllerCreateMerchantData = {
 };
 
 export type MerchantControllerCreateMerchantErrors = {
-    /**
-     * User already a merchant
-     */
-    400: unknown;
     /**
      * Missing or invalid JWT token
      */
@@ -2530,7 +2526,7 @@ export type MerchantControllerUpdateMerchantStatusData = {
     body: UpdateMerchantStatusDto;
     path: {
         /**
-         * Merchant profile ID
+         * Affiliate profile ID
          */
         id: string;
     };
@@ -2548,7 +2544,7 @@ export type MerchantControllerUpdateMerchantStatusErrors = {
      */
     403: unknown;
     /**
-     * Merchant not found
+     * Affiliate profile not found
      */
     404: unknown;
 };

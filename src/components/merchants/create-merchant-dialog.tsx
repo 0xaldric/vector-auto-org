@@ -52,7 +52,7 @@ export function CreateMerchantDialog() {
         <DialogHeader>
           <DialogTitle>Create Merchant</DialogTitle>
           <DialogDescription>
-            Promote an existing user to merchant role.
+            Ensure a merchant profile exists for this user (auto-created if needed).
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
