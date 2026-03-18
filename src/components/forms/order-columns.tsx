@@ -57,7 +57,13 @@ export const orderColumns: ColumnDef<FormOrderResponseDto>[] = [
         typeof populated === "object" && populated !== null
           ? populated.title
           : populated;
-      return <span className="font-medium">{title ?? "—"}</span>;
+      const display = title ?? "—";
+      const truncated = display.length > 40 ? display.slice(0, 40) + "…" : display;
+      return (
+        <span className="font-medium" title={display}>
+          {truncated}
+        </span>
+      );
     },
   },
   {
