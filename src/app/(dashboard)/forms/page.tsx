@@ -9,11 +9,29 @@ import { googleFormControllerAdminListOrdersOptions } from "@/generated/@tanstac
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, CheckCircle, PlayCircle } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+type OrderStatus = 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
 
 export default function FormsPage() {
   const [page, setPage] = useState(1);
+  const [status, setStatus] = useState<OrderStatus | undefined>(undefined);
   const limit = 10;
-  const { data, isLoading } = useQuery(googleFormControllerAdminListOrdersOptions({ query: { page, limit } }));
+
+  const { data, isLoading } = useQuery(
+    googleFormControllerAdminListOrdersOptions({
+      query: {
+        page,
+        limit,
+        ...(status ? { status } : {}),
+      },
+    })
+  );
+
+  function handleStatusChange(val: string) {
+    setPage(1);
+    setStatus(val === "all" ? undefined : (val as OrderStatus));
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const response = data as any;
@@ -32,11 +50,28 @@ export default function FormsPage() {
     <>
       <Header title="Forms & Orders" />
       <div className="flex-1 space-y-6 p-6">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Form Orders</h2>
-          <p className="text-muted-foreground">
-            All form submission orders across the platform.
-          </p>
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Form Orders</h2>
+            <p className="text-muted-foreground">
+              All form submission orders across the platform.
+            </p>
+          </div>
+          <Select value={status ?? "all"} onValueChange={handleStatusChange}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder="All statuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All statuses</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+              <SelectItem value="running">Running</SelectItem>
+              <SelectItem value="idle">Idle</SelectItem>
+              <SelectItem value="paused">Paused</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+              <SelectItem value="cancelled">Cancelled</SelectItem>
+              <SelectItem value="failed">Failed</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">

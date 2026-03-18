@@ -2,6 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { FormOrderResponseDto } from "@/generated/types.gen";
 
 const statusVariant: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
@@ -21,6 +22,31 @@ const statusLabel: Record<string, string> = {
 };
 
 export const orderColumns: ColumnDef<FormOrderResponseDto>[] = [
+  {
+    id: "user",
+    header: "User",
+    cell: ({ row }) => {
+      const user = row.original.userId as unknown as { _id: string; email: string; displayName?: string; avatarUrl?: string | null } | string | null;
+      if (!user || typeof user === "string") return <span className="text-muted-foreground text-sm">—</span>;
+      const initials = user.displayName
+        ? user.displayName.split(" ").map((n) => n[0]).join("").toUpperCase()
+        : user.email[0].toUpperCase();
+      return (
+        <div className="flex items-center gap-2">
+          <Avatar className="h-7 w-7">
+            <AvatarImage src={user.avatarUrl ?? undefined} alt={user.displayName || user.email} />
+            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col leading-tight">
+            {user.displayName && (
+              <span className="text-xs font-medium">{user.displayName}</span>
+            )}
+            <span className="text-xs text-muted-foreground">{user.email}</span>
+          </div>
+        </div>
+      );
+    },
+  },
   {
     id: "form",
     header: "Form",

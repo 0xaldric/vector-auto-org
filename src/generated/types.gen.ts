@@ -396,6 +396,13 @@ export type GenerateModelDataDto = {
     totalObservations: number;
 };
 
+export type OrderUserInfoResponseDto = {
+    _id: string;
+    email: string;
+    displayName?: string;
+    avatarUrl?: string;
+};
+
 export type CronConfigResponseDto = {
     cronExpression: string;
     submissionsRangePerRun: Array<number>;
@@ -405,6 +412,10 @@ export type CronConfigResponseDto = {
 export type FormOrderResponseDto = {
     _id: string;
     userId: string;
+    /**
+     * Populated user info
+     */
+    user?: OrderUserInfoResponseDto;
     /**
      * GoogleForm _id (populated as object when using populate)
      */
@@ -460,6 +471,10 @@ export type ScheduleConfigDto = {
         number,
         number
     ];
+    /**
+     * Skip weekends (Saturday & Sunday). Only schedule submissions on weekdays (Mon-Fri). Defaults to false.
+     */
+    weekdaysOnly?: boolean;
 };
 
 export type SubmitWithModelDto = {
@@ -701,6 +716,10 @@ export type OrderWithSubmissionsResponseDto = {
     _id: string;
     userId: string;
     /**
+     * Populated user info
+     */
+    user?: OrderUserInfoResponseDto;
+    /**
      * GoogleForm _id (populated as object when using populate)
      */
     formId: string;
@@ -758,6 +777,17 @@ export type UpdateCronConfigDto = {
     ];
 };
 
+export type AdminTestSubmitDto = {
+    /**
+     * Order ID (MongoDB ObjectId)
+     */
+    orderId: string;
+    /**
+     * Zero-based index of the record in sheetData to submit
+     */
+    recordIndex: number;
+};
+
 export type UpdateBankInfoDto = {
     bankName: string;
     accountNumber: string;
@@ -773,7 +803,7 @@ export type CreateWithdrawalDto = {
 
 export type CreateMerchantDto = {
     /**
-     * User ID to ensure merchant profile exists
+     * User ID to promote to merchant
      */
     userId: string;
 };
@@ -828,6 +858,10 @@ export type UsersControllerGetUsersData = {
     query?: {
         page?: number;
         limit?: number;
+        /**
+         * Filter by email (partial match)
+         */
+        email?: string;
     };
     url: '/users';
 };
@@ -2286,6 +2320,10 @@ export type GoogleFormControllerAdminListOrdersData = {
     query?: {
         page?: number;
         limit?: number;
+        /**
+         * Filter by order status
+         */
+        status?: 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
     };
     url: '/google-form/admin/orders';
 };
@@ -2347,6 +2385,41 @@ export type GoogleFormControllerAdminListFormsResponses = {
 };
 
 export type GoogleFormControllerAdminListFormsResponse = GoogleFormControllerAdminListFormsResponses[keyof GoogleFormControllerAdminListFormsResponses];
+
+export type GoogleFormControllerAdminTestSubmitData = {
+    body: AdminTestSubmitDto;
+    path?: never;
+    query?: never;
+    url: '/google-form/admin/test-submit';
+};
+
+export type GoogleFormControllerAdminTestSubmitErrors = {
+    /**
+     * Order not found, no sheet data, or recordIndex out of range
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type GoogleFormControllerAdminTestSubmitResponses = {
+    /**
+     * Answers submitted and response status
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: unknown;
+    };
+};
+
+export type GoogleFormControllerAdminTestSubmitResponse = GoogleFormControllerAdminTestSubmitResponses[keyof GoogleFormControllerAdminTestSubmitResponses];
 
 export type MerchantControllerGetProfileData = {
     body?: never;

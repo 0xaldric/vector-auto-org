@@ -7,14 +7,23 @@ import { columns, User } from "@/components/users/columns";
 import { useQuery } from "@tanstack/react-query";
 import { usersControllerGetUsersOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
 
 export default function UsersPage() {
   const [page, setPage] = useState(1);
+  const [emailInput, setEmailInput] = useState("");
+  const [email, setEmail] = useState<string | undefined>(undefined);
   const limit = 10;
 
   const { data: usersData, isLoading } = useQuery(usersControllerGetUsersOptions({
-    query: { page, limit },
+    query: { page, limit, ...(email ? { email } : {}) },
   }));
+
+  function handleEmailSearch(e: React.FormEvent) {
+    e.preventDefault();
+    setPage(1);
+    setEmail(emailInput.trim() || undefined);
+  }
 
   // API response shape: { status, code, data: { data: User[], meta: {...} } }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,11 +35,21 @@ export default function UsersPage() {
     <>
       <Header title="User Management" />
       <div className="flex-1 space-y-6 p-6">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Users</h2>
-          <p className="text-muted-foreground">
-            Manage and view all registered users.
-          </p>
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Users</h2>
+            <p className="text-muted-foreground">
+              Manage and view all registered users.
+            </p>
+          </div>
+          <form onSubmit={handleEmailSearch} className="flex gap-2">
+            <Input
+              placeholder="Search by email..."
+              value={emailInput}
+              onChange={(e) => setEmailInput(e.target.value)}
+              className="w-64"
+            />
+          </form>
         </div>
         {isLoading ? (
           <div className="space-y-3">
