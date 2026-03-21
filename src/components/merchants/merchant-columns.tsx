@@ -8,21 +8,9 @@ import {
   merchantControllerUpdateMerchantStatusMutation,
   merchantControllerListMerchantsQueryKey,
 } from "@/generated/@tanstack/react-query.gen";
+import type { MerchantProfileWithUserResponseDto } from "@/generated/types.gen";
 
-type Merchant = {
-  _id: string;
-  userId:
-    | string
-    | { _id: string; email: string; displayName?: string; myReferralCode?: string };
-  isActive: boolean;
-  totalEarnings: number;
-  currentBalance: number;
-  totalWithdrawn: number;
-  bankName?: string;
-  accountNumber?: string;
-  accountHolder?: string;
-  created_at: string;
-};
+type Merchant = MerchantProfileWithUserResponseDto;
 
 function ToggleStatusCell({ merchant }: { merchant: Merchant }) {
   const queryClient = useQueryClient();
@@ -56,27 +44,11 @@ export const merchantColumns: ColumnDef<Merchant>[] = [
     header: "User",
     cell: ({ row }) => {
       const u = row.original.userId;
-      if (typeof u === "object" && u !== null) {
-        return (
-          <div>
-            <p className="font-medium">{u.displayName || u.email}</p>
-            <p className="text-xs text-muted-foreground">{u.email}</p>
-          </div>
-        );
-      }
-      return <span className="font-mono text-xs">{u}</span>;
-    },
-  },
-  {
-    id: "referralCode",
-    header: "Referral Code",
-    cell: ({ row }) => {
-      const u = row.original.userId;
-      const code = typeof u === "object" ? u.myReferralCode : undefined;
-      return code ? (
-        <span className="font-mono text-sm">{code}</span>
-      ) : (
-        <span className="text-muted-foreground">—</span>
+      return (
+        <div>
+          <p className="font-medium">{u.displayName || u.email}</p>
+          <p className="text-xs text-muted-foreground">{u.email}</p>
+        </div>
       );
     },
   },
@@ -90,20 +62,20 @@ export const merchantColumns: ColumnDef<Merchant>[] = [
     ),
   },
   {
-    accessorKey: "totalEarnings",
+    accessorKey: "totalEarned",
     header: "Total Earnings",
     cell: ({ row }) => (
       <span className="font-mono">
-        {new Intl.NumberFormat("vi-VN").format(row.original.totalEarnings)} ₫
+        {new Intl.NumberFormat("vi-VN").format(row.original.totalEarned)} ₫
       </span>
     ),
   },
   {
-    accessorKey: "currentBalance",
+    accessorKey: "balance",
     header: "Balance",
     cell: ({ row }) => (
       <span className="font-mono font-medium">
-        {new Intl.NumberFormat("vi-VN").format(row.original.currentBalance)} ₫
+        {new Intl.NumberFormat("vi-VN").format(row.original.balance)} ₫
       </span>
     ),
   },
@@ -120,13 +92,13 @@ export const merchantColumns: ColumnDef<Merchant>[] = [
     id: "bank",
     header: "Bank Info",
     cell: ({ row }) => {
-      const m = row.original;
-      if (!m.bankName) return <span className="text-muted-foreground">—</span>;
+      const bank = row.original.bankInfo;
+      if (!bank) return <span className="text-muted-foreground">—</span>;
       return (
         <div className="text-xs">
-          <p>{m.bankName}</p>
-          <p className="font-mono">{m.accountNumber}</p>
-          <p className="text-muted-foreground">{m.accountHolder}</p>
+          <p>{bank.bankName}</p>
+          <p className="font-mono">{bank.accountNumber}</p>
+          <p className="text-muted-foreground">{bank.accountHolder}</p>
         </div>
       );
     },

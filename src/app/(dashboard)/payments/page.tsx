@@ -12,16 +12,14 @@ import { CreditCard, TrendingUp, Coins } from "lucide-react";
 export default function PaymentsPage() {
   const { data, isLoading, isError } = useQuery(paymentControllerGetAllTransactionsOptions());
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = data as any;
-  const transactions = response?.data ?? [];
+  const transactions = data?.data ?? [];
 
   const totalRevenue = transactions.reduce(
-    (sum: number, tx: { transferAmount: number }) => sum + tx.transferAmount,
+    (sum, tx) => sum + tx.transferAmount,
     0
   );
   const totalCredits = transactions.reduce(
-    (sum: number, tx: { creditsAdded: number }) => sum + tx.creditsAdded,
+    (sum, tx) => sum + tx.creditsAdded,
     0
   );
 

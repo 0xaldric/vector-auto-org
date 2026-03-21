@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,20 +23,18 @@ type Tier = {
 export function CommissionTiers() {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery(merchantControllerListTiersOptions());
-  const [tiers, setTiers] = useState<Tier[]>([]);
+  const [tiers, setTiers] = useState<Tier[] | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const serverTiers = (data as any)?.data ?? (data as any) ?? [];
+  const serverTiers = useMemo(() => {
+    const items = data?.data ?? [];
+    return items.map((t) => ({
+      minOrders: t.minOrders,
+      maxOrders: t.maxOrders ?? undefined,
+      commissionAmount: t.commissionAmount,
+    }));
+  }, [data]);
 
-  useEffect(() => {
-    if (Array.isArray(serverTiers) && serverTiers.length > 0) {
-      setTiers(serverTiers.map((t: Tier) => ({
-        minOrders: t.minOrders,
-        maxOrders: t.maxOrders ?? undefined,
-        commissionAmount: t.commissionAmount,
-      })));
-    }
-  }, [serverTiers.length]);
+  const activeTiers = tiers ?? serverTiers;
 
   const { mutate, isPending } = useMutation({
     ...merchantControllerReplaceTiersMutation(),
@@ -46,22 +44,21 @@ export function CommissionTiers() {
   });
 
   const addTier = () => {
-    const lastMax = tiers.length > 0 ? (tiers[tiers.length - 1].maxOrders ?? 0) + 1 : 0;
-    setTiers([...tiers, { minOrders: lastMax, commissionAmount: 0 }]);
+    const lastMax = activeTiers.length > 0 ? (activeTiers[activeTiers.length - 1].maxOrders ?? 0) + 1 : 0;
+    setTiers([...activeTiers, { minOrders: lastMax, commissionAmount: 0 }]);
   };
 
   const removeTier = (index: number) => {
-    setTiers(tiers.filter((_, i) => i !== index));
+    setTiers(activeTiers.filter((_, i) => i !== index));
   };
 
   const updateTier = (index: number, field: keyof Tier, value: string) => {
-    const updated = [...tiers];
+    const updated = [...activeTiers];
     const num = parseInt(value, 10);
     if (field === "maxOrders" && value === "") {
       updated[index] = { ...updated[index], maxOrders: undefined };
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (updated[index] as any)[field] = isNaN(num) ? 0 : num;
+      updated[index] = { ...updated[index], [field]: isNaN(num) ? 0 : num };
     }
     setTiers(updated);
   };
@@ -69,7 +66,7 @@ export function CommissionTiers() {
   const handleSave = () => {
     mutate({
       body: {
-        tiers: tiers.map((t) => ({
+        tiers: activeTiers.map((t) => ({
           minOrders: t.minOrders,
           maxOrders: t.maxOrders ?? undefined,
           commissionAmount: t.commissionAmount,
@@ -104,11 +101,11 @@ export function CommissionTiers() {
         </div>
       </CardHeader>
       <CardContent>
-        {tiers.length === 0 ? (
+        {activeTiers.length === 0 ? (
           <p className="text-sm text-muted-foreground">No tiers configured yet.</p>
         ) : (
           <div className="space-y-3">
-            {tiers.map((tier, i) => (
+            {activeTiers.map((tier, i) => (
               <div key={i} className="flex items-end gap-3 rounded-md border p-3">
                 <div className="flex-1">
                   <Label className="text-xs">Min Orders</Label>

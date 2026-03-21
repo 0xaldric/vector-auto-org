@@ -1,16 +1,9 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-type PaymentTx = {
-  _id: string;
-  transferAmount: number;
-  creditsAdded: number;
-  content: string;
-  transactionDate: string;
-  created_at: string;
-};
+import type { PaymentTransactionResponseDto } from "@/generated/types.gen";
 
-export const paymentColumns: ColumnDef<PaymentTx>[] = [
+export const paymentColumns: ColumnDef<PaymentTransactionResponseDto>[] = [
   {
     accessorKey: "transferAmount",
     header: "Amount (VND)",

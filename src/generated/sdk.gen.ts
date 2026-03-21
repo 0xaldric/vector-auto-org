@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyErrors, AuthControllerAdminOnlyResponses, AuthControllerGetProfileData, AuthControllerGetProfileErrors, AuthControllerGetProfileResponses, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthCallbackResponses, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateErrors, AuthControllerGoogleAuthenticateResponses, AuthControllerGoogleAuthResponses, AuthControllerLoginData, AuthControllerLoginErrors, AuthControllerLoginResponses, AuthControllerLogoutData, AuthControllerLogoutErrors, AuthControllerLogoutResponses, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardErrors, AuthControllerOrganizerDashboardResponses, AuthControllerRefreshData, AuthControllerRefreshErrors, AuthControllerRefreshResponses, AuthControllerRegisterData, AuthControllerRegisterErrors, AuthControllerRegisterResponses, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsErrors, GoogleFormControllerAdminListFormsResponses, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersErrors, GoogleFormControllerAdminListOrdersResponses, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitErrors, GoogleFormControllerAdminTestSubmitResponses, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsErrors, GoogleFormControllerBatchUpdateFieldsResponses, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderErrors, GoogleFormControllerCancelOrderResponses, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderErrors, GoogleFormControllerCreateOrderResponses, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerExportModelGenerationCsvErrors, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataErrors, GoogleFormControllerGenerateModelDataResponses, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomErrors, GoogleFormControllerGenerateRandomResponses, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesErrors, GoogleFormControllerGenerateRatesResponses, GoogleFormControllerGetFormData, GoogleFormControllerGetFormErrors, GoogleFormControllerGetFormResponses, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesErrors, GoogleFormControllerGetGenerateRatesResponses, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigErrors, GoogleFormControllerGetModelConfigResponses, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationErrors, GoogleFormControllerGetModelGenerationResponses, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderErrors, GoogleFormControllerGetOrderResponses, GoogleFormControllerListFormsData, GoogleFormControllerListFormsErrors, GoogleFormControllerListFormsResponses, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsErrors, GoogleFormControllerListModelGenerationsResponses, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersErrors, GoogleFormControllerListOrdersResponses, GoogleFormControllerParseFormData, GoogleFormControllerParseFormErrors, GoogleFormControllerParseFormResponses, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderErrors, GoogleFormControllerPauseOrderResponses, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetErrors, GoogleFormControllerPreviewSheetResponses, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormErrors, GoogleFormControllerRefreshFormResponses, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderErrors, GoogleFormControllerResumeOrderResponses, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetErrors, GoogleFormControllerSubmitFromSheetResponses, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomErrors, GoogleFormControllerSubmitRandomResponses, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelErrors, GoogleFormControllerSubmitWithModelResponses, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesErrors, GoogleFormControllerSubmitWithRatesResponses, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigErrors, GoogleFormControllerUpdateCronConfigResponses, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldErrors, GoogleFormControllerUpdateFieldResponses, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsErrors, GoogleFormControllerUpdateOrderSubmissionsResponses, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigErrors, GoogleFormControllerUpsertModelConfigResponses, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalErrors, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantErrors, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalErrors, MerchantControllerGetDashboardData, MerchantControllerGetDashboardErrors, MerchantControllerGetDashboardResponses, MerchantControllerGetProfileData, MerchantControllerGetProfileErrors, MerchantControllerGetProfileResponses, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsErrors, MerchantControllerListCommissionsData, MerchantControllerListCommissionsErrors, MerchantControllerListCommissionsResponses, MerchantControllerListMerchantsData, MerchantControllerListMerchantsErrors, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsErrors, MerchantControllerListOwnWithdrawalsResponses, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersErrors, MerchantControllerListReferredUsersResponses, MerchantControllerListTiersData, MerchantControllerListTiersErrors, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersErrors, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalErrors, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoErrors, MerchantControllerUpdateBankInfoResponses, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusErrors, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponses, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponses, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponses, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsErrors, PaymentControllerGetTransactionsResponses, PaymentControllerSepayWebhookData, PaymentControllerSepayWebhookResponses, UsersControllerAddCreditsData, UsersControllerAddCreditsErrors, UsersControllerAddCreditsResponses, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserErrors, UsersControllerGetCurrentUserResponses, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryErrors, UsersControllerGetMyCreditHistoryResponses, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryErrors, UsersControllerGetUserCreditHistoryResponses, UsersControllerGetUsersData, UsersControllerGetUsersErrors, UsersControllerGetUsersResponses } from './types.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyErrors, AuthControllerAdminOnlyResponses, AuthControllerGetProfileData, AuthControllerGetProfileErrors, AuthControllerGetProfileResponses, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthCallbackResponses, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateErrors, AuthControllerGoogleAuthenticateResponses, AuthControllerGoogleAuthResponses, AuthControllerLoginData, AuthControllerLoginErrors, AuthControllerLoginResponses, AuthControllerLogoutData, AuthControllerLogoutErrors, AuthControllerLogoutResponses, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardErrors, AuthControllerOrganizerDashboardResponses, AuthControllerRefreshData, AuthControllerRefreshErrors, AuthControllerRefreshResponses, AuthControllerRegisterData, AuthControllerRegisterErrors, AuthControllerRegisterResponses, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsErrors, GoogleFormControllerAdminListFormsResponses, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersErrors, GoogleFormControllerAdminListOrdersResponses, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitErrors, GoogleFormControllerAdminTestSubmitResponses, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsErrors, GoogleFormControllerBatchUpdateFieldsResponses, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderErrors, GoogleFormControllerCancelOrderResponses, GoogleFormControllerCreateAiVerificationData, GoogleFormControllerCreateAiVerificationErrors, GoogleFormControllerCreateAiVerificationResponses, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderErrors, GoogleFormControllerCreateOrderResponses, GoogleFormControllerCreateSpssVerificationData, GoogleFormControllerCreateSpssVerificationErrors, GoogleFormControllerCreateSpssVerificationResponses, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerExportModelGenerationCsvErrors, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataErrors, GoogleFormControllerGenerateModelDataResponses, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomErrors, GoogleFormControllerGenerateRandomResponses, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesErrors, GoogleFormControllerGenerateRatesResponses, GoogleFormControllerGetFormData, GoogleFormControllerGetFormErrors, GoogleFormControllerGetFormResponses, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesErrors, GoogleFormControllerGetGenerateRatesResponses, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigErrors, GoogleFormControllerGetModelConfigResponses, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationErrors, GoogleFormControllerGetModelGenerationResponses, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderErrors, GoogleFormControllerGetOrderResponses, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesErrors, GoogleFormControllerGetUpcomingSchedulesResponses, GoogleFormControllerGetVerificationData, GoogleFormControllerGetVerificationErrors, GoogleFormControllerGetVerificationResponses, GoogleFormControllerListFormsData, GoogleFormControllerListFormsErrors, GoogleFormControllerListFormsResponses, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsErrors, GoogleFormControllerListModelGenerationsResponses, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersErrors, GoogleFormControllerListOrdersResponses, GoogleFormControllerListVerificationsData, GoogleFormControllerListVerificationsErrors, GoogleFormControllerListVerificationsResponses, GoogleFormControllerParseFormData, GoogleFormControllerParseFormErrors, GoogleFormControllerParseFormResponses, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderErrors, GoogleFormControllerPauseOrderResponses, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetErrors, GoogleFormControllerPreviewSheetResponses, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormErrors, GoogleFormControllerRefreshFormResponses, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderErrors, GoogleFormControllerResumeOrderResponses, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionErrors, GoogleFormControllerRetrySubmissionResponses, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetErrors, GoogleFormControllerSubmitFromSheetResponses, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomErrors, GoogleFormControllerSubmitRandomResponses, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelErrors, GoogleFormControllerSubmitWithModelResponses, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesErrors, GoogleFormControllerSubmitWithRatesResponses, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigErrors, GoogleFormControllerUpdateCronConfigResponses, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldErrors, GoogleFormControllerUpdateFieldResponses, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsErrors, GoogleFormControllerUpdateOrderSubmissionsResponses, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigErrors, GoogleFormControllerUpsertModelConfigResponses, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalErrors, MerchantControllerCompleteWithdrawalResponses, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantErrors, MerchantControllerCreateMerchantResponses, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalErrors, MerchantControllerCreateWithdrawalResponses, MerchantControllerGetDashboardData, MerchantControllerGetDashboardErrors, MerchantControllerGetDashboardResponses, MerchantControllerGetProfileData, MerchantControllerGetProfileErrors, MerchantControllerGetProfileResponses, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsErrors, MerchantControllerListAllWithdrawalsResponses, MerchantControllerListCommissionsData, MerchantControllerListCommissionsErrors, MerchantControllerListCommissionsResponses, MerchantControllerListMerchantsData, MerchantControllerListMerchantsErrors, MerchantControllerListMerchantsResponses, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsErrors, MerchantControllerListOwnWithdrawalsResponses, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersErrors, MerchantControllerListReferredUsersResponses, MerchantControllerListTiersData, MerchantControllerListTiersErrors, MerchantControllerListTiersResponses, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersErrors, MerchantControllerReplaceTiersResponses, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalErrors, MerchantControllerReviewWithdrawalResponses, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoErrors, MerchantControllerUpdateBankInfoResponses, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusErrors, MerchantControllerUpdateMerchantStatusResponses, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponses, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsErrors, PaymentControllerGetAllTransactionsResponses, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponses, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsErrors, PaymentControllerGetTransactionsResponses, PaymentControllerSepayWebhookData, PaymentControllerSepayWebhookResponses, UsersControllerAddCreditsData, UsersControllerAddCreditsErrors, UsersControllerAddCreditsResponses, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserErrors, UsersControllerGetCurrentUserResponses, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryErrors, UsersControllerGetMyCreditHistoryResponses, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryErrors, UsersControllerGetUserCreditHistoryResponses, UsersControllerGetUsersData, UsersControllerGetUsersErrors, UsersControllerGetUsersResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -500,14 +500,26 @@ export const googleFormControllerListOrders = <ThrowOnError extends boolean = fa
 });
 
 /**
- * Get order details with submission history
+ * Get order details with paginated submission history
  *
- * Returns the order populated with the form reference and the last 100 submissions.
+ * Returns the order populated with the form reference and paginated submissions (default 10 per page).
  */
 export const googleFormControllerGetOrder = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerGetOrderData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerGetOrderResponses, GoogleFormControllerGetOrderErrors, ThrowOnError>({
     responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/google-form/order/{id}',
+    ...options
+});
+
+/**
+ * Preview upcoming scheduled submissions in the next 15 minutes
+ *
+ * Returns pending schedules whose `scheduledAt` falls within the next 15 minutes, populated with the pre-generated submission answers. Paginated.
+ */
+export const googleFormControllerGetUpcomingSchedules = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerGetUpcomingSchedulesData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerGetUpcomingSchedulesResponses, GoogleFormControllerGetUpcomingSchedulesErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/order/{id}/upcoming-schedules',
     ...options
 });
 
@@ -580,6 +592,64 @@ export const googleFormControllerResumeOrder = <ThrowOnError extends boolean = f
 });
 
 /**
+ * Retry a failed submission by submission ID
+ */
+export const googleFormControllerRetrySubmission = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerRetrySubmissionData, ThrowOnError>) => (options.client ?? client).post<GoogleFormControllerRetrySubmissionResponses, GoogleFormControllerRetrySubmissionErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/submission/{id}/retry',
+    ...options
+});
+
+/**
+ * Run AI verification on order submissions
+ *
+ * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
+ */
+export const googleFormControllerCreateAiVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerCreateAiVerificationData, ThrowOnError>) => (options.client ?? client).post<GoogleFormControllerCreateAiVerificationResponses, GoogleFormControllerCreateAiVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verify/ai',
+    ...options
+});
+
+/**
+ * Run SPSS-standard statistical verification on order submissions
+ *
+ * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
+ */
+export const googleFormControllerCreateSpssVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerCreateSpssVerificationData, ThrowOnError>) => (options.client ?? client).post<GoogleFormControllerCreateSpssVerificationResponses, GoogleFormControllerCreateSpssVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verify/spss',
+    ...options
+});
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const googleFormControllerListVerifications = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerListVerificationsData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerListVerificationsResponses, GoogleFormControllerListVerificationsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verifications',
+    ...options
+});
+
+/**
+ * Get full verification result by ID
+ *
+ * Returns the complete verification record including AI issues or SPSS statistics.
+ */
+export const googleFormControllerGetVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerGetVerificationData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerGetVerificationResponses, GoogleFormControllerGetVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/verifications/{id}',
+    ...options
+});
+
+/**
  * Admin: List all orders across all users (paginated)
  *
  * Returns every order in the system, sorted newest first.
@@ -623,6 +693,7 @@ export const googleFormControllerAdminTestSubmit = <ThrowOnError extends boolean
  * Get own affiliate profile (auto-created)
  */
 export const merchantControllerGetProfile = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerGetProfileData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerGetProfileResponses, MerchantControllerGetProfileErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/profile',
     ...options
@@ -632,6 +703,7 @@ export const merchantControllerGetProfile = <ThrowOnError extends boolean = fals
  * Update bank information for payouts
  */
 export const merchantControllerUpdateBankInfo = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerUpdateBankInfoData, ThrowOnError>) => (options.client ?? client).put<MerchantControllerUpdateBankInfoResponses, MerchantControllerUpdateBankInfoErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/bank-info',
     ...options,
@@ -645,6 +717,7 @@ export const merchantControllerUpdateBankInfo = <ThrowOnError extends boolean = 
  * Get affiliate dashboard with stats
  */
 export const merchantControllerGetDashboard = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerGetDashboardData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerGetDashboardResponses, MerchantControllerGetDashboardErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/dashboard',
     ...options
@@ -654,6 +727,7 @@ export const merchantControllerGetDashboard = <ThrowOnError extends boolean = fa
  * List commission history (paginated)
  */
 export const merchantControllerListCommissions = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListCommissionsData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerListCommissionsResponses, MerchantControllerListCommissionsErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/commissions',
     ...options
@@ -663,6 +737,7 @@ export const merchantControllerListCommissions = <ThrowOnError extends boolean =
  * List referred users (paginated)
  */
 export const merchantControllerListReferredUsers = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListReferredUsersData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerListReferredUsersResponses, MerchantControllerListReferredUsersErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/referred-users',
     ...options
@@ -672,6 +747,7 @@ export const merchantControllerListReferredUsers = <ThrowOnError extends boolean
  * List own withdrawal requests (paginated)
  */
 export const merchantControllerListOwnWithdrawals = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListOwnWithdrawalsData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerListOwnWithdrawalsResponses, MerchantControllerListOwnWithdrawalsErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/withdrawals',
     ...options
@@ -682,7 +758,8 @@ export const merchantControllerListOwnWithdrawals = <ThrowOnError extends boolea
  *
  * Request withdrawal of your commission balance. Auto-withdrawal happens at 200,000 VND, but you can manually request earlier.
  */
-export const merchantControllerCreateWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCreateWithdrawalData, ThrowOnError>) => (options.client ?? client).post<unknown, MerchantControllerCreateWithdrawalErrors, ThrowOnError>({
+export const merchantControllerCreateWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCreateWithdrawalData, ThrowOnError>) => (options.client ?? client).post<MerchantControllerCreateWithdrawalResponses, MerchantControllerCreateWithdrawalErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/withdrawals',
     ...options,
@@ -695,7 +772,8 @@ export const merchantControllerCreateWithdrawal = <ThrowOnError extends boolean 
 /**
  * Admin: Ensure affiliate profile exists for a user
  */
-export const merchantControllerCreateMerchant = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCreateMerchantData, ThrowOnError>) => (options.client ?? client).post<unknown, MerchantControllerCreateMerchantErrors, ThrowOnError>({
+export const merchantControllerCreateMerchant = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCreateMerchantData, ThrowOnError>) => (options.client ?? client).post<MerchantControllerCreateMerchantResponses, MerchantControllerCreateMerchantErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/create',
     ...options,
@@ -708,7 +786,8 @@ export const merchantControllerCreateMerchant = <ThrowOnError extends boolean = 
 /**
  * Admin: List all affiliate profiles (paginated)
  */
-export const merchantControllerListMerchants = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListMerchantsData, ThrowOnError>) => (options?.client ?? client).get<unknown, MerchantControllerListMerchantsErrors, ThrowOnError>({
+export const merchantControllerListMerchants = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListMerchantsData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerListMerchantsResponses, MerchantControllerListMerchantsErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/list',
     ...options
@@ -717,7 +796,8 @@ export const merchantControllerListMerchants = <ThrowOnError extends boolean = f
 /**
  * Admin: Activate/deactivate an affiliate
  */
-export const merchantControllerUpdateMerchantStatus = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerUpdateMerchantStatusData, ThrowOnError>) => (options.client ?? client).patch<unknown, MerchantControllerUpdateMerchantStatusErrors, ThrowOnError>({
+export const merchantControllerUpdateMerchantStatus = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerUpdateMerchantStatusData, ThrowOnError>) => (options.client ?? client).patch<MerchantControllerUpdateMerchantStatusResponses, MerchantControllerUpdateMerchantStatusErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/{id}/status',
     ...options,
@@ -730,7 +810,8 @@ export const merchantControllerUpdateMerchantStatus = <ThrowOnError extends bool
 /**
  * Admin: List all withdrawal requests
  */
-export const merchantControllerListAllWithdrawals = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerListAllWithdrawalsData, ThrowOnError>) => (options.client ?? client).get<unknown, MerchantControllerListAllWithdrawalsErrors, ThrowOnError>({
+export const merchantControllerListAllWithdrawals = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerListAllWithdrawalsData, ThrowOnError>) => (options.client ?? client).get<MerchantControllerListAllWithdrawalsResponses, MerchantControllerListAllWithdrawalsErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/withdrawals',
     ...options
@@ -739,7 +820,8 @@ export const merchantControllerListAllWithdrawals = <ThrowOnError extends boolea
 /**
  * Admin: Approve or reject a withdrawal
  */
-export const merchantControllerReviewWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerReviewWithdrawalData, ThrowOnError>) => (options.client ?? client).post<unknown, MerchantControllerReviewWithdrawalErrors, ThrowOnError>({
+export const merchantControllerReviewWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerReviewWithdrawalData, ThrowOnError>) => (options.client ?? client).post<MerchantControllerReviewWithdrawalResponses, MerchantControllerReviewWithdrawalErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/withdrawals/{id}/review',
     ...options,
@@ -752,7 +834,8 @@ export const merchantControllerReviewWithdrawal = <ThrowOnError extends boolean 
 /**
  * Admin: Mark withdrawal as completed (money sent)
  */
-export const merchantControllerCompleteWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCompleteWithdrawalData, ThrowOnError>) => (options.client ?? client).post<unknown, MerchantControllerCompleteWithdrawalErrors, ThrowOnError>({
+export const merchantControllerCompleteWithdrawal = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerCompleteWithdrawalData, ThrowOnError>) => (options.client ?? client).post<MerchantControllerCompleteWithdrawalResponses, MerchantControllerCompleteWithdrawalErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/withdrawals/{id}/complete',
     ...options
@@ -761,7 +844,8 @@ export const merchantControllerCompleteWithdrawal = <ThrowOnError extends boolea
 /**
  * Admin: List commission tiers
  */
-export const merchantControllerListTiers = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListTiersData, ThrowOnError>) => (options?.client ?? client).get<unknown, MerchantControllerListTiersErrors, ThrowOnError>({
+export const merchantControllerListTiers = <ThrowOnError extends boolean = false>(options?: Options<MerchantControllerListTiersData, ThrowOnError>) => (options?.client ?? client).get<MerchantControllerListTiersResponses, MerchantControllerListTiersErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/commission-tiers',
     ...options
@@ -770,7 +854,8 @@ export const merchantControllerListTiers = <ThrowOnError extends boolean = false
 /**
  * Admin: Replace all commission tiers
  */
-export const merchantControllerReplaceTiers = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerReplaceTiersData, ThrowOnError>) => (options.client ?? client).put<unknown, MerchantControllerReplaceTiersErrors, ThrowOnError>({
+export const merchantControllerReplaceTiers = <ThrowOnError extends boolean = false>(options: Options<MerchantControllerReplaceTiersData, ThrowOnError>) => (options.client ?? client).put<MerchantControllerReplaceTiersResponses, MerchantControllerReplaceTiersErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/merchant/admin/commission-tiers',
     ...options,
@@ -784,6 +869,7 @@ export const merchantControllerReplaceTiers = <ThrowOnError extends boolean = fa
  * Get payment info for current user
  */
 export const paymentControllerGetPaymentInfo = <ThrowOnError extends boolean = false>(options?: Options<PaymentControllerGetPaymentInfoData, ThrowOnError>) => (options?.client ?? client).get<PaymentControllerGetPaymentInfoResponses, unknown, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/payment/info',
     ...options
@@ -793,6 +879,7 @@ export const paymentControllerGetPaymentInfo = <ThrowOnError extends boolean = f
  * Generate VietQR code for a specific amount
  */
 export const paymentControllerGenerateQr = <ThrowOnError extends boolean = false>(options: Options<PaymentControllerGenerateQrData, ThrowOnError>) => (options.client ?? client).post<PaymentControllerGenerateQrResponses, unknown, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/payment/generate-qr',
     ...options,
@@ -815,7 +902,8 @@ export const paymentControllerGetTransactions = <ThrowOnError extends boolean = 
 /**
  * Admin: Get all payment transactions
  */
-export const paymentControllerGetAllTransactions = <ThrowOnError extends boolean = false>(options?: Options<PaymentControllerGetAllTransactionsData, ThrowOnError>) => (options?.client ?? client).get<PaymentControllerGetAllTransactionsResponses, unknown, ThrowOnError>({
+export const paymentControllerGetAllTransactions = <ThrowOnError extends boolean = false>(options?: Options<PaymentControllerGetAllTransactionsData, ThrowOnError>) => (options?.client ?? client).get<PaymentControllerGetAllTransactionsResponses, PaymentControllerGetAllTransactionsErrors, ThrowOnError>({
+    responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/payment/admin/transactions',
     ...options
@@ -824,4 +912,11 @@ export const paymentControllerGetAllTransactions = <ThrowOnError extends boolean
 /**
  * SePay payment webhook (public)
  */
-export const paymentControllerSepayWebhook = <ThrowOnError extends boolean = false>(options?: Options<PaymentControllerSepayWebhookData, ThrowOnError>) => (options?.client ?? client).post<PaymentControllerSepayWebhookResponses, unknown, ThrowOnError>({ url: '/hooks/sepay-payment', ...options });
+export const paymentControllerSepayWebhook = <ThrowOnError extends boolean = false>(options: Options<PaymentControllerSepayWebhookData, ThrowOnError>) => (options.client ?? client).post<PaymentControllerSepayWebhookResponses, unknown, ThrowOnError>({
+    url: '/hooks/sepay-payment',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});

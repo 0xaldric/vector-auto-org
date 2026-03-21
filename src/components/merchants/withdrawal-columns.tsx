@@ -9,20 +9,9 @@ import {
   merchantControllerCompleteWithdrawalMutation,
   merchantControllerListAllWithdrawalsQueryKey,
 } from "@/generated/@tanstack/react-query.gen";
+import type { WithdrawalRequestResponseDto } from "@/generated/types.gen";
 
-type Withdrawal = {
-  _id: string;
-  merchantId:
-    | string
-    | { _id: string; userId?: string | { email?: string; displayName?: string } };
-  amount: number;
-  status: "pending" | "approved" | "rejected" | "completed";
-  reviewNote?: string;
-  bankName?: string;
-  accountNumber?: string;
-  accountHolder?: string;
-  created_at: string;
-};
+type Withdrawal = WithdrawalRequestResponseDto;
 
 const statusVariant: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
   pending: "outline",
@@ -104,17 +93,10 @@ export const withdrawalColumns: ColumnDef<Withdrawal>[] = [
     id: "merchant",
     header: "Merchant",
     cell: ({ row }) => {
-      const m = row.original.merchantId;
-      if (typeof m === "object" && m !== null) {
-        const u = m.userId;
-        if (typeof u === "object" && u !== null) {
-          return (
-            <span className="text-sm">{u.displayName || u.email || m._id}</span>
-          );
-        }
-        return <span className="font-mono text-xs">{String(u || m._id)}</span>;
-      }
-      return <span className="font-mono text-xs">{m}</span>;
+      const u = row.original.merchantUserId;
+      return (
+        <span className="text-sm">{u.displayName || u.email}</span>
+      );
     },
   },
   {
@@ -139,13 +121,13 @@ export const withdrawalColumns: ColumnDef<Withdrawal>[] = [
     id: "bank",
     header: "Bank Info",
     cell: ({ row }) => {
-      const w = row.original;
-      if (!w.bankName) return <span className="text-muted-foreground">—</span>;
+      const bank = row.original.bankInfo;
+      if (!bank) return <span className="text-muted-foreground">—</span>;
       return (
         <div className="text-xs">
-          <p>{w.bankName}</p>
-          <p className="font-mono">{w.accountNumber}</p>
-          <p className="text-muted-foreground">{w.accountHolder}</p>
+          <p>{bank.bankName}</p>
+          <p className="font-mono">{bank.accountNumber}</p>
+          <p className="text-muted-foreground">{bank.accountHolder}</p>
         </div>
       );
     },

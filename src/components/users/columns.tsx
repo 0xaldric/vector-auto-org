@@ -4,16 +4,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { AddCreditsCell } from "./add-credits-cell";
+import type { UserResponseDto } from "@/generated/types.gen";
 
-export type User = {
-  id: string;
-  email: string;
-  displayName?: string;
-  role: "admin" | "user" | "organizer";
-  tags: string[];
-  avatarUrl?: string;
-  credit?: number;
-};
+export type User = UserResponseDto;
 
 const roleBadgeVariant: Record<string, "default" | "secondary" | "outline"> = {
   admin: "default",
@@ -73,7 +66,7 @@ export const columns: ColumnDef<User>[] = [
     header: "Credits",
     cell: ({ row }) => (
       <span className="font-mono">
-        {row.original.credit != null ? row.original.credit.toLocaleString() : "—"}
+        {row.original.credit.toLocaleString()}
       </span>
     ),
   },
@@ -98,7 +91,7 @@ export const columns: ColumnDef<User>[] = [
     id: "actions",
     header: "",
     cell: ({ row }) => (
-      <AddCreditsCell userId={row.original.id} userName={row.original.displayName} />
+      <AddCreditsCell userId={row.original._id} userName={row.original.displayName} />
     ),
   },
 ];

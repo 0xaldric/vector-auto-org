@@ -15,7 +15,10 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useMutation } from "@tanstack/react-query";
-import { usersControllerAddCreditsMutation } from "@/generated/@tanstack/react-query.gen";
+import {
+  usersControllerAddCreditsMutation,
+  usersControllerGetUsersQueryKey,
+} from "@/generated/@tanstack/react-query.gen";
 
 interface AddCreditsCellProps {
   userId: string;
@@ -31,7 +34,7 @@ export function AddCreditsCell({ userId, userName }: AddCreditsCellProps) {
   const { mutate, isPending } = useMutation({
     ...usersControllerAddCreditsMutation(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/users"] });
+      queryClient.invalidateQueries({ queryKey: usersControllerGetUsersQueryKey() });
       setOpen(false);
       setAmount("");
       setNote("");
@@ -42,7 +45,7 @@ export function AddCreditsCell({ userId, userName }: AddCreditsCellProps) {
     e.preventDefault();
     const parsed = parseInt(amount, 10);
     if (!parsed || parsed < 1) return;
-    mutate({ path: { id: userId }, body: { amount: parsed, type: "refund", note: note || undefined } });
+    mutate({ path: { id: userId }, body: { amount: parsed, type: "admin_add", note: note || undefined } });
   };
 
   return (

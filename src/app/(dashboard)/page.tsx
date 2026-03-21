@@ -17,33 +17,27 @@ export default function DashboardPage() {
   const { data: txData } = useQuery(paymentControllerGetAllTransactionsOptions());
   const { data: ordersData } = useQuery(googleFormControllerAdminListOrdersOptions({ query: { page: 1, limit: 100 } }));
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = usersData as any;
-  const users = response?.data?.data as Array<{ role: string }> | undefined;
+  const users = usersData?.data?.data;
 
-  const totalUsers = response?.data?.meta?.totalItems ?? users?.length ?? 0;
+  const totalUsers = usersData?.data?.meta?.totalItems ?? users?.length ?? 0;
   const adminCount = users?.filter((u) => u.role === "admin").length ?? 0;
   const organizerCount = users?.filter((u) => u.role === "organizer").length ?? 0;
   const userCount = users?.filter((u) => u.role === "user").length ?? 0;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const txResponse = txData as any;
-  const transactions = txResponse?.data ?? [];
+  const transactions = txData?.data ?? [];
   const totalRevenue = transactions.reduce(
-    (sum: number, tx: { transferAmount: number }) => sum + tx.transferAmount,
+    (sum, tx) => sum + tx.transferAmount,
     0
   );
   const totalCreditsIssued = transactions.reduce(
-    (sum: number, tx: { creditsAdded: number }) => sum + tx.creditsAdded,
+    (sum, tx) => sum + tx.creditsAdded,
     0
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ordersResponse = ordersData as any;
-  const orders = ordersResponse?.data?.data ?? [];
-  const totalOrders = ordersResponse?.data?.meta?.totalItems ?? orders.length;
+  const orders = ordersData?.data?.data ?? [];
+  const totalOrders = ordersData?.data?.meta?.totalItems ?? orders.length;
   const runningOrders = orders.filter(
-    (o: { status: string }) => o.status === "running"
+    (o) => o.status === "running"
   ).length;
 
   const stats = [

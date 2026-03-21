@@ -4,6 +4,37 @@ export type ClientOptions = {
     baseURL: string;
 };
 
+export type UserResponseDto = {
+    _id: string;
+    email: string;
+    role: 'admin' | 'user' | 'organizer';
+    tags: Array<string>;
+    displayName?: string;
+    avatarUrl?: string;
+    credit: number;
+    freeOrdersUsed: number;
+    myReferralCode?: string;
+    referralCode?: string;
+    referredBy?: string;
+    paymentCode?: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export type PaginationMetaDto = {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+};
+
+export type PaginatedUserResponseDto = {
+    data: Array<UserResponseDto>;
+    meta: PaginationMetaDto;
+};
+
 export type User = {
     /**
      * User unique identifier
@@ -91,18 +122,14 @@ export type CreditTransactionResponseDto = {
     created_at: string;
 };
 
-export type PaginationMetaDto = {
-    page: number;
-    limit: number;
-    totalItems: number;
-    totalPages: number;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-};
-
 export type PaginatedCreditTransactionResponseDto = {
     data: Array<CreditTransactionResponseDto>;
     meta: PaginationMetaDto;
+};
+
+export type AddCreditsResponseDto = {
+    id: string;
+    credit: number;
 };
 
 export type AddCreditsDto = {
@@ -120,7 +147,7 @@ export type AddCreditsDto = {
     note?: string;
 };
 
-export type UserResponseDto = {
+export type AuthUserResponseDto = {
     /**
      * User unique identifier
      */
@@ -148,7 +175,7 @@ export type UserResponseDto = {
 };
 
 export type AuthResponseDto = {
-    user: UserResponseDto;
+    user: AuthUserResponseDto;
     /**
      * Short-lived JWT access token
      */
@@ -319,6 +346,33 @@ export type GenerateRatesResponseDto = {
     updated_at: string;
 };
 
+export type ModelVariableResponseDto = {
+    symbol: string;
+    name: string;
+    observedCount: number;
+    cronbachAlphaTarget: number;
+    meanTarget: number;
+    sdTarget: number;
+    beta?: number;
+    pValue?: string;
+    isDependent: boolean;
+    formFieldEntryIds: Array<string>;
+};
+
+export type ModelConfigResponseDto = {
+    _id: string;
+    formId: string;
+    variables: Array<ModelVariableResponseDto>;
+    sampleSize: number;
+    kmoTarget: number;
+    extractionMethod: string;
+    rotationMethod: string;
+    maxVif: number;
+    createdBy: string;
+    created_at: string;
+    updated_at: string;
+};
+
 export type ModelVariableDto = {
     /**
      * Symbol/code linking to FormField.symbol
@@ -389,11 +443,28 @@ export type CreateModelConfigDto = {
     maxVif?: number;
 };
 
+export type ModelGenerationResponseDto = {
+    _id: string;
+    formId: string;
+    modelConfigId: string;
+    totalObservations: number;
+    status: 'generating' | 'completed' | 'failed';
+    errorMessage?: string;
+    createdBy: string;
+    created_at: string;
+    updated_at: string;
+};
+
 export type GenerateModelDataDto = {
     /**
      * Number of observations (rows) to generate
      */
     totalObservations: number;
+};
+
+export type PaginatedModelGenerationResponseDto = {
+    data: Array<ModelGenerationResponseDto>;
+    meta: PaginationMetaResponseDto;
 };
 
 export type OrderUserInfoResponseDto = {
@@ -423,7 +494,7 @@ export type FormOrderResponseDto = {
     totalSubmissions: number;
     completedSubmissions: number;
     failedSubmissions: number;
-    status: 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
+    status: 'preparing' | 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
     answerStrategy: 'random_with_rate' | 'from_sheet' | 'by_model';
     /**
      * Credits deducted for this order
@@ -712,6 +783,11 @@ export type FormSubmissionResponseDto = {
     created_at: string;
 };
 
+export type PaginatedSubmissionResponseDto = {
+    data: Array<FormSubmissionResponseDto>;
+    meta: PaginationMetaResponseDto;
+};
+
 export type OrderWithSubmissionsResponseDto = {
     _id: string;
     userId: string;
@@ -726,7 +802,7 @@ export type OrderWithSubmissionsResponseDto = {
     totalSubmissions: number;
     completedSubmissions: number;
     failedSubmissions: number;
-    status: 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
+    status: 'preparing' | 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
     answerStrategy: 'random_with_rate' | 'from_sheet' | 'by_model';
     /**
      * Credits deducted for this order
@@ -736,9 +812,25 @@ export type OrderWithSubmissionsResponseDto = {
     created_at: string;
     updated_at: string;
     /**
-     * Last 100 submissions
+     * Paginated submissions (default 10/page)
      */
-    submissions: Array<FormSubmissionResponseDto>;
+    submissions: PaginatedSubmissionResponseDto;
+};
+
+export type SubmissionScheduleResponseDto = {
+    _id: string;
+    orderId: string;
+    scheduledAt: string;
+    status: 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled';
+    executedAt?: string;
+    submissionId?: string;
+    errorMessage?: string;
+    created_at: string;
+};
+
+export type PaginatedScheduleResponseDto = {
+    data: Array<SubmissionScheduleResponseDto>;
+    meta: PaginationMetaResponseDto;
 };
 
 export type CancelOrderResponseDto = {
@@ -777,6 +869,85 @@ export type UpdateCronConfigDto = {
     ];
 };
 
+export type AiSubmissionIssueResponseDto = {
+    submissionId: string;
+    issues: Array<string>;
+    /**
+     * Điểm giống người thật (0-100)
+     */
+    score: number;
+};
+
+export type AiVerificationResultResponseDto = {
+    /**
+     * Điểm tổng thể (0-100)
+     */
+    overallScore: number;
+    totalChecked: number;
+    flaggedCount: number;
+    submissionIssues: Array<AiSubmissionIssueResponseDto>;
+    summary: string;
+};
+
+export type CronbachAlphaItemResponseDto = {
+    symbol: string;
+    alpha: number;
+    items: Array<string>;
+};
+
+export type DescriptiveStatsItemResponseDto = {
+    variable: string;
+    mean: number;
+    sd: number;
+    skewness: number;
+    kurtosis: number;
+    min: number;
+    max: number;
+};
+
+export type NormalityTestItemResponseDto = {
+    variable: string;
+    statistic: number;
+    pValue: number;
+    method: string;
+};
+
+export type SpssVerificationResultResponseDto = {
+    cronbachAlpha: Array<CronbachAlphaItemResponseDto>;
+    descriptiveStats: Array<DescriptiveStatsItemResponseDto>;
+    normalityTest: Array<NormalityTestItemResponseDto>;
+    overallReliable: boolean;
+    summary: string;
+};
+
+export type VerificationResponseDto = {
+    _id: string;
+    orderId: string;
+    formId: string;
+    type: 'ai' | 'spss';
+    status: 'processing' | 'completed' | 'failed';
+    aiResult?: AiVerificationResultResponseDto;
+    spssResult?: SpssVerificationResultResponseDto;
+    errorMessage?: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export type PaginatedVerificationResponseDto = {
+    data: Array<VerificationResponseDto>;
+    meta: PaginationMetaDto;
+};
+
+export type TestSubmitResponseDto = {
+    /**
+     * Submitted answers: entryId → value
+     */
+    answers: {
+        [key: string]: unknown;
+    };
+    status: string;
+};
+
 export type AdminTestSubmitDto = {
     /**
      * Order ID (MongoDB ObjectId)
@@ -788,10 +959,109 @@ export type AdminTestSubmitDto = {
     recordIndex: number;
 };
 
+export type BankInfoResponseDto = {
+    bankName: string;
+    accountNumber: string;
+    accountHolder: string;
+};
+
+export type MerchantProfileResponseDto = {
+    _id: string;
+    userId: string;
+    balance: number;
+    totalEarned: number;
+    totalWithdrawn: number;
+    totalReferredUsers: number;
+    totalReferredOrders: number;
+    bankInfo?: BankInfoResponseDto;
+    isActive: boolean;
+    created_at: string;
+    updated_at: string;
+};
+
 export type UpdateBankInfoDto = {
     bankName: string;
     accountNumber: string;
     accountHolder: string;
+};
+
+export type PopulatedUserDto = {
+    _id: string;
+    email: string;
+    displayName?: string;
+};
+
+export type TierSnapshotResponseDto = {
+    minOrders: number;
+    maxOrders?: number;
+    commissionAmount: number;
+};
+
+export type CommissionTransactionResponseDto = {
+    _id: string;
+    merchantUserId: string;
+    /**
+     * Populated referred user (email, displayName)
+     */
+    referredUserId: PopulatedUserDto;
+    orderId: string;
+    orderNumber: number;
+    commissionAmount: number;
+    tierApplied: TierSnapshotResponseDto;
+    balanceBefore: number;
+    balanceAfter: number;
+    created_at: string;
+    updated_at: string;
+};
+
+export type MerchantDashboardResponseDto = {
+    profile: MerchantProfileResponseDto;
+    pendingWithdrawals: number;
+    recentCommissions: Array<CommissionTransactionResponseDto>;
+};
+
+export type PaginatedCommissionTransactionResponseDto = {
+    data: Array<CommissionTransactionResponseDto>;
+    meta: PaginationMetaDto;
+};
+
+export type ReferredUserResponseDto = {
+    _id: string;
+    email: string;
+    displayName?: string;
+    created_at: string;
+};
+
+export type PaginatedReferredUserResponseDto = {
+    data: Array<ReferredUserResponseDto>;
+    meta: PaginationMetaDto;
+};
+
+export type WithdrawalRequestResponseDto = {
+    _id: string;
+    /**
+     * Populated merchant user (email, displayName)
+     */
+    merchantUserId: PopulatedUserDto;
+    amount: number;
+    status: 'pending' | 'approved' | 'rejected' | 'completed';
+    bankInfo: BankInfoResponseDto;
+    balanceBefore: number;
+    balanceAfter: number;
+    /**
+     * Populated reviewer user (email, displayName), null if not yet reviewed
+     */
+    reviewedBy?: PopulatedUserDto;
+    reviewedAt?: string;
+    reviewNote?: string;
+    completedAt?: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export type PaginatedWithdrawalRequestResponseDto = {
+    data: Array<WithdrawalRequestResponseDto>;
+    meta: PaginationMetaDto;
 };
 
 export type CreateWithdrawalDto = {
@@ -806,6 +1076,35 @@ export type CreateMerchantDto = {
      * User ID to promote to merchant
      */
     userId: string;
+};
+
+export type PopulatedUserWithAvatarDto = {
+    _id: string;
+    email: string;
+    displayName?: string;
+    avatarUrl?: string;
+};
+
+export type MerchantProfileWithUserResponseDto = {
+    _id: string;
+    /**
+     * Populated user object
+     */
+    userId: PopulatedUserWithAvatarDto;
+    balance: number;
+    totalEarned: number;
+    totalWithdrawn: number;
+    totalReferredUsers: number;
+    totalReferredOrders: number;
+    bankInfo?: BankInfoResponseDto;
+    isActive: boolean;
+    created_at: string;
+    updated_at: string;
+};
+
+export type PaginatedMerchantProfileResponseDto = {
+    data: Array<MerchantProfileWithUserResponseDto>;
+    meta: PaginationMetaDto;
 };
 
 export type UpdateMerchantStatusDto = {
@@ -824,6 +1123,16 @@ export type ReviewWithdrawalDto = {
      * Review note
      */
     reviewNote?: string;
+};
+
+export type CommissionTierResponseDto = {
+    _id: string;
+    minOrders: number;
+    maxOrders?: number;
+    commissionAmount: number;
+    isActive: boolean;
+    created_at: string;
+    updated_at: string;
 };
 
 export type CommissionTierDto = {
@@ -845,11 +1154,47 @@ export type UpdateCommissionTiersDto = {
     tiers: Array<CommissionTierDto>;
 };
 
+export type BankAccountInfoDto = {
+    bankCode: string;
+    accountNumber: string;
+    accountName: string;
+};
+
+export type PaymentInfoResponseDto = {
+    paymentCode: string;
+    bankInfo: BankAccountInfoDto;
+};
+
+export type GenerateQrResponseDto = {
+    qrDataURL: string;
+    paymentCode: string;
+    bankInfo: BankAccountInfoDto;
+    amount: number;
+};
+
 export type GenerateQrDto = {
     /**
      * Amount in VND (minimum 1000)
      */
     amount: number;
+};
+
+export type PaymentTransactionResponseDto = {
+    _id: string;
+    userId: string;
+    sepayId: number;
+    transferAmount: number;
+    creditsAdded: number;
+    content: string;
+    gateway?: string;
+    transactionDate?: string;
+    referenceCode?: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export type SepayWebhookDto = {
+    [key: string]: unknown;
 };
 
 export type UsersControllerGetUsersData = {
@@ -884,7 +1229,7 @@ export type UsersControllerGetUsersResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: PaginatedUserResponseDto;
     };
 };
 
@@ -1016,7 +1361,7 @@ export type UsersControllerAddCreditsResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: AddCreditsResponseDto;
     };
 };
 
@@ -1222,7 +1567,7 @@ export type AuthControllerGetProfileResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: UserResponseDto;
+        data?: AuthUserResponseDto;
     };
 };
 
@@ -1617,7 +1962,7 @@ export type GoogleFormControllerGetModelConfigResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: ModelConfigResponseDto;
     };
 };
 
@@ -1653,7 +1998,7 @@ export type GoogleFormControllerUpsertModelConfigResponses = {
     201: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: ModelConfigResponseDto;
     };
 };
 
@@ -1689,7 +2034,7 @@ export type GoogleFormControllerGenerateModelDataResponses = {
     201: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: ModelGenerationResponseDto;
     };
 };
 
@@ -1724,7 +2069,7 @@ export type GoogleFormControllerListModelGenerationsResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: PaginatedModelGenerationResponseDto;
     };
 };
 
@@ -1764,7 +2109,7 @@ export type GoogleFormControllerGetModelGenerationResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: ModelGenerationResponseDto;
     };
 };
 
@@ -2086,7 +2431,10 @@ export type GoogleFormControllerGetOrderData = {
          */
         id: string;
     };
-    query?: never;
+    query?: {
+        page?: number;
+        limit?: number;
+    };
     url: '/google-form/order/{id}';
 };
 
@@ -2103,7 +2451,7 @@ export type GoogleFormControllerGetOrderErrors = {
 
 export type GoogleFormControllerGetOrderResponses = {
     /**
-     * Order with last 100 submissions
+     * Order with paginated submissions
      */
     200: {
         status?: string;
@@ -2113,6 +2461,45 @@ export type GoogleFormControllerGetOrderResponses = {
 };
 
 export type GoogleFormControllerGetOrderResponse = GoogleFormControllerGetOrderResponses[keyof GoogleFormControllerGetOrderResponses];
+
+export type GoogleFormControllerGetUpcomingSchedulesData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/google-form/order/{id}/upcoming-schedules';
+};
+
+export type GoogleFormControllerGetUpcomingSchedulesErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Order not found or does not belong to this user
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerGetUpcomingSchedulesResponses = {
+    /**
+     * Paginated list of upcoming schedules with preview answers
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedScheduleResponseDto;
+    };
+};
+
+export type GoogleFormControllerGetUpcomingSchedulesResponse = GoogleFormControllerGetUpcomingSchedulesResponses[keyof GoogleFormControllerGetUpcomingSchedulesResponses];
 
 export type GoogleFormControllerCancelOrderData = {
     body?: never;
@@ -2314,6 +2701,197 @@ export type GoogleFormControllerResumeOrderResponses = {
 
 export type GoogleFormControllerResumeOrderResponse = GoogleFormControllerResumeOrderResponses[keyof GoogleFormControllerResumeOrderResponses];
 
+export type GoogleFormControllerRetrySubmissionData = {
+    body?: never;
+    path: {
+        /**
+         * Submission document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/google-form/submission/{id}/retry';
+};
+
+export type GoogleFormControllerRetrySubmissionErrors = {
+    /**
+     * Submission is not in failed status
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Submission or order not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerRetrySubmissionResponses = {
+    /**
+     * Submission retried successfully
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: FormSubmissionResponseDto;
+    };
+};
+
+export type GoogleFormControllerRetrySubmissionResponse = GoogleFormControllerRetrySubmissionResponses[keyof GoogleFormControllerRetrySubmissionResponses];
+
+export type GoogleFormControllerCreateAiVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: never;
+    url: '/google-form/orders/{orderId}/verify/ai';
+};
+
+export type GoogleFormControllerCreateAiVerificationErrors = {
+    /**
+     * No completed submissions or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Order not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerCreateAiVerificationResponses = {
+    /**
+     * Verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type GoogleFormControllerCreateAiVerificationResponse = GoogleFormControllerCreateAiVerificationResponses[keyof GoogleFormControllerCreateAiVerificationResponses];
+
+export type GoogleFormControllerCreateSpssVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: never;
+    url: '/google-form/orders/{orderId}/verify/spss';
+};
+
+export type GoogleFormControllerCreateSpssVerificationErrors = {
+    /**
+     * No completed submissions, no Likert fields, or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Order not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerCreateSpssVerificationResponses = {
+    /**
+     * SPSS verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type GoogleFormControllerCreateSpssVerificationResponse = GoogleFormControllerCreateSpssVerificationResponses[keyof GoogleFormControllerCreateSpssVerificationResponses];
+
+export type GoogleFormControllerListVerificationsData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/google-form/orders/{orderId}/verifications';
+};
+
+export type GoogleFormControllerListVerificationsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type GoogleFormControllerListVerificationsResponses = {
+    /**
+     * Paginated list of verifications
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedVerificationResponseDto;
+    };
+};
+
+export type GoogleFormControllerListVerificationsResponse = GoogleFormControllerListVerificationsResponses[keyof GoogleFormControllerListVerificationsResponses];
+
+export type GoogleFormControllerGetVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Verification document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/google-form/verifications/{id}';
+};
+
+export type GoogleFormControllerGetVerificationErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Verification not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerGetVerificationResponses = {
+    /**
+     * Full verification document
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type GoogleFormControllerGetVerificationResponse = GoogleFormControllerGetVerificationResponses[keyof GoogleFormControllerGetVerificationResponses];
+
 export type GoogleFormControllerAdminListOrdersData = {
     body?: never;
     path?: never;
@@ -2323,7 +2901,7 @@ export type GoogleFormControllerAdminListOrdersData = {
         /**
          * Filter by order status
          */
-        status?: 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
+        status?: 'preparing' | 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'cancelled' | 'failed';
     };
     url: '/google-form/admin/orders';
 };
@@ -2415,7 +2993,7 @@ export type GoogleFormControllerAdminTestSubmitResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: TestSubmitResponseDto;
     };
 };
 
@@ -2436,8 +3014,17 @@ export type MerchantControllerGetProfileErrors = {
 };
 
 export type MerchantControllerGetProfileResponses = {
-    200: unknown;
+    /**
+     * Affiliate profile
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: MerchantProfileResponseDto;
+    };
 };
+
+export type MerchantControllerGetProfileResponse = MerchantControllerGetProfileResponses[keyof MerchantControllerGetProfileResponses];
 
 export type MerchantControllerUpdateBankInfoData = {
     body: UpdateBankInfoDto;
@@ -2454,8 +3041,17 @@ export type MerchantControllerUpdateBankInfoErrors = {
 };
 
 export type MerchantControllerUpdateBankInfoResponses = {
-    200: unknown;
+    /**
+     * Updated affiliate profile
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: MerchantProfileResponseDto;
+    };
 };
+
+export type MerchantControllerUpdateBankInfoResponse = MerchantControllerUpdateBankInfoResponses[keyof MerchantControllerUpdateBankInfoResponses];
 
 export type MerchantControllerGetDashboardData = {
     body?: never;
@@ -2472,8 +3068,17 @@ export type MerchantControllerGetDashboardErrors = {
 };
 
 export type MerchantControllerGetDashboardResponses = {
-    200: unknown;
+    /**
+     * Dashboard with stats
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: MerchantDashboardResponseDto;
+    };
 };
+
+export type MerchantControllerGetDashboardResponse = MerchantControllerGetDashboardResponses[keyof MerchantControllerGetDashboardResponses];
 
 export type MerchantControllerListCommissionsData = {
     body?: never;
@@ -2493,8 +3098,17 @@ export type MerchantControllerListCommissionsErrors = {
 };
 
 export type MerchantControllerListCommissionsResponses = {
-    200: unknown;
+    /**
+     * Paginated commissions
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedCommissionTransactionResponseDto;
+    };
 };
+
+export type MerchantControllerListCommissionsResponse = MerchantControllerListCommissionsResponses[keyof MerchantControllerListCommissionsResponses];
 
 export type MerchantControllerListReferredUsersData = {
     body?: never;
@@ -2514,8 +3128,17 @@ export type MerchantControllerListReferredUsersErrors = {
 };
 
 export type MerchantControllerListReferredUsersResponses = {
-    200: unknown;
+    /**
+     * Paginated referred users
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedReferredUserResponseDto;
+    };
 };
+
+export type MerchantControllerListReferredUsersResponse = MerchantControllerListReferredUsersResponses[keyof MerchantControllerListReferredUsersResponses];
 
 export type MerchantControllerListOwnWithdrawalsData = {
     body?: never;
@@ -2535,8 +3158,17 @@ export type MerchantControllerListOwnWithdrawalsErrors = {
 };
 
 export type MerchantControllerListOwnWithdrawalsResponses = {
-    200: unknown;
+    /**
+     * Paginated withdrawals
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedWithdrawalRequestResponseDto;
+    };
 };
+
+export type MerchantControllerListOwnWithdrawalsResponse = MerchantControllerListOwnWithdrawalsResponses[keyof MerchantControllerListOwnWithdrawalsResponses];
 
 export type MerchantControllerCreateWithdrawalData = {
     body: CreateWithdrawalDto;
@@ -2556,6 +3188,19 @@ export type MerchantControllerCreateWithdrawalErrors = {
     401: unknown;
 };
 
+export type MerchantControllerCreateWithdrawalResponses = {
+    /**
+     * Withdrawal request created
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: WithdrawalRequestResponseDto;
+    };
+};
+
+export type MerchantControllerCreateWithdrawalResponse = MerchantControllerCreateWithdrawalResponses[keyof MerchantControllerCreateWithdrawalResponses];
+
 export type MerchantControllerCreateMerchantData = {
     body: CreateMerchantDto;
     path?: never;
@@ -2573,6 +3218,19 @@ export type MerchantControllerCreateMerchantErrors = {
      */
     403: unknown;
 };
+
+export type MerchantControllerCreateMerchantResponses = {
+    /**
+     * Affiliate profile ensured
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: MerchantProfileResponseDto;
+    };
+};
+
+export type MerchantControllerCreateMerchantResponse = MerchantControllerCreateMerchantResponses[keyof MerchantControllerCreateMerchantResponses];
 
 export type MerchantControllerListMerchantsData = {
     body?: never;
@@ -2594,6 +3252,19 @@ export type MerchantControllerListMerchantsErrors = {
      */
     403: unknown;
 };
+
+export type MerchantControllerListMerchantsResponses = {
+    /**
+     * Paginated affiliate profiles
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedMerchantProfileResponseDto;
+    };
+};
+
+export type MerchantControllerListMerchantsResponse = MerchantControllerListMerchantsResponses[keyof MerchantControllerListMerchantsResponses];
 
 export type MerchantControllerUpdateMerchantStatusData = {
     body: UpdateMerchantStatusDto;
@@ -2622,6 +3293,19 @@ export type MerchantControllerUpdateMerchantStatusErrors = {
     404: unknown;
 };
 
+export type MerchantControllerUpdateMerchantStatusResponses = {
+    /**
+     * Updated affiliate status
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: MerchantProfileResponseDto;
+    };
+};
+
+export type MerchantControllerUpdateMerchantStatusResponse = MerchantControllerUpdateMerchantStatusResponses[keyof MerchantControllerUpdateMerchantStatusResponses];
+
 export type MerchantControllerListAllWithdrawalsData = {
     body?: never;
     path?: never;
@@ -2643,6 +3327,19 @@ export type MerchantControllerListAllWithdrawalsErrors = {
      */
     403: unknown;
 };
+
+export type MerchantControllerListAllWithdrawalsResponses = {
+    /**
+     * Paginated withdrawal requests
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedWithdrawalRequestResponseDto;
+    };
+};
+
+export type MerchantControllerListAllWithdrawalsResponse = MerchantControllerListAllWithdrawalsResponses[keyof MerchantControllerListAllWithdrawalsResponses];
 
 export type MerchantControllerReviewWithdrawalData = {
     body: ReviewWithdrawalDto;
@@ -2675,6 +3372,19 @@ export type MerchantControllerReviewWithdrawalErrors = {
     404: unknown;
 };
 
+export type MerchantControllerReviewWithdrawalResponses = {
+    /**
+     * Withdrawal reviewed
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: WithdrawalRequestResponseDto;
+    };
+};
+
+export type MerchantControllerReviewWithdrawalResponse = MerchantControllerReviewWithdrawalResponses[keyof MerchantControllerReviewWithdrawalResponses];
+
 export type MerchantControllerCompleteWithdrawalData = {
     body?: never;
     path: {
@@ -2702,6 +3412,19 @@ export type MerchantControllerCompleteWithdrawalErrors = {
     404: unknown;
 };
 
+export type MerchantControllerCompleteWithdrawalResponses = {
+    /**
+     * Withdrawal completed
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: WithdrawalRequestResponseDto;
+    };
+};
+
+export type MerchantControllerCompleteWithdrawalResponse = MerchantControllerCompleteWithdrawalResponses[keyof MerchantControllerCompleteWithdrawalResponses];
+
 export type MerchantControllerListTiersData = {
     body?: never;
     path?: never;
@@ -2719,6 +3442,19 @@ export type MerchantControllerListTiersErrors = {
      */
     403: unknown;
 };
+
+export type MerchantControllerListTiersResponses = {
+    /**
+     * Commission tiers
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: Array<CommissionTierResponseDto>;
+    };
+};
+
+export type MerchantControllerListTiersResponse = MerchantControllerListTiersResponses[keyof MerchantControllerListTiersResponses];
 
 export type MerchantControllerReplaceTiersData = {
     body: UpdateCommissionTiersDto;
@@ -2738,6 +3474,19 @@ export type MerchantControllerReplaceTiersErrors = {
     403: unknown;
 };
 
+export type MerchantControllerReplaceTiersResponses = {
+    /**
+     * Updated commission tiers
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: Array<CommissionTierResponseDto>;
+    };
+};
+
+export type MerchantControllerReplaceTiersResponse = MerchantControllerReplaceTiersResponses[keyof MerchantControllerReplaceTiersResponses];
+
 export type PaymentControllerGetPaymentInfoData = {
     body?: never;
     path?: never;
@@ -2746,8 +3495,17 @@ export type PaymentControllerGetPaymentInfoData = {
 };
 
 export type PaymentControllerGetPaymentInfoResponses = {
-    200: unknown;
+    /**
+     * Payment info with bank details
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaymentInfoResponseDto;
+    };
 };
+
+export type PaymentControllerGetPaymentInfoResponse = PaymentControllerGetPaymentInfoResponses[keyof PaymentControllerGetPaymentInfoResponses];
 
 export type PaymentControllerGenerateQrData = {
     body: GenerateQrDto;
@@ -2757,8 +3515,17 @@ export type PaymentControllerGenerateQrData = {
 };
 
 export type PaymentControllerGenerateQrResponses = {
-    201: unknown;
+    /**
+     * QR code and payment details
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: GenerateQrResponseDto;
+    };
 };
+
+export type PaymentControllerGenerateQrResponse = PaymentControllerGenerateQrResponses[keyof PaymentControllerGenerateQrResponses];
 
 export type PaymentControllerGetTransactionsData = {
     body?: never;
@@ -2781,7 +3548,7 @@ export type PaymentControllerGetTransactionsResponses = {
     200: {
         status?: string;
         code?: number;
-        data?: unknown;
+        data?: Array<PaymentTransactionResponseDto>;
     };
 };
 
@@ -2794,12 +3561,28 @@ export type PaymentControllerGetAllTransactionsData = {
     url: '/payment/admin/transactions';
 };
 
-export type PaymentControllerGetAllTransactionsResponses = {
-    200: unknown;
+export type PaymentControllerGetAllTransactionsErrors = {
+    /**
+     * Admin role required
+     */
+    403: unknown;
 };
 
+export type PaymentControllerGetAllTransactionsResponses = {
+    /**
+     * All payment transactions
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: Array<PaymentTransactionResponseDto>;
+    };
+};
+
+export type PaymentControllerGetAllTransactionsResponse = PaymentControllerGetAllTransactionsResponses[keyof PaymentControllerGetAllTransactionsResponses];
+
 export type PaymentControllerSepayWebhookData = {
-    body?: never;
+    body: SepayWebhookDto;
     path?: never;
     query?: never;
     url: '/hooks/sepay-payment';

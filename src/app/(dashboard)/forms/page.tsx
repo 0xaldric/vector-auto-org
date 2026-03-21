@@ -33,17 +33,15 @@ export default function FormsPage() {
     setStatus(val === "all" ? undefined : (val as OrderStatus));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = data as any;
-  const orders = response?.data?.data ?? [];
-  const totalPages = response?.data?.meta?.totalPages ?? 1;
-  const totalItems = response?.data?.meta?.totalItems ?? 0;
+  const orders = data?.data?.data ?? [];
+  const totalPages = data?.data?.meta?.totalPages ?? 1;
+  const totalItems = data?.data?.meta?.totalItems ?? 0;
 
   const completedCount = orders.filter(
-    (o: { status: string }) => o.status === "completed"
+    (o) => o.status === "completed"
   ).length;
   const runningCount = orders.filter(
-    (o: { status: string }) => o.status === "running"
+    (o) => o.status === "running"
   ).length;
 
   return (

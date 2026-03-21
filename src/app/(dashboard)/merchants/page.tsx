@@ -29,10 +29,8 @@ function MerchantsTab() {
     merchantControllerListMerchantsOptions({ query: { page, limit } })
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = data as any;
-  const merchants = response?.data?.data ?? response?.data ?? [];
-  const totalPages = response?.data?.meta?.totalPages ?? response?.meta?.totalPages ?? 1;
+  const merchants = data?.data?.data ?? [];
+  const totalPages = data?.data?.meta?.totalPages ?? 1;
 
   return (
     <div className="space-y-4">
@@ -71,10 +69,8 @@ function WithdrawalsTab() {
     })
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = data as any;
-  const withdrawals = response?.data?.data ?? response?.data ?? [];
-  const totalPages = response?.data?.meta?.totalPages ?? response?.meta?.totalPages ?? 1;
+  const withdrawals = data?.data?.data ?? [];
+  const totalPages = data?.data?.meta?.totalPages ?? 1;
 
   return (
     <div className="space-y-4">

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
-import { columns, User } from "@/components/users/columns";
+import { columns } from "@/components/users/columns";
 import { useQuery } from "@tanstack/react-query";
 import { usersControllerGetUsersOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -25,11 +25,8 @@ export default function UsersPage() {
     setEmail(emailInput.trim() || undefined);
   }
 
-  // API response shape: { status, code, data: { data: User[], meta: {...} } }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const response = usersData as any;
-  const users: User[] = response?.data?.data ?? [];
-  const totalPages: number = response?.data?.meta?.totalPages ?? 1;
+  const users = usersData?.data?.data ?? [];
+  const totalPages = usersData?.data?.meta?.totalPages ?? 1;
 
   return (
     <>

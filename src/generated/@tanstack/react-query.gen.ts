@@ -4,8 +4,8 @@ import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOption
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers } from '../sdk.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCreateMerchantData, MerchantControllerCreateWithdrawalData, MerchantControllerGetDashboardData, MerchantControllerGetProfileData, MerchantControllerListAllWithdrawalsData, MerchantControllerListCommissionsData, MerchantControllerListMerchantsData, MerchantControllerListOwnWithdrawalsData, MerchantControllerListReferredUsersData, MerchantControllerListTiersData, MerchantControllerReplaceTiersData, MerchantControllerReviewWithdrawalData, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateMerchantStatusData, PaymentControllerGenerateQrData, PaymentControllerGetAllTransactionsData, PaymentControllerGetPaymentInfoData, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse } from '../types.gen';
+import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateAiVerification, googleFormControllerCreateOrder, googleFormControllerCreateSpssVerification, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerGetVerification, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerListVerifications, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers } from '../sdk.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateAiVerificationData, GoogleFormControllerCreateAiVerificationResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerCreateSpssVerificationData, GoogleFormControllerCreateSpssVerificationResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerGetVerificationData, GoogleFormControllerGetVerificationResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerListVerificationsData, GoogleFormControllerListVerificationsResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -949,9 +949,9 @@ export const googleFormControllerListOrdersInfiniteOptions = (options?: Options<
 export const googleFormControllerGetOrderQueryKey = (options: Options<GoogleFormControllerGetOrderData>) => createQueryKey('googleFormControllerGetOrder', options);
 
 /**
- * Get order details with submission history
+ * Get order details with paginated submission history
  *
- * Returns the order populated with the form reference and the last 100 submissions.
+ * Returns the order populated with the form reference and paginated submissions (default 10 per page).
  */
 export const googleFormControllerGetOrderOptions = (options: Options<GoogleFormControllerGetOrderData>) => queryOptions<GoogleFormControllerGetOrderResponse, AxiosError<DefaultError>, GoogleFormControllerGetOrderResponse, ReturnType<typeof googleFormControllerGetOrderQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -964,6 +964,84 @@ export const googleFormControllerGetOrderOptions = (options: Options<GoogleFormC
         return data;
     },
     queryKey: googleFormControllerGetOrderQueryKey(options)
+});
+
+export const googleFormControllerGetOrderInfiniteQueryKey = (options: Options<GoogleFormControllerGetOrderData>): QueryKey<Options<GoogleFormControllerGetOrderData>> => createQueryKey('googleFormControllerGetOrder', options, true);
+
+/**
+ * Get order details with paginated submission history
+ *
+ * Returns the order populated with the form reference and paginated submissions (default 10 per page).
+ */
+export const googleFormControllerGetOrderInfiniteOptions = (options: Options<GoogleFormControllerGetOrderData>) => infiniteQueryOptions<GoogleFormControllerGetOrderResponse, AxiosError<DefaultError>, InfiniteData<GoogleFormControllerGetOrderResponse>, QueryKey<Options<GoogleFormControllerGetOrderData>>, number | Pick<QueryKey<Options<GoogleFormControllerGetOrderData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GoogleFormControllerGetOrderData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await googleFormControllerGetOrder({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerGetOrderInfiniteQueryKey(options)
+});
+
+export const googleFormControllerGetUpcomingSchedulesQueryKey = (options: Options<GoogleFormControllerGetUpcomingSchedulesData>) => createQueryKey('googleFormControllerGetUpcomingSchedules', options);
+
+/**
+ * Preview upcoming scheduled submissions in the next 15 minutes
+ *
+ * Returns pending schedules whose `scheduledAt` falls within the next 15 minutes, populated with the pre-generated submission answers. Paginated.
+ */
+export const googleFormControllerGetUpcomingSchedulesOptions = (options: Options<GoogleFormControllerGetUpcomingSchedulesData>) => queryOptions<GoogleFormControllerGetUpcomingSchedulesResponse, AxiosError<DefaultError>, GoogleFormControllerGetUpcomingSchedulesResponse, ReturnType<typeof googleFormControllerGetUpcomingSchedulesQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await googleFormControllerGetUpcomingSchedules({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerGetUpcomingSchedulesQueryKey(options)
+});
+
+export const googleFormControllerGetUpcomingSchedulesInfiniteQueryKey = (options: Options<GoogleFormControllerGetUpcomingSchedulesData>): QueryKey<Options<GoogleFormControllerGetUpcomingSchedulesData>> => createQueryKey('googleFormControllerGetUpcomingSchedules', options, true);
+
+/**
+ * Preview upcoming scheduled submissions in the next 15 minutes
+ *
+ * Returns pending schedules whose `scheduledAt` falls within the next 15 minutes, populated with the pre-generated submission answers. Paginated.
+ */
+export const googleFormControllerGetUpcomingSchedulesInfiniteOptions = (options: Options<GoogleFormControllerGetUpcomingSchedulesData>) => infiniteQueryOptions<GoogleFormControllerGetUpcomingSchedulesResponse, AxiosError<DefaultError>, InfiniteData<GoogleFormControllerGetUpcomingSchedulesResponse>, QueryKey<Options<GoogleFormControllerGetUpcomingSchedulesData>>, number | Pick<QueryKey<Options<GoogleFormControllerGetUpcomingSchedulesData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GoogleFormControllerGetUpcomingSchedulesData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await googleFormControllerGetUpcomingSchedules({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerGetUpcomingSchedulesInfiniteQueryKey(options)
 });
 
 /**
@@ -1060,6 +1138,130 @@ export const googleFormControllerResumeOrderMutation = (options?: Partial<Option
     };
     return mutationOptions;
 };
+
+/**
+ * Retry a failed submission by submission ID
+ */
+export const googleFormControllerRetrySubmissionMutation = (options?: Partial<Options<GoogleFormControllerRetrySubmissionData>>): UseMutationOptions<GoogleFormControllerRetrySubmissionResponse, AxiosError<DefaultError>, Options<GoogleFormControllerRetrySubmissionData>> => {
+    const mutationOptions: UseMutationOptions<GoogleFormControllerRetrySubmissionResponse, AxiosError<DefaultError>, Options<GoogleFormControllerRetrySubmissionData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await googleFormControllerRetrySubmission({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Run AI verification on order submissions
+ *
+ * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
+ */
+export const googleFormControllerCreateAiVerificationMutation = (options?: Partial<Options<GoogleFormControllerCreateAiVerificationData>>): UseMutationOptions<GoogleFormControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateAiVerificationData>> => {
+    const mutationOptions: UseMutationOptions<GoogleFormControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateAiVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await googleFormControllerCreateAiVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Run SPSS-standard statistical verification on order submissions
+ *
+ * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
+ */
+export const googleFormControllerCreateSpssVerificationMutation = (options?: Partial<Options<GoogleFormControllerCreateSpssVerificationData>>): UseMutationOptions<GoogleFormControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateSpssVerificationData>> => {
+    const mutationOptions: UseMutationOptions<GoogleFormControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateSpssVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await googleFormControllerCreateSpssVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const googleFormControllerListVerificationsQueryKey = (options: Options<GoogleFormControllerListVerificationsData>) => createQueryKey('googleFormControllerListVerifications', options);
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const googleFormControllerListVerificationsOptions = (options: Options<GoogleFormControllerListVerificationsData>) => queryOptions<GoogleFormControllerListVerificationsResponse, AxiosError<DefaultError>, GoogleFormControllerListVerificationsResponse, ReturnType<typeof googleFormControllerListVerificationsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await googleFormControllerListVerifications({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerListVerificationsQueryKey(options)
+});
+
+export const googleFormControllerListVerificationsInfiniteQueryKey = (options: Options<GoogleFormControllerListVerificationsData>): QueryKey<Options<GoogleFormControllerListVerificationsData>> => createQueryKey('googleFormControllerListVerifications', options, true);
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const googleFormControllerListVerificationsInfiniteOptions = (options: Options<GoogleFormControllerListVerificationsData>) => infiniteQueryOptions<GoogleFormControllerListVerificationsResponse, AxiosError<DefaultError>, InfiniteData<GoogleFormControllerListVerificationsResponse>, QueryKey<Options<GoogleFormControllerListVerificationsData>>, number | Pick<QueryKey<Options<GoogleFormControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GoogleFormControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await googleFormControllerListVerifications({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerListVerificationsInfiniteQueryKey(options)
+});
+
+export const googleFormControllerGetVerificationQueryKey = (options: Options<GoogleFormControllerGetVerificationData>) => createQueryKey('googleFormControllerGetVerification', options);
+
+/**
+ * Get full verification result by ID
+ *
+ * Returns the complete verification record including AI issues or SPSS statistics.
+ */
+export const googleFormControllerGetVerificationOptions = (options: Options<GoogleFormControllerGetVerificationData>) => queryOptions<GoogleFormControllerGetVerificationResponse, AxiosError<DefaultError>, GoogleFormControllerGetVerificationResponse, ReturnType<typeof googleFormControllerGetVerificationQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await googleFormControllerGetVerification({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerGetVerificationQueryKey(options)
+});
 
 export const googleFormControllerAdminListOrdersQueryKey = (options?: Options<GoogleFormControllerAdminListOrdersData>) => createQueryKey('googleFormControllerAdminListOrders', options);
 
@@ -1183,7 +1385,7 @@ export const merchantControllerGetProfileQueryKey = (options?: Options<MerchantC
 /**
  * Get own affiliate profile (auto-created)
  */
-export const merchantControllerGetProfileOptions = (options?: Options<MerchantControllerGetProfileData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerGetProfileQueryKey>>({
+export const merchantControllerGetProfileOptions = (options?: Options<MerchantControllerGetProfileData>) => queryOptions<MerchantControllerGetProfileResponse, AxiosError<DefaultError>, MerchantControllerGetProfileResponse, ReturnType<typeof merchantControllerGetProfileQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerGetProfile({
             ...options,
@@ -1199,8 +1401,8 @@ export const merchantControllerGetProfileOptions = (options?: Options<MerchantCo
 /**
  * Update bank information for payouts
  */
-export const merchantControllerUpdateBankInfoMutation = (options?: Partial<Options<MerchantControllerUpdateBankInfoData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateBankInfoData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateBankInfoData>> = {
+export const merchantControllerUpdateBankInfoMutation = (options?: Partial<Options<MerchantControllerUpdateBankInfoData>>): UseMutationOptions<MerchantControllerUpdateBankInfoResponse, AxiosError<DefaultError>, Options<MerchantControllerUpdateBankInfoData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerUpdateBankInfoResponse, AxiosError<DefaultError>, Options<MerchantControllerUpdateBankInfoData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerUpdateBankInfo({
                 ...options,
@@ -1218,7 +1420,7 @@ export const merchantControllerGetDashboardQueryKey = (options?: Options<Merchan
 /**
  * Get affiliate dashboard with stats
  */
-export const merchantControllerGetDashboardOptions = (options?: Options<MerchantControllerGetDashboardData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerGetDashboardQueryKey>>({
+export const merchantControllerGetDashboardOptions = (options?: Options<MerchantControllerGetDashboardData>) => queryOptions<MerchantControllerGetDashboardResponse, AxiosError<DefaultError>, MerchantControllerGetDashboardResponse, ReturnType<typeof merchantControllerGetDashboardQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerGetDashboard({
             ...options,
@@ -1236,7 +1438,7 @@ export const merchantControllerListCommissionsQueryKey = (options?: Options<Merc
 /**
  * List commission history (paginated)
  */
-export const merchantControllerListCommissionsOptions = (options?: Options<MerchantControllerListCommissionsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListCommissionsQueryKey>>({
+export const merchantControllerListCommissionsOptions = (options?: Options<MerchantControllerListCommissionsData>) => queryOptions<MerchantControllerListCommissionsResponse, AxiosError<DefaultError>, MerchantControllerListCommissionsResponse, ReturnType<typeof merchantControllerListCommissionsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListCommissions({
             ...options,
@@ -1254,7 +1456,7 @@ export const merchantControllerListCommissionsInfiniteQueryKey = (options?: Opti
 /**
  * List commission history (paginated)
  */
-export const merchantControllerListCommissionsInfiniteOptions = (options?: Options<MerchantControllerListCommissionsData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListCommissionsData>>, number | Pick<QueryKey<Options<MerchantControllerListCommissionsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+export const merchantControllerListCommissionsInfiniteOptions = (options?: Options<MerchantControllerListCommissionsData>) => infiniteQueryOptions<MerchantControllerListCommissionsResponse, AxiosError<DefaultError>, InfiniteData<MerchantControllerListCommissionsResponse>, QueryKey<Options<MerchantControllerListCommissionsData>>, number | Pick<QueryKey<Options<MerchantControllerListCommissionsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
 {
     queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1281,7 +1483,7 @@ export const merchantControllerListReferredUsersQueryKey = (options?: Options<Me
 /**
  * List referred users (paginated)
  */
-export const merchantControllerListReferredUsersOptions = (options?: Options<MerchantControllerListReferredUsersData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListReferredUsersQueryKey>>({
+export const merchantControllerListReferredUsersOptions = (options?: Options<MerchantControllerListReferredUsersData>) => queryOptions<MerchantControllerListReferredUsersResponse, AxiosError<DefaultError>, MerchantControllerListReferredUsersResponse, ReturnType<typeof merchantControllerListReferredUsersQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListReferredUsers({
             ...options,
@@ -1299,7 +1501,7 @@ export const merchantControllerListReferredUsersInfiniteQueryKey = (options?: Op
 /**
  * List referred users (paginated)
  */
-export const merchantControllerListReferredUsersInfiniteOptions = (options?: Options<MerchantControllerListReferredUsersData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListReferredUsersData>>, number | Pick<QueryKey<Options<MerchantControllerListReferredUsersData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+export const merchantControllerListReferredUsersInfiniteOptions = (options?: Options<MerchantControllerListReferredUsersData>) => infiniteQueryOptions<MerchantControllerListReferredUsersResponse, AxiosError<DefaultError>, InfiniteData<MerchantControllerListReferredUsersResponse>, QueryKey<Options<MerchantControllerListReferredUsersData>>, number | Pick<QueryKey<Options<MerchantControllerListReferredUsersData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
 {
     queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1326,7 +1528,7 @@ export const merchantControllerListOwnWithdrawalsQueryKey = (options?: Options<M
 /**
  * List own withdrawal requests (paginated)
  */
-export const merchantControllerListOwnWithdrawalsOptions = (options?: Options<MerchantControllerListOwnWithdrawalsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListOwnWithdrawalsQueryKey>>({
+export const merchantControllerListOwnWithdrawalsOptions = (options?: Options<MerchantControllerListOwnWithdrawalsData>) => queryOptions<MerchantControllerListOwnWithdrawalsResponse, AxiosError<DefaultError>, MerchantControllerListOwnWithdrawalsResponse, ReturnType<typeof merchantControllerListOwnWithdrawalsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListOwnWithdrawals({
             ...options,
@@ -1344,7 +1546,7 @@ export const merchantControllerListOwnWithdrawalsInfiniteQueryKey = (options?: O
 /**
  * List own withdrawal requests (paginated)
  */
-export const merchantControllerListOwnWithdrawalsInfiniteOptions = (options?: Options<MerchantControllerListOwnWithdrawalsData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListOwnWithdrawalsData>>, number | Pick<QueryKey<Options<MerchantControllerListOwnWithdrawalsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+export const merchantControllerListOwnWithdrawalsInfiniteOptions = (options?: Options<MerchantControllerListOwnWithdrawalsData>) => infiniteQueryOptions<MerchantControllerListOwnWithdrawalsResponse, AxiosError<DefaultError>, InfiniteData<MerchantControllerListOwnWithdrawalsResponse>, QueryKey<Options<MerchantControllerListOwnWithdrawalsData>>, number | Pick<QueryKey<Options<MerchantControllerListOwnWithdrawalsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
 {
     queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1371,8 +1573,8 @@ export const merchantControllerListOwnWithdrawalsInfiniteOptions = (options?: Op
  *
  * Request withdrawal of your commission balance. Auto-withdrawal happens at 200,000 VND, but you can manually request earlier.
  */
-export const merchantControllerCreateWithdrawalMutation = (options?: Partial<Options<MerchantControllerCreateWithdrawalData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateWithdrawalData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateWithdrawalData>> = {
+export const merchantControllerCreateWithdrawalMutation = (options?: Partial<Options<MerchantControllerCreateWithdrawalData>>): UseMutationOptions<MerchantControllerCreateWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerCreateWithdrawalData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerCreateWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerCreateWithdrawalData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerCreateWithdrawal({
                 ...options,
@@ -1388,8 +1590,8 @@ export const merchantControllerCreateWithdrawalMutation = (options?: Partial<Opt
 /**
  * Admin: Ensure affiliate profile exists for a user
  */
-export const merchantControllerCreateMerchantMutation = (options?: Partial<Options<MerchantControllerCreateMerchantData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> = {
+export const merchantControllerCreateMerchantMutation = (options?: Partial<Options<MerchantControllerCreateMerchantData>>): UseMutationOptions<MerchantControllerCreateMerchantResponse, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerCreateMerchantResponse, AxiosError<DefaultError>, Options<MerchantControllerCreateMerchantData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerCreateMerchant({
                 ...options,
@@ -1407,7 +1609,7 @@ export const merchantControllerListMerchantsQueryKey = (options?: Options<Mercha
 /**
  * Admin: List all affiliate profiles (paginated)
  */
-export const merchantControllerListMerchantsOptions = (options?: Options<MerchantControllerListMerchantsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListMerchantsQueryKey>>({
+export const merchantControllerListMerchantsOptions = (options?: Options<MerchantControllerListMerchantsData>) => queryOptions<MerchantControllerListMerchantsResponse, AxiosError<DefaultError>, MerchantControllerListMerchantsResponse, ReturnType<typeof merchantControllerListMerchantsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListMerchants({
             ...options,
@@ -1425,7 +1627,7 @@ export const merchantControllerListMerchantsInfiniteQueryKey = (options?: Option
 /**
  * Admin: List all affiliate profiles (paginated)
  */
-export const merchantControllerListMerchantsInfiniteOptions = (options?: Options<MerchantControllerListMerchantsData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListMerchantsData>>, number | Pick<QueryKey<Options<MerchantControllerListMerchantsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+export const merchantControllerListMerchantsInfiniteOptions = (options?: Options<MerchantControllerListMerchantsData>) => infiniteQueryOptions<MerchantControllerListMerchantsResponse, AxiosError<DefaultError>, InfiniteData<MerchantControllerListMerchantsResponse>, QueryKey<Options<MerchantControllerListMerchantsData>>, number | Pick<QueryKey<Options<MerchantControllerListMerchantsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
 {
     queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1450,8 +1652,8 @@ export const merchantControllerListMerchantsInfiniteOptions = (options?: Options
 /**
  * Admin: Activate/deactivate an affiliate
  */
-export const merchantControllerUpdateMerchantStatusMutation = (options?: Partial<Options<MerchantControllerUpdateMerchantStatusData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> = {
+export const merchantControllerUpdateMerchantStatusMutation = (options?: Partial<Options<MerchantControllerUpdateMerchantStatusData>>): UseMutationOptions<MerchantControllerUpdateMerchantStatusResponse, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerUpdateMerchantStatusResponse, AxiosError<DefaultError>, Options<MerchantControllerUpdateMerchantStatusData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerUpdateMerchantStatus({
                 ...options,
@@ -1469,7 +1671,7 @@ export const merchantControllerListAllWithdrawalsQueryKey = (options: Options<Me
 /**
  * Admin: List all withdrawal requests
  */
-export const merchantControllerListAllWithdrawalsOptions = (options: Options<MerchantControllerListAllWithdrawalsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListAllWithdrawalsQueryKey>>({
+export const merchantControllerListAllWithdrawalsOptions = (options: Options<MerchantControllerListAllWithdrawalsData>) => queryOptions<MerchantControllerListAllWithdrawalsResponse, AxiosError<DefaultError>, MerchantControllerListAllWithdrawalsResponse, ReturnType<typeof merchantControllerListAllWithdrawalsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListAllWithdrawals({
             ...options,
@@ -1487,7 +1689,7 @@ export const merchantControllerListAllWithdrawalsInfiniteQueryKey = (options: Op
 /**
  * Admin: List all withdrawal requests
  */
-export const merchantControllerListAllWithdrawalsInfiniteOptions = (options: Options<MerchantControllerListAllWithdrawalsData>) => infiniteQueryOptions<unknown, AxiosError<DefaultError>, InfiniteData<unknown>, QueryKey<Options<MerchantControllerListAllWithdrawalsData>>, number | Pick<QueryKey<Options<MerchantControllerListAllWithdrawalsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+export const merchantControllerListAllWithdrawalsInfiniteOptions = (options: Options<MerchantControllerListAllWithdrawalsData>) => infiniteQueryOptions<MerchantControllerListAllWithdrawalsResponse, AxiosError<DefaultError>, InfiniteData<MerchantControllerListAllWithdrawalsResponse>, QueryKey<Options<MerchantControllerListAllWithdrawalsData>>, number | Pick<QueryKey<Options<MerchantControllerListAllWithdrawalsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
 // @ts-ignore
 {
     queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1512,8 +1714,8 @@ export const merchantControllerListAllWithdrawalsInfiniteOptions = (options: Opt
 /**
  * Admin: Approve or reject a withdrawal
  */
-export const merchantControllerReviewWithdrawalMutation = (options?: Partial<Options<MerchantControllerReviewWithdrawalData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerReviewWithdrawalData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerReviewWithdrawalData>> = {
+export const merchantControllerReviewWithdrawalMutation = (options?: Partial<Options<MerchantControllerReviewWithdrawalData>>): UseMutationOptions<MerchantControllerReviewWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerReviewWithdrawalData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerReviewWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerReviewWithdrawalData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerReviewWithdrawal({
                 ...options,
@@ -1529,8 +1731,8 @@ export const merchantControllerReviewWithdrawalMutation = (options?: Partial<Opt
 /**
  * Admin: Mark withdrawal as completed (money sent)
  */
-export const merchantControllerCompleteWithdrawalMutation = (options?: Partial<Options<MerchantControllerCompleteWithdrawalData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCompleteWithdrawalData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerCompleteWithdrawalData>> = {
+export const merchantControllerCompleteWithdrawalMutation = (options?: Partial<Options<MerchantControllerCompleteWithdrawalData>>): UseMutationOptions<MerchantControllerCompleteWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerCompleteWithdrawalData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerCompleteWithdrawalResponse, AxiosError<DefaultError>, Options<MerchantControllerCompleteWithdrawalData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerCompleteWithdrawal({
                 ...options,
@@ -1548,7 +1750,7 @@ export const merchantControllerListTiersQueryKey = (options?: Options<MerchantCo
 /**
  * Admin: List commission tiers
  */
-export const merchantControllerListTiersOptions = (options?: Options<MerchantControllerListTiersData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof merchantControllerListTiersQueryKey>>({
+export const merchantControllerListTiersOptions = (options?: Options<MerchantControllerListTiersData>) => queryOptions<MerchantControllerListTiersResponse, AxiosError<DefaultError>, MerchantControllerListTiersResponse, ReturnType<typeof merchantControllerListTiersQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await merchantControllerListTiers({
             ...options,
@@ -1564,8 +1766,8 @@ export const merchantControllerListTiersOptions = (options?: Options<MerchantCon
 /**
  * Admin: Replace all commission tiers
  */
-export const merchantControllerReplaceTiersMutation = (options?: Partial<Options<MerchantControllerReplaceTiersData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerReplaceTiersData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<MerchantControllerReplaceTiersData>> = {
+export const merchantControllerReplaceTiersMutation = (options?: Partial<Options<MerchantControllerReplaceTiersData>>): UseMutationOptions<MerchantControllerReplaceTiersResponse, AxiosError<DefaultError>, Options<MerchantControllerReplaceTiersData>> => {
+    const mutationOptions: UseMutationOptions<MerchantControllerReplaceTiersResponse, AxiosError<DefaultError>, Options<MerchantControllerReplaceTiersData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerReplaceTiers({
                 ...options,
@@ -1583,7 +1785,7 @@ export const paymentControllerGetPaymentInfoQueryKey = (options?: Options<Paymen
 /**
  * Get payment info for current user
  */
-export const paymentControllerGetPaymentInfoOptions = (options?: Options<PaymentControllerGetPaymentInfoData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof paymentControllerGetPaymentInfoQueryKey>>({
+export const paymentControllerGetPaymentInfoOptions = (options?: Options<PaymentControllerGetPaymentInfoData>) => queryOptions<PaymentControllerGetPaymentInfoResponse, AxiosError<DefaultError>, PaymentControllerGetPaymentInfoResponse, ReturnType<typeof paymentControllerGetPaymentInfoQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await paymentControllerGetPaymentInfo({
             ...options,
@@ -1599,8 +1801,8 @@ export const paymentControllerGetPaymentInfoOptions = (options?: Options<Payment
 /**
  * Generate VietQR code for a specific amount
  */
-export const paymentControllerGenerateQrMutation = (options?: Partial<Options<PaymentControllerGenerateQrData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PaymentControllerGenerateQrData>> => {
-    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PaymentControllerGenerateQrData>> = {
+export const paymentControllerGenerateQrMutation = (options?: Partial<Options<PaymentControllerGenerateQrData>>): UseMutationOptions<PaymentControllerGenerateQrResponse, AxiosError<DefaultError>, Options<PaymentControllerGenerateQrData>> => {
+    const mutationOptions: UseMutationOptions<PaymentControllerGenerateQrResponse, AxiosError<DefaultError>, Options<PaymentControllerGenerateQrData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await paymentControllerGenerateQr({
                 ...options,
@@ -1636,7 +1838,7 @@ export const paymentControllerGetAllTransactionsQueryKey = (options?: Options<Pa
 /**
  * Admin: Get all payment transactions
  */
-export const paymentControllerGetAllTransactionsOptions = (options?: Options<PaymentControllerGetAllTransactionsData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof paymentControllerGetAllTransactionsQueryKey>>({
+export const paymentControllerGetAllTransactionsOptions = (options?: Options<PaymentControllerGetAllTransactionsData>) => queryOptions<PaymentControllerGetAllTransactionsResponse, AxiosError<DefaultError>, PaymentControllerGetAllTransactionsResponse, ReturnType<typeof paymentControllerGetAllTransactionsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
         const { data } = await paymentControllerGetAllTransactions({
             ...options,

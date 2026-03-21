@@ -1,26 +1,24 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 
-export const proxy = auth((req) => {
+export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
-  console.log(
-    `Proxy middleware: path=${nextUrl.pathname} loggedIn=${isLoggedIn}`,
-  );
-
   const isAuthPage = nextUrl.pathname.startsWith("/login");
-  const isDashboard =
+  const isProtected =
     nextUrl.pathname === "/" ||
     nextUrl.pathname.startsWith("/users") ||
     nextUrl.pathname.startsWith("/payments") ||
-    nextUrl.pathname.startsWith("/forms");
+    nextUrl.pathname.startsWith("/forms") ||
+    nextUrl.pathname.startsWith("/credits") ||
+    nextUrl.pathname.startsWith("/merchants");
 
   if (isAuthPage && isLoggedIn) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
-  if (isDashboard && !isLoggedIn) {
+  if (isProtected && !isLoggedIn) {
     return NextResponse.redirect(new URL("/login", nextUrl));
   }
 
