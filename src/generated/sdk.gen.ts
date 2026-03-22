@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyErrors, AuthControllerAdminOnlyResponses, AuthControllerGetProfileData, AuthControllerGetProfileErrors, AuthControllerGetProfileResponses, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthCallbackResponses, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateErrors, AuthControllerGoogleAuthenticateResponses, AuthControllerGoogleAuthResponses, AuthControllerLoginData, AuthControllerLoginErrors, AuthControllerLoginResponses, AuthControllerLogoutData, AuthControllerLogoutErrors, AuthControllerLogoutResponses, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardErrors, AuthControllerOrganizerDashboardResponses, AuthControllerRefreshData, AuthControllerRefreshErrors, AuthControllerRefreshResponses, AuthControllerRegisterData, AuthControllerRegisterErrors, AuthControllerRegisterResponses, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsErrors, GoogleFormControllerAdminListFormsResponses, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersErrors, GoogleFormControllerAdminListOrdersResponses, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitErrors, GoogleFormControllerAdminTestSubmitResponses, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsErrors, GoogleFormControllerBatchUpdateFieldsResponses, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderErrors, GoogleFormControllerCancelOrderResponses, GoogleFormControllerCreateAiVerificationData, GoogleFormControllerCreateAiVerificationErrors, GoogleFormControllerCreateAiVerificationResponses, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderErrors, GoogleFormControllerCreateOrderResponses, GoogleFormControllerCreateSpssVerificationData, GoogleFormControllerCreateSpssVerificationErrors, GoogleFormControllerCreateSpssVerificationResponses, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerExportModelGenerationCsvErrors, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataErrors, GoogleFormControllerGenerateModelDataResponses, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomErrors, GoogleFormControllerGenerateRandomResponses, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesErrors, GoogleFormControllerGenerateRatesResponses, GoogleFormControllerGetFormData, GoogleFormControllerGetFormErrors, GoogleFormControllerGetFormResponses, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesErrors, GoogleFormControllerGetGenerateRatesResponses, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigErrors, GoogleFormControllerGetModelConfigResponses, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationErrors, GoogleFormControllerGetModelGenerationResponses, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderErrors, GoogleFormControllerGetOrderResponses, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesErrors, GoogleFormControllerGetUpcomingSchedulesResponses, GoogleFormControllerGetVerificationData, GoogleFormControllerGetVerificationErrors, GoogleFormControllerGetVerificationResponses, GoogleFormControllerListFormsData, GoogleFormControllerListFormsErrors, GoogleFormControllerListFormsResponses, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsErrors, GoogleFormControllerListModelGenerationsResponses, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersErrors, GoogleFormControllerListOrdersResponses, GoogleFormControllerListVerificationsData, GoogleFormControllerListVerificationsErrors, GoogleFormControllerListVerificationsResponses, GoogleFormControllerParseFormData, GoogleFormControllerParseFormErrors, GoogleFormControllerParseFormResponses, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderErrors, GoogleFormControllerPauseOrderResponses, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetErrors, GoogleFormControllerPreviewSheetResponses, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormErrors, GoogleFormControllerRefreshFormResponses, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderErrors, GoogleFormControllerResumeOrderResponses, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionErrors, GoogleFormControllerRetrySubmissionResponses, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetErrors, GoogleFormControllerSubmitFromSheetResponses, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomErrors, GoogleFormControllerSubmitRandomResponses, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelErrors, GoogleFormControllerSubmitWithModelResponses, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesErrors, GoogleFormControllerSubmitWithRatesResponses, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigErrors, GoogleFormControllerUpdateCronConfigResponses, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldErrors, GoogleFormControllerUpdateFieldResponses, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsErrors, GoogleFormControllerUpdateOrderSubmissionsResponses, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigErrors, GoogleFormControllerUpsertModelConfigResponses, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalErrors, MerchantControllerCompleteWithdrawalResponses, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantErrors, MerchantControllerCreateMerchantResponses, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalErrors, MerchantControllerCreateWithdrawalResponses, MerchantControllerGetDashboardData, MerchantControllerGetDashboardErrors, MerchantControllerGetDashboardResponses, MerchantControllerGetProfileData, MerchantControllerGetProfileErrors, MerchantControllerGetProfileResponses, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsErrors, MerchantControllerListAllWithdrawalsResponses, MerchantControllerListCommissionsData, MerchantControllerListCommissionsErrors, MerchantControllerListCommissionsResponses, MerchantControllerListMerchantsData, MerchantControllerListMerchantsErrors, MerchantControllerListMerchantsResponses, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsErrors, MerchantControllerListOwnWithdrawalsResponses, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersErrors, MerchantControllerListReferredUsersResponses, MerchantControllerListTiersData, MerchantControllerListTiersErrors, MerchantControllerListTiersResponses, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersErrors, MerchantControllerReplaceTiersResponses, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalErrors, MerchantControllerReviewWithdrawalResponses, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoErrors, MerchantControllerUpdateBankInfoResponses, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusErrors, MerchantControllerUpdateMerchantStatusResponses, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponses, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsErrors, PaymentControllerGetAllTransactionsResponses, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponses, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsErrors, PaymentControllerGetTransactionsResponses, PaymentControllerSepayWebhookData, PaymentControllerSepayWebhookResponses, UsersControllerAddCreditsData, UsersControllerAddCreditsErrors, UsersControllerAddCreditsResponses, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserErrors, UsersControllerGetCurrentUserResponses, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryErrors, UsersControllerGetMyCreditHistoryResponses, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryErrors, UsersControllerGetUserCreditHistoryResponses, UsersControllerGetUsersData, UsersControllerGetUsersErrors, UsersControllerGetUsersResponses } from './types.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyErrors, AuthControllerAdminOnlyResponses, AuthControllerGetProfileData, AuthControllerGetProfileErrors, AuthControllerGetProfileResponses, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthCallbackResponses, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateErrors, AuthControllerGoogleAuthenticateResponses, AuthControllerGoogleAuthResponses, AuthControllerLoginData, AuthControllerLoginErrors, AuthControllerLoginResponses, AuthControllerLogoutData, AuthControllerLogoutErrors, AuthControllerLogoutResponses, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardErrors, AuthControllerOrganizerDashboardResponses, AuthControllerRefreshData, AuthControllerRefreshErrors, AuthControllerRefreshResponses, AuthControllerRegisterData, AuthControllerRegisterErrors, AuthControllerRegisterResponses, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsErrors, GoogleFormControllerAdminListFormsResponses, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersErrors, GoogleFormControllerAdminListOrdersResponses, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitErrors, GoogleFormControllerAdminTestSubmitResponses, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsErrors, GoogleFormControllerBatchUpdateFieldsResponses, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderErrors, GoogleFormControllerCancelOrderResponses, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderErrors, GoogleFormControllerCreateOrderResponses, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerExportModelGenerationCsvErrors, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataErrors, GoogleFormControllerGenerateModelDataResponses, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomErrors, GoogleFormControllerGenerateRandomResponses, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesErrors, GoogleFormControllerGenerateRatesResponses, GoogleFormControllerGetFormData, GoogleFormControllerGetFormErrors, GoogleFormControllerGetFormResponses, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesErrors, GoogleFormControllerGetGenerateRatesResponses, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigErrors, GoogleFormControllerGetModelConfigResponses, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationErrors, GoogleFormControllerGetModelGenerationResponses, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderErrors, GoogleFormControllerGetOrderResponses, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesErrors, GoogleFormControllerGetUpcomingSchedulesResponses, GoogleFormControllerListFormsData, GoogleFormControllerListFormsErrors, GoogleFormControllerListFormsResponses, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsErrors, GoogleFormControllerListModelGenerationsResponses, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersErrors, GoogleFormControllerListOrdersResponses, GoogleFormControllerParseFormData, GoogleFormControllerParseFormErrors, GoogleFormControllerParseFormResponses, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderErrors, GoogleFormControllerPauseOrderResponses, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetErrors, GoogleFormControllerPreviewSheetResponses, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormErrors, GoogleFormControllerRefreshFormResponses, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderErrors, GoogleFormControllerResumeOrderResponses, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionErrors, GoogleFormControllerRetrySubmissionResponses, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetErrors, GoogleFormControllerSubmitFromSheetResponses, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomErrors, GoogleFormControllerSubmitRandomResponses, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelErrors, GoogleFormControllerSubmitWithModelResponses, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesErrors, GoogleFormControllerSubmitWithRatesResponses, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigErrors, GoogleFormControllerUpdateCronConfigResponses, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldErrors, GoogleFormControllerUpdateFieldResponses, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsErrors, GoogleFormControllerUpdateOrderSubmissionsResponses, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigErrors, GoogleFormControllerUpsertModelConfigResponses, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalErrors, MerchantControllerCompleteWithdrawalResponses, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantErrors, MerchantControllerCreateMerchantResponses, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalErrors, MerchantControllerCreateWithdrawalResponses, MerchantControllerGetDashboardData, MerchantControllerGetDashboardErrors, MerchantControllerGetDashboardResponses, MerchantControllerGetProfileData, MerchantControllerGetProfileErrors, MerchantControllerGetProfileResponses, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsErrors, MerchantControllerListAllWithdrawalsResponses, MerchantControllerListCommissionsData, MerchantControllerListCommissionsErrors, MerchantControllerListCommissionsResponses, MerchantControllerListMerchantsData, MerchantControllerListMerchantsErrors, MerchantControllerListMerchantsResponses, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsErrors, MerchantControllerListOwnWithdrawalsResponses, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersErrors, MerchantControllerListReferredUsersResponses, MerchantControllerListTiersData, MerchantControllerListTiersErrors, MerchantControllerListTiersResponses, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersErrors, MerchantControllerReplaceTiersResponses, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalErrors, MerchantControllerReviewWithdrawalResponses, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoErrors, MerchantControllerUpdateBankInfoResponses, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusErrors, MerchantControllerUpdateMerchantStatusResponses, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponses, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsErrors, PaymentControllerGetAllTransactionsResponses, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponses, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsErrors, PaymentControllerGetTransactionsResponses, PaymentControllerSepayWebhookData, PaymentControllerSepayWebhookResponses, UsersControllerAddCreditsData, UsersControllerAddCreditsErrors, UsersControllerAddCreditsResponses, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserErrors, UsersControllerGetCurrentUserResponses, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryErrors, UsersControllerGetMyCreditHistoryResponses, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryErrors, UsersControllerGetUserCreditHistoryResponses, UsersControllerGetUsersData, UsersControllerGetUsersErrors, UsersControllerGetUsersResponses, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationErrors, VerificationControllerCreateAiVerificationResponses, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationErrors, VerificationControllerCreateSpssVerificationResponses, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsErrors, VerificationControllerGetCreditConfigsResponses, VerificationControllerGetVerificationData, VerificationControllerGetVerificationErrors, VerificationControllerGetVerificationResponses, VerificationControllerListVerificationsData, VerificationControllerListVerificationsErrors, VerificationControllerListVerificationsResponses, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigErrors, VerificationControllerUpdateCreditConfigResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -602,54 +602,6 @@ export const googleFormControllerRetrySubmission = <ThrowOnError extends boolean
 });
 
 /**
- * Run AI verification on order submissions
- *
- * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
- */
-export const googleFormControllerCreateAiVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerCreateAiVerificationData, ThrowOnError>) => (options.client ?? client).post<GoogleFormControllerCreateAiVerificationResponses, GoogleFormControllerCreateAiVerificationErrors, ThrowOnError>({
-    responseType: 'json',
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/google-form/orders/{orderId}/verify/ai',
-    ...options
-});
-
-/**
- * Run SPSS-standard statistical verification on order submissions
- *
- * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
- */
-export const googleFormControllerCreateSpssVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerCreateSpssVerificationData, ThrowOnError>) => (options.client ?? client).post<GoogleFormControllerCreateSpssVerificationResponses, GoogleFormControllerCreateSpssVerificationErrors, ThrowOnError>({
-    responseType: 'json',
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/google-form/orders/{orderId}/verify/spss',
-    ...options
-});
-
-/**
- * List verification results for an order (paginated)
- *
- * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
- */
-export const googleFormControllerListVerifications = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerListVerificationsData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerListVerificationsResponses, GoogleFormControllerListVerificationsErrors, ThrowOnError>({
-    responseType: 'json',
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/google-form/orders/{orderId}/verifications',
-    ...options
-});
-
-/**
- * Get full verification result by ID
- *
- * Returns the complete verification record including AI issues or SPSS statistics.
- */
-export const googleFormControllerGetVerification = <ThrowOnError extends boolean = false>(options: Options<GoogleFormControllerGetVerificationData, ThrowOnError>) => (options.client ?? client).get<GoogleFormControllerGetVerificationResponses, GoogleFormControllerGetVerificationErrors, ThrowOnError>({
-    responseType: 'json',
-    security: [{ scheme: 'bearer', type: 'http' }],
-    url: '/google-form/verifications/{id}',
-    ...options
-});
-
-/**
  * Admin: List all orders across all users (paginated)
  *
  * Returns every order in the system, sorted newest first.
@@ -682,6 +634,82 @@ export const googleFormControllerAdminTestSubmit = <ThrowOnError extends boolean
     responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/google-form/admin/test-submit',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Run AI verification on order submissions
+ *
+ * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
+ */
+export const verificationControllerCreateAiVerification = <ThrowOnError extends boolean = false>(options: Options<VerificationControllerCreateAiVerificationData, ThrowOnError>) => (options.client ?? client).post<VerificationControllerCreateAiVerificationResponses, VerificationControllerCreateAiVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verify/ai',
+    ...options
+});
+
+/**
+ * Run SPSS-standard statistical verification on order submissions
+ *
+ * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
+ */
+export const verificationControllerCreateSpssVerification = <ThrowOnError extends boolean = false>(options: Options<VerificationControllerCreateSpssVerificationData, ThrowOnError>) => (options.client ?? client).post<VerificationControllerCreateSpssVerificationResponses, VerificationControllerCreateSpssVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verify/spss',
+    ...options
+});
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const verificationControllerListVerifications = <ThrowOnError extends boolean = false>(options: Options<VerificationControllerListVerificationsData, ThrowOnError>) => (options.client ?? client).get<VerificationControllerListVerificationsResponses, VerificationControllerListVerificationsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/orders/{orderId}/verifications',
+    ...options
+});
+
+/**
+ * Get full verification result by ID
+ *
+ * Returns the complete verification record including AI issues or SPSS statistics.
+ */
+export const verificationControllerGetVerification = <ThrowOnError extends boolean = false>(options: Options<VerificationControllerGetVerificationData, ThrowOnError>) => (options.client ?? client).get<VerificationControllerGetVerificationResponses, VerificationControllerGetVerificationErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/verifications/{id}',
+    ...options
+});
+
+/**
+ * Admin: List all verification credit prices
+ *
+ * Returns all configurable credit costs for verification types (AI, SPSS).
+ */
+export const verificationControllerGetCreditConfigs = <ThrowOnError extends boolean = false>(options?: Options<VerificationControllerGetCreditConfigsData, ThrowOnError>) => (options?.client ?? client).get<VerificationControllerGetCreditConfigsResponses, VerificationControllerGetCreditConfigsErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/admin/credit-config',
+    ...options
+});
+
+/**
+ * Admin: Update credit price for a verification type
+ *
+ * Updates the credit cost for the given key (e.g. verification_ai, verification_spss). Updates both database and Redis cache.
+ */
+export const verificationControllerUpdateCreditConfig = <ThrowOnError extends boolean = false>(options: Options<VerificationControllerUpdateCreditConfigData, ThrowOnError>) => (options.client ?? client).patch<VerificationControllerUpdateCreditConfigResponses, VerificationControllerUpdateCreditConfigErrors, ThrowOnError>({
+    responseType: 'json',
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/google-form/admin/credit-config/{key}',
     ...options,
     headers: {
         'Content-Type': 'application/json',

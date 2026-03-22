@@ -4,8 +4,8 @@ import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOption
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateAiVerification, googleFormControllerCreateOrder, googleFormControllerCreateSpssVerification, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerGetVerification, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerListVerifications, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers } from '../sdk.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateAiVerificationData, GoogleFormControllerCreateAiVerificationResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerCreateSpssVerificationData, GoogleFormControllerCreateSpssVerificationResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerGetVerificationData, GoogleFormControllerGetVerificationResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerListVerificationsData, GoogleFormControllerListVerificationsResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse } from '../types.gen';
+import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers, verificationControllerCreateAiVerification, verificationControllerCreateSpssVerification, verificationControllerGetCreditConfigs, verificationControllerGetVerification, verificationControllerListVerifications, verificationControllerUpdateCreditConfig } from '../sdk.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationResponse, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationResponse, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsResponse, VerificationControllerGetVerificationData, VerificationControllerGetVerificationResponse, VerificationControllerListVerificationsData, VerificationControllerListVerificationsResponse, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -1156,113 +1156,6 @@ export const googleFormControllerRetrySubmissionMutation = (options?: Partial<Op
     return mutationOptions;
 };
 
-/**
- * Run AI verification on order submissions
- *
- * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
- */
-export const googleFormControllerCreateAiVerificationMutation = (options?: Partial<Options<GoogleFormControllerCreateAiVerificationData>>): UseMutationOptions<GoogleFormControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateAiVerificationData>> => {
-    const mutationOptions: UseMutationOptions<GoogleFormControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateAiVerificationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await googleFormControllerCreateAiVerification({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-/**
- * Run SPSS-standard statistical verification on order submissions
- *
- * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
- */
-export const googleFormControllerCreateSpssVerificationMutation = (options?: Partial<Options<GoogleFormControllerCreateSpssVerificationData>>): UseMutationOptions<GoogleFormControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateSpssVerificationData>> => {
-    const mutationOptions: UseMutationOptions<GoogleFormControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<GoogleFormControllerCreateSpssVerificationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await googleFormControllerCreateSpssVerification({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const googleFormControllerListVerificationsQueryKey = (options: Options<GoogleFormControllerListVerificationsData>) => createQueryKey('googleFormControllerListVerifications', options);
-
-/**
- * List verification results for an order (paginated)
- *
- * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
- */
-export const googleFormControllerListVerificationsOptions = (options: Options<GoogleFormControllerListVerificationsData>) => queryOptions<GoogleFormControllerListVerificationsResponse, AxiosError<DefaultError>, GoogleFormControllerListVerificationsResponse, ReturnType<typeof googleFormControllerListVerificationsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await googleFormControllerListVerifications({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: googleFormControllerListVerificationsQueryKey(options)
-});
-
-export const googleFormControllerListVerificationsInfiniteQueryKey = (options: Options<GoogleFormControllerListVerificationsData>): QueryKey<Options<GoogleFormControllerListVerificationsData>> => createQueryKey('googleFormControllerListVerifications', options, true);
-
-/**
- * List verification results for an order (paginated)
- *
- * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
- */
-export const googleFormControllerListVerificationsInfiniteOptions = (options: Options<GoogleFormControllerListVerificationsData>) => infiniteQueryOptions<GoogleFormControllerListVerificationsResponse, AxiosError<DefaultError>, InfiniteData<GoogleFormControllerListVerificationsResponse>, QueryKey<Options<GoogleFormControllerListVerificationsData>>, number | Pick<QueryKey<Options<GoogleFormControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
-// @ts-ignore
-{
-    queryFn: async ({ pageParam, queryKey, signal }) => {
-        // @ts-ignore
-        const page: Pick<QueryKey<Options<GoogleFormControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
-            query: {
-                page: pageParam
-            }
-        };
-        const params = createInfiniteParams(queryKey, page);
-        const { data } = await googleFormControllerListVerifications({
-            ...options,
-            ...params,
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: googleFormControllerListVerificationsInfiniteQueryKey(options)
-});
-
-export const googleFormControllerGetVerificationQueryKey = (options: Options<GoogleFormControllerGetVerificationData>) => createQueryKey('googleFormControllerGetVerification', options);
-
-/**
- * Get full verification result by ID
- *
- * Returns the complete verification record including AI issues or SPSS statistics.
- */
-export const googleFormControllerGetVerificationOptions = (options: Options<GoogleFormControllerGetVerificationData>) => queryOptions<GoogleFormControllerGetVerificationResponse, AxiosError<DefaultError>, GoogleFormControllerGetVerificationResponse, ReturnType<typeof googleFormControllerGetVerificationQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await googleFormControllerGetVerification({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: googleFormControllerGetVerificationQueryKey(options)
-});
-
 export const googleFormControllerAdminListOrdersQueryKey = (options?: Options<GoogleFormControllerAdminListOrdersData>) => createQueryKey('googleFormControllerAdminListOrders', options);
 
 /**
@@ -1370,6 +1263,152 @@ export const googleFormControllerAdminTestSubmitMutation = (options?: Partial<Op
     const mutationOptions: UseMutationOptions<GoogleFormControllerAdminTestSubmitResponse, AxiosError<DefaultError>, Options<GoogleFormControllerAdminTestSubmitData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await googleFormControllerAdminTestSubmit({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Run AI verification on order submissions
+ *
+ * Analyzes completed submissions using AI to detect fake/bot responses. Checks for straight-lining, logical inconsistencies, pattern repetition, and nonsensical text. Processing runs in background — poll GET /verifications/:id for results.
+ */
+export const verificationControllerCreateAiVerificationMutation = (options?: Partial<Options<VerificationControllerCreateAiVerificationData>>): UseMutationOptions<VerificationControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateAiVerificationData>> => {
+    const mutationOptions: UseMutationOptions<VerificationControllerCreateAiVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateAiVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await verificationControllerCreateAiVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Run SPSS-standard statistical verification on order submissions
+ *
+ * Analyzes completed submissions using statistical methods (Cronbach alpha, descriptive stats, normality tests). Only works for forms with Likert-scale fields. Calls external Python service — poll GET /verifications/:id for results.
+ */
+export const verificationControllerCreateSpssVerificationMutation = (options?: Partial<Options<VerificationControllerCreateSpssVerificationData>>): UseMutationOptions<VerificationControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateSpssVerificationData>> => {
+    const mutationOptions: UseMutationOptions<VerificationControllerCreateSpssVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateSpssVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await verificationControllerCreateSpssVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const verificationControllerListVerificationsQueryKey = (options: Options<VerificationControllerListVerificationsData>) => createQueryKey('verificationControllerListVerifications', options);
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const verificationControllerListVerificationsOptions = (options: Options<VerificationControllerListVerificationsData>) => queryOptions<VerificationControllerListVerificationsResponse, AxiosError<DefaultError>, VerificationControllerListVerificationsResponse, ReturnType<typeof verificationControllerListVerificationsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await verificationControllerListVerifications({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerListVerificationsQueryKey(options)
+});
+
+export const verificationControllerListVerificationsInfiniteQueryKey = (options: Options<VerificationControllerListVerificationsData>): QueryKey<Options<VerificationControllerListVerificationsData>> => createQueryKey('verificationControllerListVerifications', options, true);
+
+/**
+ * List verification results for an order (paginated)
+ *
+ * Returns verification records without the full submissionIssues array. Use GET /verifications/:id for full details.
+ */
+export const verificationControllerListVerificationsInfiniteOptions = (options: Options<VerificationControllerListVerificationsData>) => infiniteQueryOptions<VerificationControllerListVerificationsResponse, AxiosError<DefaultError>, InfiniteData<VerificationControllerListVerificationsResponse>, QueryKey<Options<VerificationControllerListVerificationsData>>, number | Pick<QueryKey<Options<VerificationControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<VerificationControllerListVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await verificationControllerListVerifications({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerListVerificationsInfiniteQueryKey(options)
+});
+
+export const verificationControllerGetVerificationQueryKey = (options: Options<VerificationControllerGetVerificationData>) => createQueryKey('verificationControllerGetVerification', options);
+
+/**
+ * Get full verification result by ID
+ *
+ * Returns the complete verification record including AI issues or SPSS statistics.
+ */
+export const verificationControllerGetVerificationOptions = (options: Options<VerificationControllerGetVerificationData>) => queryOptions<VerificationControllerGetVerificationResponse, AxiosError<DefaultError>, VerificationControllerGetVerificationResponse, ReturnType<typeof verificationControllerGetVerificationQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await verificationControllerGetVerification({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerGetVerificationQueryKey(options)
+});
+
+export const verificationControllerGetCreditConfigsQueryKey = (options?: Options<VerificationControllerGetCreditConfigsData>) => createQueryKey('verificationControllerGetCreditConfigs', options);
+
+/**
+ * Admin: List all verification credit prices
+ *
+ * Returns all configurable credit costs for verification types (AI, SPSS).
+ */
+export const verificationControllerGetCreditConfigsOptions = (options?: Options<VerificationControllerGetCreditConfigsData>) => queryOptions<VerificationControllerGetCreditConfigsResponse, AxiosError<DefaultError>, VerificationControllerGetCreditConfigsResponse, ReturnType<typeof verificationControllerGetCreditConfigsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await verificationControllerGetCreditConfigs({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerGetCreditConfigsQueryKey(options)
+});
+
+/**
+ * Admin: Update credit price for a verification type
+ *
+ * Updates the credit cost for the given key (e.g. verification_ai, verification_spss). Updates both database and Redis cache.
+ */
+export const verificationControllerUpdateCreditConfigMutation = (options?: Partial<Options<VerificationControllerUpdateCreditConfigData>>): UseMutationOptions<VerificationControllerUpdateCreditConfigResponse, AxiosError<DefaultError>, Options<VerificationControllerUpdateCreditConfigData>> => {
+    const mutationOptions: UseMutationOptions<VerificationControllerUpdateCreditConfigResponse, AxiosError<DefaultError>, Options<VerificationControllerUpdateCreditConfigData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await verificationControllerUpdateCreditConfig({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

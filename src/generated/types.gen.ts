@@ -869,6 +869,27 @@ export type UpdateCronConfigDto = {
     ];
 };
 
+export type TestSubmitResponseDto = {
+    /**
+     * Submitted answers: entryId → value
+     */
+    answers: {
+        [key: string]: unknown;
+    };
+    status: string;
+};
+
+export type AdminTestSubmitDto = {
+    /**
+     * Order ID (MongoDB ObjectId)
+     */
+    orderId: string;
+    /**
+     * Zero-based index of the record in sheetData to submit
+     */
+    recordIndex: number;
+};
+
 export type AiSubmissionIssueResponseDto = {
     submissionId: string;
     issues: Array<string>;
@@ -938,25 +959,38 @@ export type PaginatedVerificationResponseDto = {
     meta: PaginationMetaDto;
 };
 
-export type TestSubmitResponseDto = {
-    /**
-     * Submitted answers: entryId → value
-     */
-    answers: {
-        [key: string]: unknown;
-    };
-    status: string;
+export type PricingTierResponseDto = {
+    maxSubmissions: number;
+    amount: number;
 };
 
-export type AdminTestSubmitDto = {
+export type CreditConfigResponseDto = {
+    key: string;
+    amount?: number;
+    tiers?: Array<PricingTierResponseDto>;
+    description: string;
+};
+
+export type PricingTierDto = {
     /**
-     * Order ID (MongoDB ObjectId)
+     * Max submissions for this tier (inclusive)
      */
-    orderId: string;
+    maxSubmissions: number;
     /**
-     * Zero-based index of the record in sheetData to submit
+     * Credit cost for this tier
      */
-    recordIndex: number;
+    amount: number;
+};
+
+export type UpdateCreditConfigDto = {
+    /**
+     * Flat credit cost (for verification_ai, verification_spss)
+     */
+    amount?: number;
+    /**
+     * Pricing tiers (for order_submission). Sorted ascending by maxSubmissions.
+     */
+    tiers?: Array<PricingTierDto>;
 };
 
 export type BankInfoResponseDto = {
@@ -2741,157 +2775,6 @@ export type GoogleFormControllerRetrySubmissionResponses = {
 
 export type GoogleFormControllerRetrySubmissionResponse = GoogleFormControllerRetrySubmissionResponses[keyof GoogleFormControllerRetrySubmissionResponses];
 
-export type GoogleFormControllerCreateAiVerificationData = {
-    body?: never;
-    path: {
-        /**
-         * Order document ID (MongoDB ObjectId)
-         */
-        orderId: string;
-    };
-    query?: never;
-    url: '/google-form/orders/{orderId}/verify/ai';
-};
-
-export type GoogleFormControllerCreateAiVerificationErrors = {
-    /**
-     * No completed submissions or verification already in progress
-     */
-    400: unknown;
-    /**
-     * Missing or invalid JWT token
-     */
-    401: unknown;
-    /**
-     * Order not found
-     */
-    404: unknown;
-};
-
-export type GoogleFormControllerCreateAiVerificationResponses = {
-    /**
-     * Verification created and processing started
-     */
-    201: {
-        status?: string;
-        code?: number;
-        data?: VerificationResponseDto;
-    };
-};
-
-export type GoogleFormControllerCreateAiVerificationResponse = GoogleFormControllerCreateAiVerificationResponses[keyof GoogleFormControllerCreateAiVerificationResponses];
-
-export type GoogleFormControllerCreateSpssVerificationData = {
-    body?: never;
-    path: {
-        /**
-         * Order document ID (MongoDB ObjectId)
-         */
-        orderId: string;
-    };
-    query?: never;
-    url: '/google-form/orders/{orderId}/verify/spss';
-};
-
-export type GoogleFormControllerCreateSpssVerificationErrors = {
-    /**
-     * No completed submissions, no Likert fields, or verification already in progress
-     */
-    400: unknown;
-    /**
-     * Missing or invalid JWT token
-     */
-    401: unknown;
-    /**
-     * Order not found
-     */
-    404: unknown;
-};
-
-export type GoogleFormControllerCreateSpssVerificationResponses = {
-    /**
-     * SPSS verification created and processing started
-     */
-    201: {
-        status?: string;
-        code?: number;
-        data?: VerificationResponseDto;
-    };
-};
-
-export type GoogleFormControllerCreateSpssVerificationResponse = GoogleFormControllerCreateSpssVerificationResponses[keyof GoogleFormControllerCreateSpssVerificationResponses];
-
-export type GoogleFormControllerListVerificationsData = {
-    body?: never;
-    path: {
-        /**
-         * Order document ID (MongoDB ObjectId)
-         */
-        orderId: string;
-    };
-    query?: {
-        page?: number;
-        limit?: number;
-    };
-    url: '/google-form/orders/{orderId}/verifications';
-};
-
-export type GoogleFormControllerListVerificationsErrors = {
-    /**
-     * Missing or invalid JWT token
-     */
-    401: unknown;
-};
-
-export type GoogleFormControllerListVerificationsResponses = {
-    /**
-     * Paginated list of verifications
-     */
-    200: {
-        status?: string;
-        code?: number;
-        data?: PaginatedVerificationResponseDto;
-    };
-};
-
-export type GoogleFormControllerListVerificationsResponse = GoogleFormControllerListVerificationsResponses[keyof GoogleFormControllerListVerificationsResponses];
-
-export type GoogleFormControllerGetVerificationData = {
-    body?: never;
-    path: {
-        /**
-         * Verification document ID (MongoDB ObjectId)
-         */
-        id: string;
-    };
-    query?: never;
-    url: '/google-form/verifications/{id}';
-};
-
-export type GoogleFormControllerGetVerificationErrors = {
-    /**
-     * Missing or invalid JWT token
-     */
-    401: unknown;
-    /**
-     * Verification not found
-     */
-    404: unknown;
-};
-
-export type GoogleFormControllerGetVerificationResponses = {
-    /**
-     * Full verification document
-     */
-    200: {
-        status?: string;
-        code?: number;
-        data?: VerificationResponseDto;
-    };
-};
-
-export type GoogleFormControllerGetVerificationResponse = GoogleFormControllerGetVerificationResponses[keyof GoogleFormControllerGetVerificationResponses];
-
 export type GoogleFormControllerAdminListOrdersData = {
     body?: never;
     path?: never;
@@ -2998,6 +2881,228 @@ export type GoogleFormControllerAdminTestSubmitResponses = {
 };
 
 export type GoogleFormControllerAdminTestSubmitResponse = GoogleFormControllerAdminTestSubmitResponses[keyof GoogleFormControllerAdminTestSubmitResponses];
+
+export type VerificationControllerCreateAiVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: never;
+    url: '/google-form/orders/{orderId}/verify/ai';
+};
+
+export type VerificationControllerCreateAiVerificationErrors = {
+    /**
+     * No completed submissions or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Order not found
+     */
+    404: unknown;
+};
+
+export type VerificationControllerCreateAiVerificationResponses = {
+    /**
+     * Verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type VerificationControllerCreateAiVerificationResponse = VerificationControllerCreateAiVerificationResponses[keyof VerificationControllerCreateAiVerificationResponses];
+
+export type VerificationControllerCreateSpssVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: never;
+    url: '/google-form/orders/{orderId}/verify/spss';
+};
+
+export type VerificationControllerCreateSpssVerificationErrors = {
+    /**
+     * No completed submissions, no Likert fields, or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Order not found
+     */
+    404: unknown;
+};
+
+export type VerificationControllerCreateSpssVerificationResponses = {
+    /**
+     * SPSS verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type VerificationControllerCreateSpssVerificationResponse = VerificationControllerCreateSpssVerificationResponses[keyof VerificationControllerCreateSpssVerificationResponses];
+
+export type VerificationControllerListVerificationsData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        orderId: string;
+    };
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/google-form/orders/{orderId}/verifications';
+};
+
+export type VerificationControllerListVerificationsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type VerificationControllerListVerificationsResponses = {
+    /**
+     * Paginated list of verifications
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedVerificationResponseDto;
+    };
+};
+
+export type VerificationControllerListVerificationsResponse = VerificationControllerListVerificationsResponses[keyof VerificationControllerListVerificationsResponses];
+
+export type VerificationControllerGetVerificationData = {
+    body?: never;
+    path: {
+        /**
+         * Verification document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/google-form/verifications/{id}';
+};
+
+export type VerificationControllerGetVerificationErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Verification not found
+     */
+    404: unknown;
+};
+
+export type VerificationControllerGetVerificationResponses = {
+    /**
+     * Full verification document
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type VerificationControllerGetVerificationResponse = VerificationControllerGetVerificationResponses[keyof VerificationControllerGetVerificationResponses];
+
+export type VerificationControllerGetCreditConfigsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/google-form/admin/credit-config';
+};
+
+export type VerificationControllerGetCreditConfigsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type VerificationControllerGetCreditConfigsResponses = {
+    /**
+     * List of credit config entries
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: Array<CreditConfigResponseDto>;
+    };
+};
+
+export type VerificationControllerGetCreditConfigsResponse = VerificationControllerGetCreditConfigsResponses[keyof VerificationControllerGetCreditConfigsResponses];
+
+export type VerificationControllerUpdateCreditConfigData = {
+    body: UpdateCreditConfigDto;
+    path: {
+        /**
+         * Config key (e.g. verification_ai, verification_spss)
+         */
+        key: string;
+    };
+    query?: never;
+    url: '/google-form/admin/credit-config/{key}';
+};
+
+export type VerificationControllerUpdateCreditConfigErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+    /**
+     * Config key not found
+     */
+    404: unknown;
+};
+
+export type VerificationControllerUpdateCreditConfigResponses = {
+    /**
+     * Updated credit config entry
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: CreditConfigResponseDto;
+    };
+};
+
+export type VerificationControllerUpdateCreditConfigResponse = VerificationControllerUpdateCreditConfigResponses[keyof VerificationControllerUpdateCreditConfigResponses];
 
 export type MerchantControllerGetProfileData = {
     body?: never;
