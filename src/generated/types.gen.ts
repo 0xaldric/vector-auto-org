@@ -994,8 +994,19 @@ export type VerificationResponseDto = {
     aiResult?: AiVerificationResultResponseDto;
     spssResult?: SpssVerificationResultResponseDto;
     errorMessage?: string;
+    /**
+     * Google Sheet URL used as data source (null = uses order submissions)
+     */
+    sheetUrl?: string;
     created_at: string;
     updated_at: string;
+};
+
+export type CreateVerificationDto = {
+    /**
+     * Google Sheet URL to use as data source instead of order submissions. Leave empty to use submitted form data.
+     */
+    sheetUrl?: string;
 };
 
 export type PaginatedVerificationResponseDto = {
@@ -2988,7 +2999,7 @@ export type GoogleFormControllerAdminTestSubmitResponses = {
 export type GoogleFormControllerAdminTestSubmitResponse = GoogleFormControllerAdminTestSubmitResponses[keyof GoogleFormControllerAdminTestSubmitResponses];
 
 export type VerificationControllerCreateAiVerificationData = {
-    body?: never;
+    body: CreateVerificationDto;
     path: {
         /**
          * Order document ID (MongoDB ObjectId)
@@ -3028,7 +3039,7 @@ export type VerificationControllerCreateAiVerificationResponses = {
 export type VerificationControllerCreateAiVerificationResponse = VerificationControllerCreateAiVerificationResponses[keyof VerificationControllerCreateAiVerificationResponses];
 
 export type VerificationControllerCreateSpssVerificationData = {
-    body?: never;
+    body: CreateVerificationDto;
     path: {
         /**
          * Order document ID (MongoDB ObjectId)

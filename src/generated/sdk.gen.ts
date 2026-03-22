@@ -674,7 +674,11 @@ export const verificationControllerCreateAiVerification = <ThrowOnError extends 
     responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/google-form/orders/{orderId}/verify/ai',
-    ...options
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
 });
 
 /**
@@ -686,7 +690,11 @@ export const verificationControllerCreateSpssVerification = <ThrowOnError extend
     responseType: 'json',
     security: [{ scheme: 'bearer', type: 'http' }],
     url: '/google-form/orders/{orderId}/verify/spss',
-    ...options
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
 });
 
 /**
