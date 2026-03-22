@@ -93,6 +93,10 @@ export type User = {
      */
     paymentCode?: string;
     /**
+     * Phone number (sdt) for contact
+     */
+    phoneNumber?: string;
+    /**
      * Created timestamp
      */
     created_at: string;
@@ -251,6 +255,46 @@ export type GoogleTokenDto = {
      * Referral code from a merchant (e.g. VECTOR-ABC123)
      */
     referralCode?: string;
+};
+
+export type FeedbackResponseDto = {
+    _id: string;
+    userId: string;
+    content: string;
+    phoneNumber?: string;
+    created_at: string;
+};
+
+export type CreateFeedbackDto = {
+    /**
+     * Feedback content
+     */
+    content: string;
+    /**
+     * Phone number (sdt) for contact
+     */
+    phoneNumber?: string;
+};
+
+export type FeedbackUserDto = {
+    _id: string;
+    email: string;
+    displayName?: string;
+    phoneNumber?: string;
+};
+
+export type FeedbackWithUserDto = {
+    _id: string;
+    userId: string;
+    content: string;
+    phoneNumber?: string;
+    created_at: string;
+    user?: FeedbackUserDto;
+};
+
+export type PaginatedFeedbackResponseDto = {
+    data: Array<FeedbackWithUserDto>;
+    meta: PaginationMetaDto;
 };
 
 export type FormFieldOptionResponseDto = {
@@ -1676,6 +1720,67 @@ export type AuthControllerOrganizerDashboardResponses = {
 };
 
 export type AuthControllerOrganizerDashboardResponse = AuthControllerOrganizerDashboardResponses[keyof AuthControllerOrganizerDashboardResponses];
+
+export type FeedbackControllerFindAllData = {
+    body?: never;
+    path?: never;
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/feedback';
+};
+
+export type FeedbackControllerFindAllErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type FeedbackControllerFindAllResponses = {
+    /**
+     * Paginated feedback list
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedFeedbackResponseDto;
+    };
+};
+
+export type FeedbackControllerFindAllResponse = FeedbackControllerFindAllResponses[keyof FeedbackControllerFindAllResponses];
+
+export type FeedbackControllerCreateData = {
+    body: CreateFeedbackDto;
+    path?: never;
+    query?: never;
+    url: '/feedback';
+};
+
+export type FeedbackControllerCreateErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type FeedbackControllerCreateResponses = {
+    /**
+     * Feedback submitted
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: FeedbackResponseDto;
+    };
+};
+
+export type FeedbackControllerCreateResponse = FeedbackControllerCreateResponses[keyof FeedbackControllerCreateResponses];
 
 export type GoogleFormControllerParseFormData = {
     body: ParseFormDto;
