@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Header } from "@/components/layout/header";
 import { DataTable } from "@/components/users/data-table";
-import { orderColumns } from "@/components/forms/order-columns";
+import { createOrderColumns } from "@/components/forms/order-columns";
+import { OrderDetailSheet } from "@/components/forms/order-detail-sheet";
 import { useQuery } from "@tanstack/react-query";
 import { googleFormControllerAdminListOrdersOptions } from "@/generated/@tanstack/react-query.gen";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,6 +17,8 @@ type OrderStatus = 'pending' | 'running' | 'idle' | 'paused' | 'completed' | 'ca
 export default function FormsPage() {
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState<OrderStatus | undefined>(undefined);
+  const [detailOrderId, setDetailOrderId] = useState<string | null>(null);
+  const [detailOpen, setDetailOpen] = useState(false);
   const limit = 10;
 
   const { data, isLoading } = useQuery(
@@ -26,6 +29,15 @@ export default function FormsPage() {
         ...(status ? { status } : {}),
       },
     })
+  );
+
+  const columns = useMemo(
+    () =>
+      createOrderColumns((orderId) => {
+        setDetailOrderId(orderId);
+        setDetailOpen(true);
+      }),
+    []
   );
 
   function handleStatusChange(val: string) {
@@ -116,7 +128,7 @@ export default function FormsPage() {
           </div>
         ) : (
           <DataTable
-            columns={orderColumns}
+            columns={columns}
             data={orders}
             page={page}
             totalPages={totalPages}
@@ -124,6 +136,12 @@ export default function FormsPage() {
           />
         )}
       </div>
+
+      <OrderDetailSheet
+        orderId={detailOrderId}
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+      />
     </>
   );
 }
