@@ -175,17 +175,13 @@ export function OrderDetailSheet({
   const { data, isLoading } = useQuery({
     queryKey: ["admin-order-detail", orderId, subPage],
     queryFn: async () => {
-      const { data } = await client.get<{
-        status: string;
-        code: number;
-        data: OrderDetail;
-      }>({
+      const res = await client.get({
         url: `/google-form/admin/orders/${orderId}`,
         query: { page: subPage, limit: 10 },
         security: [{ scheme: "bearer", type: "http" }],
         responseType: "json",
       });
-      return data;
+      return res.data as { status: string; code: number; data: OrderDetail };
     },
     enabled: !!orderId && open,
   });
