@@ -325,7 +325,7 @@ export type GoogleFormResponseDto = {
 
 export type ParseFormDto = {
     /**
-     * Google Form URL (supports /edit and /viewform formats)
+     * Google Form URL (requires /edit format)
      */
     url: string;
 };
@@ -388,6 +388,26 @@ export type GenerateRatesResponseDto = {
     createdBy: string;
     created_at: string;
     updated_at: string;
+};
+
+export type FieldRateConfigDto = {
+    /**
+     * Entry ID of the form field (e.g. "entry.123456789")
+     */
+    entryId: string;
+    /**
+     * Rate map: option value → probability weight (will be normalised). E.g. {"1":10,"2":10,"3":10,"4":10,"5":60} means 5 is picked 60% of the time.
+     */
+    rates: {
+        [key: string]: unknown;
+    };
+};
+
+export type SaveRatesDto = {
+    /**
+     * Custom rate configs to save for the form
+     */
+    answerConfig: Array<FieldRateConfigDto>;
 };
 
 export type ModelVariableResponseDto = {
@@ -700,19 +720,6 @@ export type SubmitRandomDto = {
      * Schedule-based submission: spread submissions over N days with realistic timing. Mutually exclusive with cronConfig.
      */
     scheduleConfig?: ScheduleConfigDto;
-};
-
-export type FieldRateConfigDto = {
-    /**
-     * Entry ID of the form field (e.g. "entry.123456789")
-     */
-    entryId: string;
-    /**
-     * Rate map: option value → probability weight (will be normalised). E.g. {"1":10,"2":10,"3":10,"4":10,"5":60} means 5 is picked 60% of the time.
-     */
-    rates: {
-        [key: string]: unknown;
-    };
 };
 
 export type SubmitWithRatesDto = {
@@ -1243,6 +1250,35 @@ export type UpdateCommissionTiersDto = {
     tiers: Array<CommissionTierDto>;
 };
 
+export type CreatePackageDto = {
+    name: string;
+    description?: string;
+    price: number;
+    totalOrders: number;
+    maxSubmissionsPerOrder: number;
+    isActive?: boolean;
+    sortOrder?: number;
+    isRecommended?: boolean;
+};
+
+export type PurchasePackageDto = {
+    /**
+     * Package ID to purchase
+     */
+    packageId: string;
+};
+
+export type UpdatePackageDto = {
+    name?: string;
+    description?: string;
+    price?: number;
+    totalOrders?: number;
+    maxSubmissionsPerOrder?: number;
+    isActive?: boolean;
+    sortOrder?: number;
+    isRecommended?: boolean;
+};
+
 export type BankAccountInfoDto = {
     bankCode: string;
     accountNumber: string;
@@ -1271,6 +1307,9 @@ export type GenerateQrDto = {
 export type PaymentTransactionResponseDto = {
     _id: string;
     userId: string;
+    userEmail?: string;
+    userName?: string;
+    userAvatar?: string;
     sepayId: number;
     transferAmount: number;
     creditsAdded: number;
@@ -1280,10 +1319,6 @@ export type PaymentTransactionResponseDto = {
     referenceCode?: string;
     created_at: string;
     updated_at: string;
-};
-
-export type SepayWebhookDto = {
-    [key: string]: unknown;
 };
 
 export type UsersControllerGetUsersData = {
@@ -2081,6 +2116,42 @@ export type GoogleFormControllerGenerateRatesResponses = {
 };
 
 export type GoogleFormControllerGenerateRatesResponse = GoogleFormControllerGenerateRatesResponses[keyof GoogleFormControllerGenerateRatesResponses];
+
+export type GoogleFormControllerSaveRatesData = {
+    body: SaveRatesDto;
+    path: {
+        /**
+         * Google Form document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/google-form/forms/{id}/generate-rates';
+};
+
+export type GoogleFormControllerSaveRatesErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Form not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerSaveRatesResponses = {
+    /**
+     * Saved rates document
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: GenerateRatesResponseDto;
+    };
+};
+
+export type GoogleFormControllerSaveRatesResponse = GoogleFormControllerSaveRatesResponses[keyof GoogleFormControllerSaveRatesResponses];
 
 export type GoogleFormControllerGetModelConfigData = {
     body?: never;
@@ -2929,6 +3000,49 @@ export type GoogleFormControllerAdminListOrdersResponses = {
 
 export type GoogleFormControllerAdminListOrdersResponse = GoogleFormControllerAdminListOrdersResponses[keyof GoogleFormControllerAdminListOrdersResponses];
 
+export type GoogleFormControllerAdminGetOrderDetailData = {
+    body?: never;
+    path: {
+        /**
+         * Order document ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/google-form/admin/orders/{id}';
+};
+
+export type GoogleFormControllerAdminGetOrderDetailErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+    /**
+     * Order not found
+     */
+    404: unknown;
+};
+
+export type GoogleFormControllerAdminGetOrderDetailResponses = {
+    /**
+     * Order detail with paginated submissions
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: OrderWithSubmissionsResponseDto;
+    };
+};
+
+export type GoogleFormControllerAdminGetOrderDetailResponse = GoogleFormControllerAdminGetOrderDetailResponses[keyof GoogleFormControllerAdminGetOrderDetailResponses];
+
 export type GoogleFormControllerAdminListFormsData = {
     body?: never;
     path?: never;
@@ -3148,6 +3262,33 @@ export type VerificationControllerGetVerificationResponses = {
 };
 
 export type VerificationControllerGetVerificationResponse = VerificationControllerGetVerificationResponses[keyof VerificationControllerGetVerificationResponses];
+
+export type VerificationControllerGetPublicCreditConfigsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/google-form/credit-config';
+};
+
+export type VerificationControllerGetPublicCreditConfigsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type VerificationControllerGetPublicCreditConfigsResponses = {
+    /**
+     * List of credit config entries
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: Array<CreditConfigResponseDto>;
+    };
+};
+
+export type VerificationControllerGetPublicCreditConfigsResponse = VerificationControllerGetPublicCreditConfigsResponses[keyof VerificationControllerGetPublicCreditConfigsResponses];
 
 export type VerificationControllerGetCreditConfigsData = {
     body?: never;
@@ -3708,6 +3849,183 @@ export type MerchantControllerReplaceTiersResponses = {
 
 export type MerchantControllerReplaceTiersResponse = MerchantControllerReplaceTiersResponses[keyof MerchantControllerReplaceTiersResponses];
 
+export type PackageControllerFindAllActiveData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/packages';
+};
+
+export type PackageControllerFindAllActiveErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type PackageControllerFindAllActiveResponses = {
+    200: unknown;
+};
+
+export type PackageControllerCreateData = {
+    body: CreatePackageDto;
+    path?: never;
+    query?: never;
+    url: '/packages';
+};
+
+export type PackageControllerCreateErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type PackageControllerFindAllData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/packages/all';
+};
+
+export type PackageControllerFindAllErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type PackageControllerGetMyPackagesData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/packages/my';
+};
+
+export type PackageControllerGetMyPackagesErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type PackageControllerGetMyPackagesResponses = {
+    200: unknown;
+};
+
+export type PackageControllerGetActivePackageData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/packages/active';
+};
+
+export type PackageControllerGetActivePackageErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type PackageControllerGetActivePackageResponses = {
+    200: unknown;
+};
+
+export type PackageControllerPurchaseData = {
+    body: PurchasePackageDto;
+    path?: never;
+    query?: never;
+    url: '/packages/purchase';
+};
+
+export type PackageControllerPurchaseErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type PackageControllerPurchaseResponses = {
+    201: unknown;
+};
+
+export type PackageControllerRemoveData = {
+    body?: never;
+    path: {
+        /**
+         * Package ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/packages/{id}';
+};
+
+export type PackageControllerRemoveErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type PackageControllerFindOneData = {
+    body?: never;
+    path: {
+        /**
+         * Package ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/packages/{id}';
+};
+
+export type PackageControllerFindOneErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type PackageControllerUpdateData = {
+    body: UpdatePackageDto;
+    path: {
+        /**
+         * Package ID (MongoDB ObjectId)
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/packages/{id}';
+};
+
+export type PackageControllerUpdateErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
 export type PaymentControllerGetPaymentInfoData = {
     body?: never;
     path?: never;
@@ -3803,7 +4121,7 @@ export type PaymentControllerGetAllTransactionsResponses = {
 export type PaymentControllerGetAllTransactionsResponse = PaymentControllerGetAllTransactionsResponses[keyof PaymentControllerGetAllTransactionsResponses];
 
 export type PaymentControllerSepayWebhookData = {
-    body: SepayWebhookDto;
+    body?: never;
     path?: never;
     query?: never;
     url: '/hooks/sepay-payment';

@@ -4,8 +4,8 @@ import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOption
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, feedbackControllerCreate, feedbackControllerFindAll, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers, verificationControllerCreateAiVerification, verificationControllerCreateSpssVerification, verificationControllerGetCreditConfigs, verificationControllerGetVerification, verificationControllerListVerifications, verificationControllerUpdateCreditConfig } from '../sdk.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, FeedbackControllerCreateData, FeedbackControllerCreateResponse, FeedbackControllerFindAllData, FeedbackControllerFindAllResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationResponse, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationResponse, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsResponse, VerificationControllerGetVerificationData, VerificationControllerGetVerificationResponse, VerificationControllerListVerificationsData, VerificationControllerListVerificationsResponse, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigResponse } from '../types.gen';
+import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, feedbackControllerCreate, feedbackControllerFindAll, googleFormControllerAdminGetOrderDetail, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSaveRates, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, packageControllerCreate, packageControllerFindAll, packageControllerFindAllActive, packageControllerFindOne, packageControllerGetActivePackage, packageControllerGetMyPackages, packageControllerPurchase, packageControllerRemove, packageControllerUpdate, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers, verificationControllerCreateAiVerification, verificationControllerCreateSpssVerification, verificationControllerGetCreditConfigs, verificationControllerGetPublicCreditConfigs, verificationControllerGetVerification, verificationControllerListVerifications, verificationControllerUpdateCreditConfig } from '../sdk.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, FeedbackControllerCreateData, FeedbackControllerCreateResponse, FeedbackControllerFindAllData, FeedbackControllerFindAllResponse, GoogleFormControllerAdminGetOrderDetailData, GoogleFormControllerAdminGetOrderDetailResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSaveRatesData, GoogleFormControllerSaveRatesResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PackageControllerCreateData, PackageControllerFindAllActiveData, PackageControllerFindAllData, PackageControllerFindOneData, PackageControllerGetActivePackageData, PackageControllerGetMyPackagesData, PackageControllerPurchaseData, PackageControllerRemoveData, PackageControllerUpdateData, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationResponse, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationResponse, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsResponse, VerificationControllerGetPublicCreditConfigsData, VerificationControllerGetPublicCreditConfigsResponse, VerificationControllerGetVerificationData, VerificationControllerGetVerificationResponse, VerificationControllerListVerificationsData, VerificationControllerListVerificationsResponse, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -499,7 +499,7 @@ export const feedbackControllerCreateMutation = (options?: Partial<Options<Feedb
 /**
  * Parse a Google Form URL and save its structure
  *
- * Fetches the Google Form, extracts all fields/options, and stores in DB. If the form was already parsed, returns the cached version. Supports both `/edit` and `/viewform` URL formats.
+ * Fetches the Google Form, extracts all fields/options, and stores in DB. If the form was already parsed, returns the cached version. Requires the `/edit` URL format (e.g. https://docs.google.com/forms/d/.../edit).
  */
 export const googleFormControllerParseFormMutation = (options?: Partial<Options<GoogleFormControllerParseFormData>>): UseMutationOptions<GoogleFormControllerParseFormResponse, AxiosError<DefaultError>, Options<GoogleFormControllerParseFormData>> => {
     const mutationOptions: UseMutationOptions<GoogleFormControllerParseFormResponse, AxiosError<DefaultError>, Options<GoogleFormControllerParseFormData>> = {
@@ -668,6 +668,25 @@ export const googleFormControllerGenerateRatesMutation = (options?: Partial<Opti
     const mutationOptions: UseMutationOptions<GoogleFormControllerGenerateRatesResponse, AxiosError<DefaultError>, Options<GoogleFormControllerGenerateRatesData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await googleFormControllerGenerateRates({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Save custom rates for a form
+ *
+ * Saves user-customized rate configs. Upserts — only one document per form.
+ */
+export const googleFormControllerSaveRatesMutation = (options?: Partial<Options<GoogleFormControllerSaveRatesData>>): UseMutationOptions<GoogleFormControllerSaveRatesResponse, AxiosError<DefaultError>, Options<GoogleFormControllerSaveRatesData>> => {
+    const mutationOptions: UseMutationOptions<GoogleFormControllerSaveRatesResponse, AxiosError<DefaultError>, Options<GoogleFormControllerSaveRatesData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await googleFormControllerSaveRates({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
@@ -1267,6 +1286,55 @@ export const googleFormControllerAdminListOrdersInfiniteOptions = (options?: Opt
     queryKey: googleFormControllerAdminListOrdersInfiniteQueryKey(options)
 });
 
+export const googleFormControllerAdminGetOrderDetailQueryKey = (options: Options<GoogleFormControllerAdminGetOrderDetailData>) => createQueryKey('googleFormControllerAdminGetOrderDetail', options);
+
+/**
+ * Admin: Get order detail with submissions
+ *
+ * Returns full order detail including form fields, user info, answer config, schedule config, and paginated submissions.
+ */
+export const googleFormControllerAdminGetOrderDetailOptions = (options: Options<GoogleFormControllerAdminGetOrderDetailData>) => queryOptions<GoogleFormControllerAdminGetOrderDetailResponse, AxiosError<DefaultError>, GoogleFormControllerAdminGetOrderDetailResponse, ReturnType<typeof googleFormControllerAdminGetOrderDetailQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await googleFormControllerAdminGetOrderDetail({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerAdminGetOrderDetailQueryKey(options)
+});
+
+export const googleFormControllerAdminGetOrderDetailInfiniteQueryKey = (options: Options<GoogleFormControllerAdminGetOrderDetailData>): QueryKey<Options<GoogleFormControllerAdminGetOrderDetailData>> => createQueryKey('googleFormControllerAdminGetOrderDetail', options, true);
+
+/**
+ * Admin: Get order detail with submissions
+ *
+ * Returns full order detail including form fields, user info, answer config, schedule config, and paginated submissions.
+ */
+export const googleFormControllerAdminGetOrderDetailInfiniteOptions = (options: Options<GoogleFormControllerAdminGetOrderDetailData>) => infiniteQueryOptions<GoogleFormControllerAdminGetOrderDetailResponse, AxiosError<DefaultError>, InfiniteData<GoogleFormControllerAdminGetOrderDetailResponse>, QueryKey<Options<GoogleFormControllerAdminGetOrderDetailData>>, number | Pick<QueryKey<Options<GoogleFormControllerAdminGetOrderDetailData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GoogleFormControllerAdminGetOrderDetailData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await googleFormControllerAdminGetOrderDetail({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: googleFormControllerAdminGetOrderDetailInfiniteQueryKey(options)
+});
+
 export const googleFormControllerAdminListFormsQueryKey = (options?: Options<GoogleFormControllerAdminListFormsData>) => createQueryKey('googleFormControllerAdminListForms', options);
 
 /**
@@ -1440,6 +1508,26 @@ export const verificationControllerGetVerificationOptions = (options: Options<Ve
         return data;
     },
     queryKey: verificationControllerGetVerificationQueryKey(options)
+});
+
+export const verificationControllerGetPublicCreditConfigsQueryKey = (options?: Options<VerificationControllerGetPublicCreditConfigsData>) => createQueryKey('verificationControllerGetPublicCreditConfigs', options);
+
+/**
+ * Get verification credit pricing
+ *
+ * Returns all credit costs for verification types (AI, SPSS). Available to any authenticated user.
+ */
+export const verificationControllerGetPublicCreditConfigsOptions = (options?: Options<VerificationControllerGetPublicCreditConfigsData>) => queryOptions<VerificationControllerGetPublicCreditConfigsResponse, AxiosError<DefaultError>, VerificationControllerGetPublicCreditConfigsResponse, ReturnType<typeof verificationControllerGetPublicCreditConfigsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await verificationControllerGetPublicCreditConfigs({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerGetPublicCreditConfigsQueryKey(options)
 });
 
 export const verificationControllerGetCreditConfigsQueryKey = (options?: Options<VerificationControllerGetCreditConfigsData>) => createQueryKey('verificationControllerGetCreditConfigs', options);
@@ -1871,6 +1959,164 @@ export const merchantControllerReplaceTiersMutation = (options?: Partial<Options
     const mutationOptions: UseMutationOptions<MerchantControllerReplaceTiersResponse, AxiosError<DefaultError>, Options<MerchantControllerReplaceTiersData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await merchantControllerReplaceTiers({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const packageControllerFindAllActiveQueryKey = (options?: Options<PackageControllerFindAllActiveData>) => createQueryKey('packageControllerFindAllActive', options);
+
+/**
+ * List all active packages (public)
+ */
+export const packageControllerFindAllActiveOptions = (options?: Options<PackageControllerFindAllActiveData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof packageControllerFindAllActiveQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await packageControllerFindAllActive({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: packageControllerFindAllActiveQueryKey(options)
+});
+
+/**
+ * Create a new package (admin)
+ */
+export const packageControllerCreateMutation = (options?: Partial<Options<PackageControllerCreateData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerCreateData>> => {
+    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerCreateData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await packageControllerCreate({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const packageControllerFindAllQueryKey = (options?: Options<PackageControllerFindAllData>) => createQueryKey('packageControllerFindAll', options);
+
+/**
+ * List all packages (admin)
+ */
+export const packageControllerFindAllOptions = (options?: Options<PackageControllerFindAllData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof packageControllerFindAllQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await packageControllerFindAll({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: packageControllerFindAllQueryKey(options)
+});
+
+export const packageControllerGetMyPackagesQueryKey = (options?: Options<PackageControllerGetMyPackagesData>) => createQueryKey('packageControllerGetMyPackages', options);
+
+/**
+ * List my purchased packages
+ */
+export const packageControllerGetMyPackagesOptions = (options?: Options<PackageControllerGetMyPackagesData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof packageControllerGetMyPackagesQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await packageControllerGetMyPackages({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: packageControllerGetMyPackagesQueryKey(options)
+});
+
+export const packageControllerGetActivePackageQueryKey = (options?: Options<PackageControllerGetActivePackageData>) => createQueryKey('packageControllerGetActivePackage', options);
+
+/**
+ * Get my active package with remaining orders
+ */
+export const packageControllerGetActivePackageOptions = (options?: Options<PackageControllerGetActivePackageData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof packageControllerGetActivePackageQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await packageControllerGetActivePackage({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: packageControllerGetActivePackageQueryKey(options)
+});
+
+/**
+ * Purchase a package (deducts credits)
+ */
+export const packageControllerPurchaseMutation = (options?: Partial<Options<PackageControllerPurchaseData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerPurchaseData>> => {
+    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerPurchaseData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await packageControllerPurchase({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Delete a package (admin)
+ */
+export const packageControllerRemoveMutation = (options?: Partial<Options<PackageControllerRemoveData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerRemoveData>> => {
+    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerRemoveData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await packageControllerRemove({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const packageControllerFindOneQueryKey = (options: Options<PackageControllerFindOneData>) => createQueryKey('packageControllerFindOne', options);
+
+/**
+ * Get package by ID (admin)
+ */
+export const packageControllerFindOneOptions = (options: Options<PackageControllerFindOneData>) => queryOptions<unknown, AxiosError<DefaultError>, unknown, ReturnType<typeof packageControllerFindOneQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await packageControllerFindOne({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: packageControllerFindOneQueryKey(options)
+});
+
+/**
+ * Update a package (admin)
+ */
+export const packageControllerUpdateMutation = (options?: Partial<Options<PackageControllerUpdateData>>): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerUpdateData>> => {
+    const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<PackageControllerUpdateData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await packageControllerUpdate({
                 ...options,
                 ...fnOptions,
                 throwOnError: true
