@@ -1250,6 +1250,31 @@ export type UpdateCommissionTiersDto = {
     tiers: Array<CommissionTierDto>;
 };
 
+export type PackageResponseDto = {
+    _id: string;
+    name: string;
+    description: string;
+    price: number;
+    totalOrders: number;
+    maxSubmissionsPerOrder: number;
+    isActive: boolean;
+    sortOrder: number;
+    isRecommended: boolean;
+};
+
+export type UserPackageResponseDto = {
+    _id: string;
+    userId: string;
+    packageId: string;
+    packageName: string;
+    pricePaid: number;
+    ordersTotal: number;
+    ordersUsed: number;
+    maxSubmissionsPerOrder: number;
+    status: 'active' | 'used_up' | 'expired';
+    expiresAt?: string;
+};
+
 export type CreatePackageDto = {
     name: string;
     description?: string;
@@ -1259,6 +1284,13 @@ export type CreatePackageDto = {
     isActive?: boolean;
     sortOrder?: number;
     isRecommended?: boolean;
+};
+
+export type PurchaseResponseDto = {
+    _id: string;
+    packageName: string;
+    ordersTotal: number;
+    status: string;
 };
 
 export type PurchasePackageDto = {
@@ -3864,8 +3896,17 @@ export type PackageControllerFindAllActiveErrors = {
 };
 
 export type PackageControllerFindAllActiveResponses = {
-    200: unknown;
+    /**
+     * List of active packages
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PackageResponseDto;
+    };
 };
+
+export type PackageControllerFindAllActiveResponse = PackageControllerFindAllActiveResponses[keyof PackageControllerFindAllActiveResponses];
 
 export type PackageControllerCreateData = {
     body: CreatePackageDto;
@@ -3885,6 +3926,19 @@ export type PackageControllerCreateErrors = {
     403: unknown;
 };
 
+export type PackageControllerCreateResponses = {
+    /**
+     * Package created
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: PackageResponseDto;
+    };
+};
+
+export type PackageControllerCreateResponse = PackageControllerCreateResponses[keyof PackageControllerCreateResponses];
+
 export type PackageControllerFindAllData = {
     body?: never;
     path?: never;
@@ -3903,6 +3957,19 @@ export type PackageControllerFindAllErrors = {
     403: unknown;
 };
 
+export type PackageControllerFindAllResponses = {
+    /**
+     * List of all packages
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PackageResponseDto;
+    };
+};
+
+export type PackageControllerFindAllResponse = PackageControllerFindAllResponses[keyof PackageControllerFindAllResponses];
+
 export type PackageControllerGetMyPackagesData = {
     body?: never;
     path?: never;
@@ -3918,8 +3985,17 @@ export type PackageControllerGetMyPackagesErrors = {
 };
 
 export type PackageControllerGetMyPackagesResponses = {
-    200: unknown;
+    /**
+     * List of purchased packages
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: UserPackageResponseDto;
+    };
 };
+
+export type PackageControllerGetMyPackagesResponse = PackageControllerGetMyPackagesResponses[keyof PackageControllerGetMyPackagesResponses];
 
 export type PackageControllerGetActivePackageData = {
     body?: never;
@@ -3936,8 +4012,17 @@ export type PackageControllerGetActivePackageErrors = {
 };
 
 export type PackageControllerGetActivePackageResponses = {
-    200: unknown;
+    /**
+     * Active package or null
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: UserPackageResponseDto;
+    };
 };
+
+export type PackageControllerGetActivePackageResponse = PackageControllerGetActivePackageResponses[keyof PackageControllerGetActivePackageResponses];
 
 export type PackageControllerPurchaseData = {
     body: PurchasePackageDto;
@@ -3954,8 +4039,17 @@ export type PackageControllerPurchaseErrors = {
 };
 
 export type PackageControllerPurchaseResponses = {
-    201: unknown;
+    /**
+     * Package purchased and activated
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: PurchaseResponseDto;
+    };
 };
+
+export type PackageControllerPurchaseResponse = PackageControllerPurchaseResponses[keyof PackageControllerPurchaseResponses];
 
 export type PackageControllerRemoveData = {
     body?: never;
@@ -3980,6 +4074,19 @@ export type PackageControllerRemoveErrors = {
     403: unknown;
 };
 
+export type PackageControllerRemoveResponses = {
+    /**
+     * Package deleted
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: unknown;
+    };
+};
+
+export type PackageControllerRemoveResponse = PackageControllerRemoveResponses[keyof PackageControllerRemoveResponses];
+
 export type PackageControllerFindOneData = {
     body?: never;
     path: {
@@ -4003,6 +4110,19 @@ export type PackageControllerFindOneErrors = {
     403: unknown;
 };
 
+export type PackageControllerFindOneResponses = {
+    /**
+     * Package detail
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PackageResponseDto;
+    };
+};
+
+export type PackageControllerFindOneResponse = PackageControllerFindOneResponses[keyof PackageControllerFindOneResponses];
+
 export type PackageControllerUpdateData = {
     body: UpdatePackageDto;
     path: {
@@ -4025,6 +4145,19 @@ export type PackageControllerUpdateErrors = {
      */
     403: unknown;
 };
+
+export type PackageControllerUpdateResponses = {
+    /**
+     * Package updated
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PackageResponseDto;
+    };
+};
+
+export type PackageControllerUpdateResponse = PackageControllerUpdateResponses[keyof PackageControllerUpdateResponses];
 
 export type PaymentControllerGetPaymentInfoData = {
     body?: never;
