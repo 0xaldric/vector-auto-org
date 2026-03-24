@@ -399,7 +399,8 @@ export default function PackagesPage() {
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery(packageControllerFindAllOptions());
-  const packages = (data as Package[] | undefined) ?? [];
+  const rawData = data as any;
+  const packages: Package[] = Array.isArray(rawData) ? rawData : (rawData?.data ?? []);
 
   // Dialog state
   const [formOpen, setFormOpen] = useState(false);
