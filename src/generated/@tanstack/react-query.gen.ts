@@ -4,8 +4,8 @@ import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOption
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, feedbackControllerCreate, feedbackControllerFindAll, googleFormControllerAdminGetOrderDetail, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSaveRates, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, packageControllerCreate, packageControllerFindAll, packageControllerFindAllActive, packageControllerFindOne, packageControllerGetActivePackage, packageControllerGetMyPackages, packageControllerPurchase, packageControllerRemove, packageControllerUpdate, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers, verificationControllerCreateAiVerification, verificationControllerCreateSpssVerification, verificationControllerGetCreditConfigs, verificationControllerGetPublicCreditConfigs, verificationControllerGetVerification, verificationControllerListVerifications, verificationControllerUpdateCreditConfig } from '../sdk.gen';
-import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, FeedbackControllerCreateData, FeedbackControllerCreateResponse, FeedbackControllerFindAllData, FeedbackControllerFindAllResponse, GoogleFormControllerAdminGetOrderDetailData, GoogleFormControllerAdminGetOrderDetailResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSaveRatesData, GoogleFormControllerSaveRatesResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PackageControllerCreateData, PackageControllerCreateResponse, PackageControllerFindAllActiveData, PackageControllerFindAllActiveResponse, PackageControllerFindAllData, PackageControllerFindAllResponse, PackageControllerFindOneData, PackageControllerFindOneResponse, PackageControllerGetActivePackageData, PackageControllerGetActivePackageResponse, PackageControllerGetMyPackagesData, PackageControllerGetMyPackagesResponse, PackageControllerPurchaseData, PackageControllerPurchaseResponse, PackageControllerRemoveData, PackageControllerRemoveResponse, PackageControllerUpdateData, PackageControllerUpdateResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationResponse, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationResponse, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsResponse, VerificationControllerGetPublicCreditConfigsData, VerificationControllerGetPublicCreditConfigsResponse, VerificationControllerGetVerificationData, VerificationControllerGetVerificationResponse, VerificationControllerListVerificationsData, VerificationControllerListVerificationsResponse, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigResponse } from '../types.gen';
+import { authControllerAdminOnly, authControllerGetProfile, authControllerGoogleAuth, authControllerGoogleAuthCallback, authControllerGoogleAuthenticate, authControllerLogin, authControllerLogout, authControllerOrganizerDashboard, authControllerRefresh, authControllerRegister, blogControllerAddComment, blogControllerAdminFindAll, blogControllerAdminFindById, blogControllerCheckLikeStatus, blogControllerCreate, blogControllerDelete, blogControllerFindBySlug, blogControllerFindPublished, blogControllerGetStats, blogControllerListComments, blogControllerToggleLike, blogControllerUpdate, feedbackControllerCreate, feedbackControllerFindAll, googleFormControllerAdminGetOrderDetail, googleFormControllerAdminListForms, googleFormControllerAdminListOrders, googleFormControllerAdminTestSubmit, googleFormControllerBatchUpdateFields, googleFormControllerCancelOrder, googleFormControllerCreateOrder, googleFormControllerExportModelGenerationCsv, googleFormControllerGenerateModelData, googleFormControllerGenerateRandom, googleFormControllerGenerateRates, googleFormControllerGetForm, googleFormControllerGetGenerateRates, googleFormControllerGetModelConfig, googleFormControllerGetModelGeneration, googleFormControllerGetOrder, googleFormControllerGetUpcomingSchedules, googleFormControllerListForms, googleFormControllerListModelGenerations, googleFormControllerListOrders, googleFormControllerParseForm, googleFormControllerPauseOrder, googleFormControllerPreviewSheet, googleFormControllerRefreshForm, googleFormControllerResumeOrder, googleFormControllerRetrySubmission, googleFormControllerSaveRates, googleFormControllerSubmitFromSheet, googleFormControllerSubmitRandom, googleFormControllerSubmitWithModel, googleFormControllerSubmitWithRates, googleFormControllerUpdateCronConfig, googleFormControllerUpdateField, googleFormControllerUpdateOrderSubmissions, googleFormControllerUpsertModelConfig, merchantControllerCompleteWithdrawal, merchantControllerCreateMerchant, merchantControllerCreateWithdrawal, merchantControllerGetDashboard, merchantControllerGetProfile, merchantControllerListAllWithdrawals, merchantControllerListCommissions, merchantControllerListMerchants, merchantControllerListOwnWithdrawals, merchantControllerListReferredUsers, merchantControllerListTiers, merchantControllerReplaceTiers, merchantControllerReviewWithdrawal, merchantControllerUpdateBankInfo, merchantControllerUpdateMerchantStatus, type Options, packageControllerCreate, packageControllerFindAll, packageControllerFindAllActive, packageControllerFindOne, packageControllerGetActivePackage, packageControllerGetMyPackages, packageControllerPurchase, packageControllerRemove, packageControllerUpdate, paymentControllerGenerateQr, paymentControllerGetAllTransactions, paymentControllerGetPaymentInfo, paymentControllerGetTransactions, paymentControllerSepayWebhook, usersControllerAddCredits, usersControllerGetCurrentUser, usersControllerGetMyCreditHistory, usersControllerGetUserCreditHistory, usersControllerGetUsers, verificationControllerCreateAiVerification, verificationControllerCreateSpssVerification, verificationControllerCreateStandaloneAiVerification, verificationControllerCreateStandaloneSpssVerification, verificationControllerGetCreditConfigs, verificationControllerGetPublicCreditConfigs, verificationControllerGetVerification, verificationControllerListStandaloneVerifications, verificationControllerListVerifications, verificationControllerUpdateCreditConfig } from '../sdk.gen';
+import type { AuthControllerAdminOnlyData, AuthControllerAdminOnlyError, AuthControllerAdminOnlyResponse, AuthControllerGetProfileData, AuthControllerGetProfileError, AuthControllerGetProfileResponse, AuthControllerGoogleAuthCallbackData, AuthControllerGoogleAuthData, AuthControllerGoogleAuthenticateData, AuthControllerGoogleAuthenticateError, AuthControllerGoogleAuthenticateResponse, AuthControllerLoginData, AuthControllerLoginError, AuthControllerLoginResponse, AuthControllerLogoutData, AuthControllerLogoutError, AuthControllerLogoutResponse, AuthControllerOrganizerDashboardData, AuthControllerOrganizerDashboardError, AuthControllerOrganizerDashboardResponse, AuthControllerRefreshData, AuthControllerRefreshError, AuthControllerRefreshResponse, AuthControllerRegisterData, AuthControllerRegisterError, AuthControllerRegisterResponse, BlogControllerAddCommentData, BlogControllerAddCommentResponse, BlogControllerAdminFindAllData, BlogControllerAdminFindAllResponse, BlogControllerAdminFindByIdData, BlogControllerAdminFindByIdResponse, BlogControllerCheckLikeStatusData, BlogControllerCheckLikeStatusResponse, BlogControllerCreateData, BlogControllerCreateResponse, BlogControllerDeleteData, BlogControllerDeleteResponse, BlogControllerFindBySlugData, BlogControllerFindBySlugResponse, BlogControllerFindPublishedData, BlogControllerFindPublishedResponse, BlogControllerGetStatsData, BlogControllerGetStatsResponse, BlogControllerListCommentsData, BlogControllerListCommentsResponse, BlogControllerToggleLikeData, BlogControllerToggleLikeResponse, BlogControllerUpdateData, BlogControllerUpdateResponse, FeedbackControllerCreateData, FeedbackControllerCreateResponse, FeedbackControllerFindAllData, FeedbackControllerFindAllResponse, GoogleFormControllerAdminGetOrderDetailData, GoogleFormControllerAdminGetOrderDetailResponse, GoogleFormControllerAdminListFormsData, GoogleFormControllerAdminListFormsResponse, GoogleFormControllerAdminListOrdersData, GoogleFormControllerAdminListOrdersResponse, GoogleFormControllerAdminTestSubmitData, GoogleFormControllerAdminTestSubmitResponse, GoogleFormControllerBatchUpdateFieldsData, GoogleFormControllerBatchUpdateFieldsResponse, GoogleFormControllerCancelOrderData, GoogleFormControllerCancelOrderResponse, GoogleFormControllerCreateOrderData, GoogleFormControllerCreateOrderResponse, GoogleFormControllerExportModelGenerationCsvData, GoogleFormControllerGenerateModelDataData, GoogleFormControllerGenerateModelDataResponse, GoogleFormControllerGenerateRandomData, GoogleFormControllerGenerateRandomResponse, GoogleFormControllerGenerateRatesData, GoogleFormControllerGenerateRatesResponse, GoogleFormControllerGetFormData, GoogleFormControllerGetFormResponse, GoogleFormControllerGetGenerateRatesData, GoogleFormControllerGetGenerateRatesResponse, GoogleFormControllerGetModelConfigData, GoogleFormControllerGetModelConfigResponse, GoogleFormControllerGetModelGenerationData, GoogleFormControllerGetModelGenerationResponse, GoogleFormControllerGetOrderData, GoogleFormControllerGetOrderResponse, GoogleFormControllerGetUpcomingSchedulesData, GoogleFormControllerGetUpcomingSchedulesResponse, GoogleFormControllerListFormsData, GoogleFormControllerListFormsResponse, GoogleFormControllerListModelGenerationsData, GoogleFormControllerListModelGenerationsResponse, GoogleFormControllerListOrdersData, GoogleFormControllerListOrdersResponse, GoogleFormControllerParseFormData, GoogleFormControllerParseFormResponse, GoogleFormControllerPauseOrderData, GoogleFormControllerPauseOrderResponse, GoogleFormControllerPreviewSheetData, GoogleFormControllerPreviewSheetResponse, GoogleFormControllerRefreshFormData, GoogleFormControllerRefreshFormResponse, GoogleFormControllerResumeOrderData, GoogleFormControllerResumeOrderResponse, GoogleFormControllerRetrySubmissionData, GoogleFormControllerRetrySubmissionResponse, GoogleFormControllerSaveRatesData, GoogleFormControllerSaveRatesResponse, GoogleFormControllerSubmitFromSheetData, GoogleFormControllerSubmitFromSheetResponse, GoogleFormControllerSubmitRandomData, GoogleFormControllerSubmitRandomResponse, GoogleFormControllerSubmitWithModelData, GoogleFormControllerSubmitWithModelResponse, GoogleFormControllerSubmitWithRatesData, GoogleFormControllerSubmitWithRatesResponse, GoogleFormControllerUpdateCronConfigData, GoogleFormControllerUpdateCronConfigResponse, GoogleFormControllerUpdateFieldData, GoogleFormControllerUpdateFieldResponse, GoogleFormControllerUpdateOrderSubmissionsData, GoogleFormControllerUpdateOrderSubmissionsResponse, GoogleFormControllerUpsertModelConfigData, GoogleFormControllerUpsertModelConfigResponse, MerchantControllerCompleteWithdrawalData, MerchantControllerCompleteWithdrawalResponse, MerchantControllerCreateMerchantData, MerchantControllerCreateMerchantResponse, MerchantControllerCreateWithdrawalData, MerchantControllerCreateWithdrawalResponse, MerchantControllerGetDashboardData, MerchantControllerGetDashboardResponse, MerchantControllerGetProfileData, MerchantControllerGetProfileResponse, MerchantControllerListAllWithdrawalsData, MerchantControllerListAllWithdrawalsResponse, MerchantControllerListCommissionsData, MerchantControllerListCommissionsResponse, MerchantControllerListMerchantsData, MerchantControllerListMerchantsResponse, MerchantControllerListOwnWithdrawalsData, MerchantControllerListOwnWithdrawalsResponse, MerchantControllerListReferredUsersData, MerchantControllerListReferredUsersResponse, MerchantControllerListTiersData, MerchantControllerListTiersResponse, MerchantControllerReplaceTiersData, MerchantControllerReplaceTiersResponse, MerchantControllerReviewWithdrawalData, MerchantControllerReviewWithdrawalResponse, MerchantControllerUpdateBankInfoData, MerchantControllerUpdateBankInfoResponse, MerchantControllerUpdateMerchantStatusData, MerchantControllerUpdateMerchantStatusResponse, PackageControllerCreateData, PackageControllerCreateResponse, PackageControllerFindAllActiveData, PackageControllerFindAllActiveResponse, PackageControllerFindAllData, PackageControllerFindAllResponse, PackageControllerFindOneData, PackageControllerFindOneResponse, PackageControllerGetActivePackageData, PackageControllerGetActivePackageResponse, PackageControllerGetMyPackagesData, PackageControllerGetMyPackagesResponse, PackageControllerPurchaseData, PackageControllerPurchaseResponse, PackageControllerRemoveData, PackageControllerRemoveResponse, PackageControllerUpdateData, PackageControllerUpdateResponse, PaymentControllerGenerateQrData, PaymentControllerGenerateQrResponse, PaymentControllerGetAllTransactionsData, PaymentControllerGetAllTransactionsResponse, PaymentControllerGetPaymentInfoData, PaymentControllerGetPaymentInfoResponse, PaymentControllerGetTransactionsData, PaymentControllerGetTransactionsResponse, PaymentControllerSepayWebhookData, UsersControllerAddCreditsData, UsersControllerAddCreditsResponse, UsersControllerGetCurrentUserData, UsersControllerGetCurrentUserResponse, UsersControllerGetMyCreditHistoryData, UsersControllerGetMyCreditHistoryResponse, UsersControllerGetUserCreditHistoryData, UsersControllerGetUserCreditHistoryResponse, UsersControllerGetUsersData, UsersControllerGetUsersResponse, VerificationControllerCreateAiVerificationData, VerificationControllerCreateAiVerificationResponse, VerificationControllerCreateSpssVerificationData, VerificationControllerCreateSpssVerificationResponse, VerificationControllerCreateStandaloneAiVerificationData, VerificationControllerCreateStandaloneAiVerificationResponse, VerificationControllerCreateStandaloneSpssVerificationData, VerificationControllerCreateStandaloneSpssVerificationResponse, VerificationControllerGetCreditConfigsData, VerificationControllerGetCreditConfigsResponse, VerificationControllerGetPublicCreditConfigsData, VerificationControllerGetPublicCreditConfigsResponse, VerificationControllerGetVerificationData, VerificationControllerGetVerificationResponse, VerificationControllerListStandaloneVerificationsData, VerificationControllerListStandaloneVerificationsResponse, VerificationControllerListVerificationsData, VerificationControllerListVerificationsResponse, VerificationControllerUpdateCreditConfigData, VerificationControllerUpdateCreditConfigResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseURL' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -432,6 +432,298 @@ export const authControllerOrganizerDashboardOptions = (options?: Options<AuthCo
         return data;
     },
     queryKey: authControllerOrganizerDashboardQueryKey(options)
+});
+
+export const blogControllerAdminFindAllQueryKey = (options?: Options<BlogControllerAdminFindAllData>) => createQueryKey('blogControllerAdminFindAll', options);
+
+/**
+ * List all blogs (Admin only)
+ */
+export const blogControllerAdminFindAllOptions = (options?: Options<BlogControllerAdminFindAllData>) => queryOptions<BlogControllerAdminFindAllResponse, AxiosError<DefaultError>, BlogControllerAdminFindAllResponse, ReturnType<typeof blogControllerAdminFindAllQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerAdminFindAll({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerAdminFindAllQueryKey(options)
+});
+
+export const blogControllerAdminFindAllInfiniteQueryKey = (options?: Options<BlogControllerAdminFindAllData>): QueryKey<Options<BlogControllerAdminFindAllData>> => createQueryKey('blogControllerAdminFindAll', options, true);
+
+/**
+ * List all blogs (Admin only)
+ */
+export const blogControllerAdminFindAllInfiniteOptions = (options?: Options<BlogControllerAdminFindAllData>) => infiniteQueryOptions<BlogControllerAdminFindAllResponse, AxiosError<DefaultError>, InfiniteData<BlogControllerAdminFindAllResponse>, QueryKey<Options<BlogControllerAdminFindAllData>>, number | Pick<QueryKey<Options<BlogControllerAdminFindAllData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<BlogControllerAdminFindAllData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await blogControllerAdminFindAll({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerAdminFindAllInfiniteQueryKey(options)
+});
+
+export const blogControllerGetStatsQueryKey = (options?: Options<BlogControllerGetStatsData>) => createQueryKey('blogControllerGetStats', options);
+
+/**
+ * Get blog statistics (Admin only)
+ */
+export const blogControllerGetStatsOptions = (options?: Options<BlogControllerGetStatsData>) => queryOptions<BlogControllerGetStatsResponse, AxiosError<DefaultError>, BlogControllerGetStatsResponse, ReturnType<typeof blogControllerGetStatsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerGetStats({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerGetStatsQueryKey(options)
+});
+
+/**
+ * Delete a blog post (Admin only)
+ */
+export const blogControllerDeleteMutation = (options?: Partial<Options<BlogControllerDeleteData>>): UseMutationOptions<BlogControllerDeleteResponse, AxiosError<DefaultError>, Options<BlogControllerDeleteData>> => {
+    const mutationOptions: UseMutationOptions<BlogControllerDeleteResponse, AxiosError<DefaultError>, Options<BlogControllerDeleteData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await blogControllerDelete({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const blogControllerAdminFindByIdQueryKey = (options: Options<BlogControllerAdminFindByIdData>) => createQueryKey('blogControllerAdminFindById', options);
+
+/**
+ * Get blog by ID (Admin only)
+ */
+export const blogControllerAdminFindByIdOptions = (options: Options<BlogControllerAdminFindByIdData>) => queryOptions<BlogControllerAdminFindByIdResponse, AxiosError<DefaultError>, BlogControllerAdminFindByIdResponse, ReturnType<typeof blogControllerAdminFindByIdQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerAdminFindById({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerAdminFindByIdQueryKey(options)
+});
+
+/**
+ * Update a blog post (Admin only)
+ */
+export const blogControllerUpdateMutation = (options?: Partial<Options<BlogControllerUpdateData>>): UseMutationOptions<BlogControllerUpdateResponse, AxiosError<DefaultError>, Options<BlogControllerUpdateData>> => {
+    const mutationOptions: UseMutationOptions<BlogControllerUpdateResponse, AxiosError<DefaultError>, Options<BlogControllerUpdateData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await blogControllerUpdate({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Create a new blog post (Admin only)
+ */
+export const blogControllerCreateMutation = (options?: Partial<Options<BlogControllerCreateData>>): UseMutationOptions<BlogControllerCreateResponse, AxiosError<DefaultError>, Options<BlogControllerCreateData>> => {
+    const mutationOptions: UseMutationOptions<BlogControllerCreateResponse, AxiosError<DefaultError>, Options<BlogControllerCreateData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await blogControllerCreate({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const blogControllerFindPublishedQueryKey = (options?: Options<BlogControllerFindPublishedData>) => createQueryKey('blogControllerFindPublished', options);
+
+/**
+ * List published blog posts
+ */
+export const blogControllerFindPublishedOptions = (options?: Options<BlogControllerFindPublishedData>) => queryOptions<BlogControllerFindPublishedResponse, AxiosError<DefaultError>, BlogControllerFindPublishedResponse, ReturnType<typeof blogControllerFindPublishedQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerFindPublished({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerFindPublishedQueryKey(options)
+});
+
+export const blogControllerFindPublishedInfiniteQueryKey = (options?: Options<BlogControllerFindPublishedData>): QueryKey<Options<BlogControllerFindPublishedData>> => createQueryKey('blogControllerFindPublished', options, true);
+
+/**
+ * List published blog posts
+ */
+export const blogControllerFindPublishedInfiniteOptions = (options?: Options<BlogControllerFindPublishedData>) => infiniteQueryOptions<BlogControllerFindPublishedResponse, AxiosError<DefaultError>, InfiniteData<BlogControllerFindPublishedResponse>, QueryKey<Options<BlogControllerFindPublishedData>>, number | Pick<QueryKey<Options<BlogControllerFindPublishedData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<BlogControllerFindPublishedData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await blogControllerFindPublished({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerFindPublishedInfiniteQueryKey(options)
+});
+
+export const blogControllerFindBySlugQueryKey = (options: Options<BlogControllerFindBySlugData>) => createQueryKey('blogControllerFindBySlug', options);
+
+/**
+ * Get a published blog post by slug
+ */
+export const blogControllerFindBySlugOptions = (options: Options<BlogControllerFindBySlugData>) => queryOptions<BlogControllerFindBySlugResponse, AxiosError<DefaultError>, BlogControllerFindBySlugResponse, ReturnType<typeof blogControllerFindBySlugQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerFindBySlug({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerFindBySlugQueryKey(options)
+});
+
+export const blogControllerListCommentsQueryKey = (options: Options<BlogControllerListCommentsData>) => createQueryKey('blogControllerListComments', options);
+
+/**
+ * List comments for a blog post
+ */
+export const blogControllerListCommentsOptions = (options: Options<BlogControllerListCommentsData>) => queryOptions<BlogControllerListCommentsResponse, AxiosError<DefaultError>, BlogControllerListCommentsResponse, ReturnType<typeof blogControllerListCommentsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerListComments({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerListCommentsQueryKey(options)
+});
+
+export const blogControllerListCommentsInfiniteQueryKey = (options: Options<BlogControllerListCommentsData>): QueryKey<Options<BlogControllerListCommentsData>> => createQueryKey('blogControllerListComments', options, true);
+
+/**
+ * List comments for a blog post
+ */
+export const blogControllerListCommentsInfiniteOptions = (options: Options<BlogControllerListCommentsData>) => infiniteQueryOptions<BlogControllerListCommentsResponse, AxiosError<DefaultError>, InfiniteData<BlogControllerListCommentsResponse>, QueryKey<Options<BlogControllerListCommentsData>>, number | Pick<QueryKey<Options<BlogControllerListCommentsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<BlogControllerListCommentsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await blogControllerListComments({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerListCommentsInfiniteQueryKey(options)
+});
+
+/**
+ * Add a comment to a blog post
+ */
+export const blogControllerAddCommentMutation = (options?: Partial<Options<BlogControllerAddCommentData>>): UseMutationOptions<BlogControllerAddCommentResponse, AxiosError<DefaultError>, Options<BlogControllerAddCommentData>> => {
+    const mutationOptions: UseMutationOptions<BlogControllerAddCommentResponse, AxiosError<DefaultError>, Options<BlogControllerAddCommentData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await blogControllerAddComment({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Toggle like on a blog post
+ */
+export const blogControllerToggleLikeMutation = (options?: Partial<Options<BlogControllerToggleLikeData>>): UseMutationOptions<BlogControllerToggleLikeResponse, AxiosError<DefaultError>, Options<BlogControllerToggleLikeData>> => {
+    const mutationOptions: UseMutationOptions<BlogControllerToggleLikeResponse, AxiosError<DefaultError>, Options<BlogControllerToggleLikeData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await blogControllerToggleLike({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const blogControllerCheckLikeStatusQueryKey = (options: Options<BlogControllerCheckLikeStatusData>) => createQueryKey('blogControllerCheckLikeStatus', options);
+
+/**
+ * Check if current user liked a blog post
+ */
+export const blogControllerCheckLikeStatusOptions = (options: Options<BlogControllerCheckLikeStatusData>) => queryOptions<BlogControllerCheckLikeStatusResponse, AxiosError<DefaultError>, BlogControllerCheckLikeStatusResponse, ReturnType<typeof blogControllerCheckLikeStatusQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await blogControllerCheckLikeStatus({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: blogControllerCheckLikeStatusQueryKey(options)
 });
 
 export const feedbackControllerFindAllQueryKey = (options?: Options<FeedbackControllerFindAllData>) => createQueryKey('feedbackControllerFindAll', options);
@@ -1508,6 +1800,93 @@ export const verificationControllerGetVerificationOptions = (options: Options<Ve
         return data;
     },
     queryKey: verificationControllerGetVerificationQueryKey(options)
+});
+
+/**
+ * Run standalone AI verification from Google Sheet
+ *
+ * Analyzes data directly from a Google Sheet URL without requiring an order. Sheet must be shared publicly (anyone with the link can view). Uses sheet headers as field descriptions for AI analysis.
+ */
+export const verificationControllerCreateStandaloneAiVerificationMutation = (options?: Partial<Options<VerificationControllerCreateStandaloneAiVerificationData>>): UseMutationOptions<VerificationControllerCreateStandaloneAiVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateStandaloneAiVerificationData>> => {
+    const mutationOptions: UseMutationOptions<VerificationControllerCreateStandaloneAiVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateStandaloneAiVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await verificationControllerCreateStandaloneAiVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Run standalone SPSS verification from Google Sheet
+ *
+ * Analyzes data from a Google Sheet for statistical reliability. Auto-detects Likert columns (numeric 1-7) and groups by header prefix. Sheet must be shared publicly.
+ */
+export const verificationControllerCreateStandaloneSpssVerificationMutation = (options?: Partial<Options<VerificationControllerCreateStandaloneSpssVerificationData>>): UseMutationOptions<VerificationControllerCreateStandaloneSpssVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateStandaloneSpssVerificationData>> => {
+    const mutationOptions: UseMutationOptions<VerificationControllerCreateStandaloneSpssVerificationResponse, AxiosError<DefaultError>, Options<VerificationControllerCreateStandaloneSpssVerificationData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await verificationControllerCreateStandaloneSpssVerification({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const verificationControllerListStandaloneVerificationsQueryKey = (options?: Options<VerificationControllerListStandaloneVerificationsData>) => createQueryKey('verificationControllerListStandaloneVerifications', options);
+
+/**
+ * List standalone verification results (paginated)
+ *
+ * Returns standalone verifications (no order) for the current user, sorted by newest first.
+ */
+export const verificationControllerListStandaloneVerificationsOptions = (options?: Options<VerificationControllerListStandaloneVerificationsData>) => queryOptions<VerificationControllerListStandaloneVerificationsResponse, AxiosError<DefaultError>, VerificationControllerListStandaloneVerificationsResponse, ReturnType<typeof verificationControllerListStandaloneVerificationsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await verificationControllerListStandaloneVerifications({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerListStandaloneVerificationsQueryKey(options)
+});
+
+export const verificationControllerListStandaloneVerificationsInfiniteQueryKey = (options?: Options<VerificationControllerListStandaloneVerificationsData>): QueryKey<Options<VerificationControllerListStandaloneVerificationsData>> => createQueryKey('verificationControllerListStandaloneVerifications', options, true);
+
+/**
+ * List standalone verification results (paginated)
+ *
+ * Returns standalone verifications (no order) for the current user, sorted by newest first.
+ */
+export const verificationControllerListStandaloneVerificationsInfiniteOptions = (options?: Options<VerificationControllerListStandaloneVerificationsData>) => infiniteQueryOptions<VerificationControllerListStandaloneVerificationsResponse, AxiosError<DefaultError>, InfiniteData<VerificationControllerListStandaloneVerificationsResponse>, QueryKey<Options<VerificationControllerListStandaloneVerificationsData>>, number | Pick<QueryKey<Options<VerificationControllerListStandaloneVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<VerificationControllerListStandaloneVerificationsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await verificationControllerListStandaloneVerifications({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: verificationControllerListStandaloneVerificationsInfiniteQueryKey(options)
 });
 
 export const verificationControllerGetPublicCreditConfigsQueryKey = (options?: Options<VerificationControllerGetPublicCreditConfigsData>) => createQueryKey('verificationControllerGetPublicCreditConfigs', options);

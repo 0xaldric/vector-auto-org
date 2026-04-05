@@ -257,6 +257,139 @@ export type GoogleTokenDto = {
     referralCode?: string;
 };
 
+export type BlogAuthorDto = {
+    _id: string;
+    displayName?: string;
+    avatarUrl?: string;
+};
+
+export type BlogResponseDto = {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    coverImage?: string;
+    author: BlogAuthorDto;
+    status: 'draft' | 'published';
+    tags: Array<string>;
+    viewCount: number;
+    likeCount: number;
+    commentCount: number;
+    publishedAt?: string;
+    created_at: string;
+};
+
+export type PaginatedBlogResponseDto = {
+    data: Array<BlogResponseDto>;
+    meta: PaginationMetaDto;
+};
+
+export type BlogStatsDto = {
+    totalPosts: number;
+    totalPublished: number;
+    totalDrafts: number;
+    totalViews: number;
+    totalLikes: number;
+    totalComments: number;
+};
+
+export type BlogDetailDto = {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    coverImage?: string;
+    author: BlogAuthorDto;
+    status: 'draft' | 'published';
+    tags: Array<string>;
+    viewCount: number;
+    likeCount: number;
+    commentCount: number;
+    publishedAt?: string;
+    created_at: string;
+    /**
+     * Full markdown content
+     */
+    content: string;
+};
+
+export type CreateBlogDto = {
+    /**
+     * Blog title
+     */
+    title: string;
+    /**
+     * Blog content in markdown
+     */
+    content: string;
+    /**
+     * Short excerpt
+     */
+    excerpt?: string;
+    /**
+     * Cover image URL
+     */
+    coverImage?: string;
+    /**
+     * Tags
+     */
+    tags?: Array<string>;
+    /**
+     * Blog status
+     */
+    status?: 'draft' | 'published';
+};
+
+export type UpdateBlogDto = {
+    /**
+     * Blog title
+     */
+    title?: string;
+    /**
+     * Blog content in markdown
+     */
+    content?: string;
+    /**
+     * Short excerpt
+     */
+    excerpt?: string;
+    /**
+     * Cover image URL
+     */
+    coverImage?: string;
+    /**
+     * Tags
+     */
+    tags?: Array<string>;
+    /**
+     * Blog status
+     */
+    status?: 'draft' | 'published';
+    /**
+     * Custom slug override
+     */
+    slug?: string;
+};
+
+export type CommentWithUserDto = {
+    _id: string;
+    content: string;
+    user?: BlogAuthorDto;
+    created_at: string;
+};
+
+export type PaginatedCommentResponseDto = {
+    data: Array<CommentWithUserDto>;
+    meta: PaginationMetaDto;
+};
+
+export type CreateCommentDto = {
+    /**
+     * Comment content
+     */
+    content: string;
+};
+
 export type FeedbackResponseDto = {
     _id: string;
     userId: string;
@@ -1019,6 +1152,13 @@ export type CreateVerificationDto = {
 export type PaginatedVerificationResponseDto = {
     data: Array<VerificationResponseDto>;
     meta: PaginationMetaDto;
+};
+
+export type CreateStandaloneVerificationDto = {
+    /**
+     * Google Sheet URL containing form responses
+     */
+    sheetUrl: string;
 };
 
 export type PricingTierResponseDto = {
@@ -1798,6 +1938,387 @@ export type AuthControllerOrganizerDashboardResponses = {
 };
 
 export type AuthControllerOrganizerDashboardResponse = AuthControllerOrganizerDashboardResponses[keyof AuthControllerOrganizerDashboardResponses];
+
+export type BlogControllerAdminFindAllData = {
+    body?: never;
+    path?: never;
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/blog/admin/list';
+};
+
+export type BlogControllerAdminFindAllErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerAdminFindAllResponses = {
+    /**
+     * Paginated blog list
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedBlogResponseDto;
+    };
+};
+
+export type BlogControllerAdminFindAllResponse = BlogControllerAdminFindAllResponses[keyof BlogControllerAdminFindAllResponses];
+
+export type BlogControllerGetStatsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/blog/admin/stats';
+};
+
+export type BlogControllerGetStatsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerGetStatsResponses = {
+    /**
+     * Blog statistics
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: BlogStatsDto;
+    };
+};
+
+export type BlogControllerGetStatsResponse = BlogControllerGetStatsResponses[keyof BlogControllerGetStatsResponses];
+
+export type BlogControllerDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Blog MongoDB ID
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/blog/admin/{id}';
+};
+
+export type BlogControllerDeleteErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerDeleteResponses = {
+    /**
+     * Blog deleted
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: unknown;
+    };
+};
+
+export type BlogControllerDeleteResponse = BlogControllerDeleteResponses[keyof BlogControllerDeleteResponses];
+
+export type BlogControllerAdminFindByIdData = {
+    body?: never;
+    path: {
+        /**
+         * Blog MongoDB ID
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/blog/admin/{id}';
+};
+
+export type BlogControllerAdminFindByIdErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerAdminFindByIdResponses = {
+    /**
+     * Blog detail
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: BlogDetailDto;
+    };
+};
+
+export type BlogControllerAdminFindByIdResponse = BlogControllerAdminFindByIdResponses[keyof BlogControllerAdminFindByIdResponses];
+
+export type BlogControllerUpdateData = {
+    body: UpdateBlogDto;
+    path: {
+        /**
+         * Blog MongoDB ID
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/blog/admin/{id}';
+};
+
+export type BlogControllerUpdateErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerUpdateResponses = {
+    /**
+     * Blog updated
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: BlogDetailDto;
+    };
+};
+
+export type BlogControllerUpdateResponse = BlogControllerUpdateResponses[keyof BlogControllerUpdateResponses];
+
+export type BlogControllerCreateData = {
+    body: CreateBlogDto;
+    path?: never;
+    query?: never;
+    url: '/blog/admin';
+};
+
+export type BlogControllerCreateErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Admin role required
+     */
+    403: unknown;
+};
+
+export type BlogControllerCreateResponses = {
+    /**
+     * Blog created
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: BlogDetailDto;
+    };
+};
+
+export type BlogControllerCreateResponse = BlogControllerCreateResponses[keyof BlogControllerCreateResponses];
+
+export type BlogControllerFindPublishedData = {
+    body?: never;
+    path?: never;
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/blog';
+};
+
+export type BlogControllerFindPublishedResponses = {
+    /**
+     * Paginated published blog list
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedBlogResponseDto;
+    };
+};
+
+export type BlogControllerFindPublishedResponse = BlogControllerFindPublishedResponses[keyof BlogControllerFindPublishedResponses];
+
+export type BlogControllerFindBySlugData = {
+    body?: never;
+    path: {
+        /**
+         * Blog URL slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/blog/{slug}';
+};
+
+export type BlogControllerFindBySlugResponses = {
+    /**
+     * Blog detail with content
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: BlogDetailDto;
+    };
+};
+
+export type BlogControllerFindBySlugResponse = BlogControllerFindBySlugResponses[keyof BlogControllerFindBySlugResponses];
+
+export type BlogControllerListCommentsData = {
+    body?: never;
+    path: {
+        /**
+         * Blog URL slug
+         */
+        slug: string;
+    };
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/blog/{slug}/comments';
+};
+
+export type BlogControllerListCommentsResponses = {
+    /**
+     * Paginated comment list
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedCommentResponseDto;
+    };
+};
+
+export type BlogControllerListCommentsResponse = BlogControllerListCommentsResponses[keyof BlogControllerListCommentsResponses];
+
+export type BlogControllerAddCommentData = {
+    body: CreateCommentDto;
+    path: {
+        /**
+         * Blog URL slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/blog/{slug}/comments';
+};
+
+export type BlogControllerAddCommentErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type BlogControllerAddCommentResponses = {
+    /**
+     * Comment created
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: CommentWithUserDto;
+    };
+};
+
+export type BlogControllerAddCommentResponse = BlogControllerAddCommentResponses[keyof BlogControllerAddCommentResponses];
+
+export type BlogControllerToggleLikeData = {
+    body?: never;
+    path: {
+        /**
+         * Blog URL slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/blog/{slug}/like';
+};
+
+export type BlogControllerToggleLikeErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type BlogControllerToggleLikeResponses = {
+    /**
+     * Like toggled
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: {
+            liked?: boolean;
+            likeCount?: number;
+        };
+    };
+};
+
+export type BlogControllerToggleLikeResponse = BlogControllerToggleLikeResponses[keyof BlogControllerToggleLikeResponses];
+
+export type BlogControllerCheckLikeStatusData = {
+    body?: never;
+    path: {
+        /**
+         * Blog URL slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/blog/{slug}/like/status';
+};
+
+export type BlogControllerCheckLikeStatusErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type BlogControllerCheckLikeStatusResponses = {
+    /**
+     * Like status
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: {
+            liked?: boolean;
+        };
+    };
+};
+
+export type BlogControllerCheckLikeStatusResponse = BlogControllerCheckLikeStatusResponses[keyof BlogControllerCheckLikeStatusResponses];
 
 export type FeedbackControllerFindAllData = {
     body?: never;
@@ -3294,6 +3815,98 @@ export type VerificationControllerGetVerificationResponses = {
 };
 
 export type VerificationControllerGetVerificationResponse = VerificationControllerGetVerificationResponses[keyof VerificationControllerGetVerificationResponses];
+
+export type VerificationControllerCreateStandaloneAiVerificationData = {
+    body: CreateStandaloneVerificationDto;
+    path?: never;
+    query?: never;
+    url: '/google-form/verify/sheet/ai';
+};
+
+export type VerificationControllerCreateStandaloneAiVerificationErrors = {
+    /**
+     * Sheet not accessible, no data, or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type VerificationControllerCreateStandaloneAiVerificationResponses = {
+    /**
+     * Standalone AI verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type VerificationControllerCreateStandaloneAiVerificationResponse = VerificationControllerCreateStandaloneAiVerificationResponses[keyof VerificationControllerCreateStandaloneAiVerificationResponses];
+
+export type VerificationControllerCreateStandaloneSpssVerificationData = {
+    body: CreateStandaloneVerificationDto;
+    path?: never;
+    query?: never;
+    url: '/google-form/verify/sheet/spss';
+};
+
+export type VerificationControllerCreateStandaloneSpssVerificationErrors = {
+    /**
+     * Sheet not accessible, no Likert data, or verification already in progress
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type VerificationControllerCreateStandaloneSpssVerificationResponses = {
+    /**
+     * Standalone SPSS verification created and processing started
+     */
+    201: {
+        status?: string;
+        code?: number;
+        data?: VerificationResponseDto;
+    };
+};
+
+export type VerificationControllerCreateStandaloneSpssVerificationResponse = VerificationControllerCreateStandaloneSpssVerificationResponses[keyof VerificationControllerCreateStandaloneSpssVerificationResponses];
+
+export type VerificationControllerListStandaloneVerificationsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        page?: number;
+        limit?: number;
+    };
+    url: '/google-form/verify/sheet/list';
+};
+
+export type VerificationControllerListStandaloneVerificationsErrors = {
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+};
+
+export type VerificationControllerListStandaloneVerificationsResponses = {
+    /**
+     * Paginated list of standalone verifications
+     */
+    200: {
+        status?: string;
+        code?: number;
+        data?: PaginatedVerificationResponseDto;
+    };
+};
+
+export type VerificationControllerListStandaloneVerificationsResponse = VerificationControllerListStandaloneVerificationsResponses[keyof VerificationControllerListStandaloneVerificationsResponses];
 
 export type VerificationControllerGetPublicCreditConfigsData = {
     body?: never;
