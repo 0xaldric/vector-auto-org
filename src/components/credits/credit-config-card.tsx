@@ -32,6 +32,7 @@ import type { CreditConfigResponseDto, PricingTierResponseDto } from "@/generate
 const keyLabel: Record<string, string> = {
   verification_ai: "AI Verification",
   verification_spss: "SPSS Verification",
+  verification_ai_download: "Tải Excel chỉnh sửa AI",
   order_submission: "Order Submissions",
 };
 

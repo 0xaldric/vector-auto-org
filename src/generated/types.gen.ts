@@ -534,6 +534,12 @@ export type FieldRateConfigDto = {
     rates: {
         [key: string]: unknown;
     };
+    /**
+     * Random count config for CHECKBOX fields: randomly select between minCount and maxCount options
+     */
+    randomCountConfig?: {
+        [key: string]: unknown;
+    };
 };
 
 export type SaveRatesDto = {
@@ -917,6 +923,12 @@ export type FieldAnswerRateDto = {
     rates: {
         [key: string]: unknown;
     };
+    /**
+     * Random count config for CHECKBOX fields: randomly select between minCount and maxCount options
+     */
+    randomCountConfig?: {
+        [key: string]: unknown;
+    };
 };
 
 export type CreateOrderDto = {
@@ -1081,6 +1093,12 @@ export type AiSubmissionIssueResponseDto = {
      * Điểm giống người thật (0-100)
      */
     score: number;
+    /**
+     * Gợi ý chỉnh sửa từ AI cho các trường bị đánh dấu
+     */
+    suggestedCorrections?: {
+        [key: string]: unknown;
+    };
 };
 
 export type AiVerificationResultResponseDto = {
@@ -3779,6 +3797,33 @@ export type VerificationControllerListVerificationsResponses = {
 };
 
 export type VerificationControllerListVerificationsResponse = VerificationControllerListVerificationsResponses[keyof VerificationControllerListVerificationsResponses];
+
+export type VerificationControllerDownloadCorrectionsData = {
+    body?: never;
+    path: {
+        /**
+         * Verification document ID
+         */
+        id: string;
+    };
+    query?: never;
+    url: '/google-form/verifications/{id}/download-corrections';
+};
+
+export type VerificationControllerDownloadCorrectionsErrors = {
+    /**
+     * Not an AI verification, not completed, or no corrections
+     */
+    400: unknown;
+    /**
+     * Missing or invalid JWT token
+     */
+    401: unknown;
+    /**
+     * Verification not found
+     */
+    404: unknown;
+};
 
 export type VerificationControllerGetVerificationData = {
     body?: never;
